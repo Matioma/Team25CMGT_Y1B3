@@ -78,7 +78,7 @@ public class Level:GameObject
         Player player1 = new Player("colors.png", 1, 1);
         player1.SetXY(x, y);
 
-        player1.SetPivotPoint(PivotPointPosition.LEFT_TOP);
+        player1.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(player1);
 
         Controller controller1 = new Controller(player1, controlerIndex);

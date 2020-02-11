@@ -15,20 +15,10 @@ abstract class ArcadeObject : GameObject
 
 
     public virtual void Update() {
-       
         Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
         SetXY(worldPosition.x, worldPosition.y);
         hitBox.SetXY(0, 0);
-        //SetSpritePivotPoint(hitBox, _pivotPointPosition);
-        /*if (hitBox.parent is Player)
-        {
-            Console.WriteLine(x + ":" + y);
-            hitBox.SetXY(-visuals.width / 2, -visuals.height);
-        }*/
-          
-        //SetPivotPoint(_pivotPointPosition);
     }
-
 
     //Adds animation sprite to the object
     protected void CreateVisual(string spriteSheet, int cols, int rows) {
@@ -83,83 +73,41 @@ abstract class ArcadeObject : GameObject
             switch (pivotPointPosition)
             {
                 case PivotPointPosition.LEFT_TOP:
-                    hitBox.SetXY(0, 0);
-                    visuals.SetXY(0, 0);
+                    
+                    hitBox.SetOrigin(0, 0);
+                    visuals.SetOrigin(0, 0);
                     break;
                 case PivotPointPosition.LEFT_CENTER:
-                    hitBox.SetXY(0, -visuals.height / 2);
-                    visuals.SetXY(0, -visuals.height / 2);
+                    hitBox.SetOrigin(0, visuals.height / 2);
+                    visuals.SetOrigin(0, visuals.height / 2);
                     break;
                 case PivotPointPosition.LEFT_BOTTOM:
-                    hitBox.SetXY(0, -visuals.height);
-                    visuals.SetXY(0, -visuals.height);
+                    hitBox.SetOrigin(0, visuals.height);
+                    visuals.SetOrigin(0, visuals.height);
                     break;
                 case PivotPointPosition.TOP:
-                    hitBox.SetXY(-visuals.width / 2, 0);
-                    visuals.SetXY(-visuals.width / 2, 0);
+                    hitBox.SetOrigin(visuals.width / 2, 0);
+                    visuals.SetOrigin(visuals.width / 2, 0);
                     break;
                 case PivotPointPosition.CENTER:
-                    hitBox.SetXY(-visuals.width / 2, -visuals.height / 2);
-                    visuals.SetXY(-visuals.width / 2, -visuals.height / 2);
+                    hitBox.SetOrigin(visuals.width / 2, visuals.height / 2);
+                    visuals.SetOrigin(visuals.width / 2, visuals.height / 2);
                     break;
                 case PivotPointPosition.BOTTOM:
-                    hitBox.SetXY(-visuals.width / 2, -visuals.height);
-                    visuals.SetXY(-visuals.width / 2, -visuals.height);
+                    hitBox.SetOrigin(visuals.width / 2, visuals.height);
+                    visuals.SetOrigin(visuals.width / 2, visuals.height);
                     break;
                 case PivotPointPosition.RIGHT_TOP:
-                    hitBox.SetXY(-visuals.width, 0);
-                    visuals.SetXY(-visuals.width, 0);
+                    hitBox.SetOrigin(visuals.width, 0);
+                    visuals.SetOrigin(visuals.width, 0);
                     break;
                 case PivotPointPosition.RIGHT_CENTER:
-                    hitBox.SetXY(-visuals.width, -visuals.height / 2);
-                    visuals.SetXY(-visuals.width, -visuals.height / 2);
+                    hitBox.SetOrigin(visuals.width, visuals.height / 2);
+                    visuals.SetOrigin(visuals.width, visuals.height / 2);
                     break;
                 case PivotPointPosition.RIGHT_BOTTOM:
-                    hitBox.SetXY(-visuals.width, -visuals.height);
-                    visuals.SetXY(-visuals.width, -visuals.height);
-                    break;
-            }
-        }
-    }
-
-    public void SetSpritePivotPoint(Sprite sprite, PivotPointPosition pivotPointPosition)
-    {
-        if (sprite == null)
-        {
-            throw new Exception("Imposible to set the pivot point to a null Sprite");
-        }
-        //Setting the pivot points
-        else
-        {
-            //_pivotPointPosition = pivotPointPosition;
-            switch (pivotPointPosition)
-            {
-                case PivotPointPosition.LEFT_TOP:
-                    sprite.SetXY(0, 0);
-                    break;
-                case PivotPointPosition.LEFT_CENTER:
-                    sprite.SetXY(0, -visuals.height / 2);
-                    break;
-                case PivotPointPosition.LEFT_BOTTOM:
-                    sprite.SetXY(0, -visuals.height);
-                    break;
-                case PivotPointPosition.TOP:
-                    sprite.SetXY(-visuals.width / 2, 0);
-                    break;
-                case PivotPointPosition.CENTER:
-                    sprite.SetXY(-visuals.width / 2, -visuals.height / 2);
-                    break;
-                case PivotPointPosition.BOTTOM:
-                    sprite.SetXY(-visuals.width/2, -visuals.height);
-                    break;
-                case PivotPointPosition.RIGHT_TOP:
-                    sprite.SetXY(-visuals.width, 0);
-                    break;
-                case PivotPointPosition.RIGHT_CENTER:
-                    sprite.SetXY(-visuals.width, -visuals.height / 2);
-                    break;
-                case PivotPointPosition.RIGHT_BOTTOM:
-                    sprite.SetXY(-visuals.width, -visuals.height);
+                    hitBox.SetOrigin(visuals.width, visuals.height);
+                    visuals.SetOrigin(visuals.width, visuals.height);
                     break;
             }
         }

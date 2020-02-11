@@ -39,7 +39,7 @@ class Player : ArcadeObject
 
     public override void Update() {
         base.Update();
-        hitBox.MoveUntilCollision(0,0.2f);
+        hitBox.MoveUntilCollision(0,0.5f);
         //hitBox.Translate(0,0.2f);
     }
 
