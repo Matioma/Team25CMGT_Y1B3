@@ -11,6 +11,8 @@ public class MyGame : Game
 
         //var levelData = MapParser.ReadMap("TestLevel.tmx");
         Level level = new Level("TestLevel.tmx");
+
+        
         //ArcadeObject obj= new ArcadeObject(new Vector2(150,150), new Vector2(32,32));
 
         AddChild(level);

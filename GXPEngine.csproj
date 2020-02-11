@@ -37,8 +37,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArcadeFiles\ArcadeObject.cs" />
+    <Compile Include="ArcadeFiles\Controller.cs" />
     <Compile Include="ArcadeFiles\HitBox.cs" />
     <Compile Include="ArcadeFiles\Level.cs" />
+    <Compile Include="ArcadeFiles\Player.cs" />
     <Compile Include="ArcadeFiles\Tile.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />

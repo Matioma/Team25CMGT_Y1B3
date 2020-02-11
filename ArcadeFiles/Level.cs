@@ -14,17 +14,39 @@ public class Level:GameObject
  
     short[,] tiledDataShort;
 
+    Map levelData;
+
+    List<Controller> controllersList = new List<Controller>();
+
     public Level()
     {
    
     }
 
     public Level(string tiledFile) {
-        Map levelData = MapParser.ReadMap(tiledFile);
+        levelData = MapParser.ReadMap(tiledFile);
         _tileWidth = levelData.TileWidth;
         _tileHeight = levelData.TileHeight;
         
         SpawnTiles(levelData);
+
+
+        Player player1 = new Player("colors.png", 1, 1);
+        player1.SetXY(50, 50);
+        AddChild(player1);
+
+        Controller controller1 = new Controller(player1);
+        AddChild(controller1);
+        controllersList.Add(controller1);
+
+
+        player1 = new Player("colors.png", 1, 1);
+        player1.SetXY(150, 150);
+        AddChild(player1);
+        AddChild(controller1);
+        controllersList.Add(controller1);
+
+        //player
     }
 
     public void SpawnTiles(Map levelData)
