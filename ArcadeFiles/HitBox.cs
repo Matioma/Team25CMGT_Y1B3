@@ -58,9 +58,5 @@ class HitBox : Sprite
     }
 
 
-
-    void OnCollision(GameObject col) {
-    }
-
 }
 

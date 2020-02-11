@@ -30,10 +30,10 @@ public class Level:GameObject
         
         SpawnTiles(levelData);
 
-        var player =CreatePlayer(50, 50, 0);
+        var player =CreatePlayer(50, 150, 0);
         player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
 
-        player=CreatePlayer(150, 150, 1);
+        player=CreatePlayer(150, 200, 1);
         player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
         
     }
@@ -77,6 +77,8 @@ public class Level:GameObject
     private Player CreatePlayer(int x ,int y, int controlerIndex) {
         Player player1 = new Player("colors.png", 1, 1);
         player1.SetXY(x, y);
+
+        player1.SetPivotPoint(PivotPointPosition.LEFT_TOP);
         AddChild(player1);
 
         Controller controller1 = new Controller(player1, controlerIndex);
@@ -94,9 +96,9 @@ public class Level:GameObject
     /// <param name="tileNumber"> Tileset tile id</param>
     public void AddTileToLevel(int i, int j, int tileNumber) {
         var tile = new Tile("tiles.png", 5, 1);
-        tile.setSpriteSheetIndex(tileNumber - 1);
+        tile.SetSpriteSheetIndex(tileNumber - 1);
         tile.SetXY(j * _tileWidth, i * _tileHeight);
-        tile.setSpriteExtent(_tileWidth, _tileHeight);
+        tile.SetSpriteExtent(_tileWidth, _tileHeight);
         AddChild(tile);
     }
 
