@@ -79,7 +79,6 @@ class Settings
                     HitBox.ColliderAlpha = value;
                     break;
                 default:
-                    //Console.WriteLine("Unknown Command");
             break;
             }
         }

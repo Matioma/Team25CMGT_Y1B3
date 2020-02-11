@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
-class Player:ArcadeObject
+class Player : ArcadeObject
 {
     Camera _cameraRef = null;
 
@@ -21,7 +21,7 @@ class Player:ArcadeObject
             if (_cameraRef != null)
             {
                 _cameraRef.LateDestroy();
-                
+
             }
             _cameraRef = value;
             AddChild(value);
@@ -38,7 +38,7 @@ class Player:ArcadeObject
     }
 
     public void AddCamera(int x, int y, int width, int height) {
-        PlayerCamera = new Camera(x,y,width,height);
+        PlayerCamera = new Camera(x, y, width, height);
     }
 
 
@@ -46,6 +46,12 @@ class Player:ArcadeObject
 
 
     void Update() {
-        this.x += 10;
+        //this.x += 10;
     }
+
+    void Move(int x, int y) {
+        this.x += x;
+        this.y += y;
+    }
+
 }

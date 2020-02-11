@@ -31,22 +31,23 @@ public class Level:GameObject
         SpawnTiles(levelData);
 
 
+        Controller controller1;
+
         Player player1 = new Player("colors.png", 1, 1);
         player1.SetXY(50, 50);
+        player1.AddCamera(0,0, Game.main.width/2, Game.main.height);
         AddChild(player1);
 
-        Controller controller1 = new Controller(player1);
+        controller1 = new Controller(player1,0);
         AddChild(controller1);
-        controllersList.Add(controller1);
-
 
         player1 = new Player("colors.png", 1, 1);
         player1.SetXY(150, 150);
+        player1.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
         AddChild(player1);
-        AddChild(controller1);
-        controllersList.Add(controller1);
 
-        //player
+        controller1 = new Controller(player1, 1);
+        AddChild(controller1);
     }
 
     public void SpawnTiles(Map levelData)

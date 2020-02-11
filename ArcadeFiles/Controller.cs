@@ -7,6 +7,8 @@ using GXPEngine;
 class Controller:GameObject
 {
     Player _target;
+    int controllerId;
+
 
     Player ControlledTarget {
         get {
@@ -22,16 +24,34 @@ class Controller:GameObject
         }
     }
 
-    public Controller(Player ptarget) {
+    public Controller(Player ptarget, int pControllerId) {
         ControlledTarget = ptarget;
+        controllerId = pControllerId;
     }
 
     public void Update()
     {
-        Console.WriteLine("XD");
-        //this.x += 10;
+        switch (controllerId) {
+            case 0:
+                if (Input.GetKey(Key.D)) {
+                    _target.Move(5,0);
+                }
+                if (Input.GetKey(Key.A))
+                {
+                    _target.Move(-5, 0);
+                }
+                break;
+            case 1:
+                if (Input.GetKey(Key.RIGHT))
+                {
+                    _target.Move(5, 0);
+                }
+                if (Input.GetKey(Key.LEFT))
+                {
+                    _target.Move(-5, 0);
+                }
+                break;
+        }
     }
-
-
 }
 
