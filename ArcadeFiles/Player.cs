@@ -6,16 +6,42 @@ using System.Text;
 using GXPEngine;
 class Player:ArcadeObject
 {
+    Camera _cameraRef = null;
 
-    Camera camera;
+    Camera PlayerCamera {
+        get {
+            if (_cameraRef != null)
+                return _cameraRef;
+            else {
+                Console.WriteLine("Player does not have a camera");
+                return null;
+            }
+        }
+        set {
+            if (_cameraRef != null)
+            {
+                _cameraRef.LateDestroy();
+                
+            }
+            _cameraRef = value;
+            AddChild(value);
+        }
+    }
+
+
+    ///Camera camera;
     public Player(string spriteSheet, int cols, int rows)
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows);
         AddChild(visuals);
         AddHitBox();
-        camera = new Camera(0, 0, Game.main.width / 2, Game.main.height);
-        AddChild(camera);
     }
+
+    public void AddCamera(int x, int y, int width, int height) {
+        PlayerCamera = new Camera(x,y,width,height);
+    }
+
+
 
 
 
