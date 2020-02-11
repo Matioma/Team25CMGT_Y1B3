@@ -1,7 +1,7 @@
 using System;									// System contains a lot of default C# libraries 
 using GXPEngine;								// GXPEngine contains the engine
 using GXPEngine.Core;
-
+using TiledMapParser;
 public class MyGame : Game
 {
     public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
@@ -9,7 +9,8 @@ public class MyGame : Game
         Settings.Initialize(); // Loads And Parses settings file
 
 
-        Level level = new Level();
+        //var levelData = MapParser.ReadMap("TestLevel.tmx");
+        Level level = new Level("TestLevel.tmx");
         //ArcadeObject obj= new ArcadeObject(new Vector2(150,150), new Vector2(32,32));
 
         AddChild(level);
