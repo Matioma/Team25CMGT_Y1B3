@@ -6,6 +6,8 @@ using GXPEngine;
 using GXPEngine.Core;
 class HitBox : Sprite
 {
+
+
     static float _colliderAlpha = 0.8f;
     static bool _debugCollision = false;
 
@@ -39,7 +41,6 @@ class HitBox : Sprite
         toggleDebugMode();
     }
 
-
     public void setHitBoxSize(Vector2 size)
     {
         width = (int)size.x;
@@ -55,5 +56,11 @@ class HitBox : Sprite
         }
 
     }
+
+
+
+    void OnCollision(GameObject col) {
+    }
+
 }
 

@@ -6,7 +6,7 @@ using System.Text;
 using GXPEngine;
 class Player : ArcadeObject
 {
-    //static int NumberOfPlayers = 0;
+    
 
     Camera _cameraRef = null;
     Camera PlayerCamera {
@@ -31,9 +31,16 @@ class Player : ArcadeObject
 
     public Player(string spriteSheet, int cols, int rows)
     {
-        visuals = new AnimationSprite(spriteSheet, cols, rows);
+        visuals = new AnimationSprite(spriteSheet, cols, rows,-1,false,false);
         AddChild(visuals);
         AddHitBox();
+    }
+
+
+    public override void Update() {
+        base.Update();
+        hitBox.MoveUntilCollision(0,0.2f);
+        //hitBox.Translate(0,0.2f);
     }
 
     public void AddCamera(int x, int y, int width, int height) {

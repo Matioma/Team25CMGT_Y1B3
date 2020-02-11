@@ -12,6 +12,12 @@ abstract class ArcadeObject : GameObject
     protected AnimationSprite visuals;
 
 
+    public virtual void Update() {
+        Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
+        SetXY(worldPosition.x, worldPosition.y);
+        hitBox.SetXY(0, 0);
+    }
+
 
     //Adds animation sprite to the object
     protected void CreateVisual(string spriteSheet, int cols, int rows) {
