@@ -33,21 +33,21 @@ class Controller:GameObject
         switch (controllerId) {
             case 0:
                 if (Input.GetKey(Key.D)) {
-                    _target.Move(5,0);
+                    _target.Move(5);
                 }
                 if (Input.GetKey(Key.A))
                 {
-                    _target.Move(-5, 0);
+                    _target.Move(-5);
                 }
                 break;
             case 1:
                 if (Input.GetKey(Key.RIGHT))
                 {
-                    _target.Move(5, 0);
+                    _target.Move(5);
                 }
                 if (Input.GetKey(Key.LEFT))
                 {
-                    _target.Move(-5, 0);
+                    _target.Move(-5);
                 }
                 break;
         }

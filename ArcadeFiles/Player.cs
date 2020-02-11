@@ -40,10 +40,17 @@ class Player : ArcadeObject
     public override void Update() {
         base.Update();
         hitBox.MoveUntilCollision(0,0.5f);
-        //hitBox.Translate(0,0.2f);
+        
     }
 
     public void AddCamera(int x, int y, int width, int height) {
         PlayerCamera = new Camera(x, y, width, height);
+    }
+
+
+    public void Move(int speed)
+    {
+        hitBox.MoveUntilCollision(speed, 0f);
+        //Update();
     }
 }
