@@ -6,8 +6,9 @@ using System.Text;
 using GXPEngine;
 class Player : ArcadeObject
 {
-    Camera _cameraRef = null;
+    //static int NumberOfPlayers = 0;
 
+    Camera _cameraRef = null;
     Camera PlayerCamera {
         get {
             if (_cameraRef != null)
@@ -20,16 +21,14 @@ class Player : ArcadeObject
         set {
             if (_cameraRef != null)
             {
-                _cameraRef.LateDestroy();
-
+                _cameraRef.LateDestroy(); // removes the previous camera to add a new one
+                Console.Write("Warning! - replacing a camera from a player");
             }
             _cameraRef = value;
             AddChild(value);
         }
     }
 
-
-    ///Camera camera;
     public Player(string spriteSheet, int cols, int rows)
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows);
@@ -40,18 +39,4 @@ class Player : ArcadeObject
     public void AddCamera(int x, int y, int width, int height) {
         PlayerCamera = new Camera(x, y, width, height);
     }
-
-
-
-
-
-    void Update() {
-        //this.x += 10;
-    }
-
-    void Move(int x, int y) {
-        this.x += x;
-        this.y += y;
-    }
-
 }

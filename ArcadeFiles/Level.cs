@@ -30,26 +30,19 @@ public class Level:GameObject
         
         SpawnTiles(levelData);
 
+        var player =CreatePlayer(50, 50, 0);
+        player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
 
-        Controller controller1;
-
-        Player player1 = new Player("colors.png", 1, 1);
-        player1.SetXY(50, 50);
-        player1.AddCamera(0,0, Game.main.width/2, Game.main.height);
-        AddChild(player1);
-
-        controller1 = new Controller(player1,0);
-        AddChild(controller1);
-
-        player1 = new Player("colors.png", 1, 1);
-        player1.SetXY(150, 150);
-        player1.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
-        AddChild(player1);
-
-        controller1 = new Controller(player1, 1);
-        AddChild(controller1);
+        player=CreatePlayer(150, 150, 1);
+        player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
+        
     }
 
+
+    /// <summary>
+    /// Parses Tiles to the level
+    /// </summary>
+    /// <param name="levelData"></param>
     public void SpawnTiles(Map levelData)
     {
         if (levelData.Layers == null || levelData.Layers.Length == 0)
@@ -74,6 +67,31 @@ public class Level:GameObject
         }
     }
 
+    /// <summary>
+    /// Creates a Player object and gives it a controller
+    /// </summary>
+    /// <param name="x">position x</param>
+    /// <param name="y">position y</param>
+    /// <param name="controlerIndex"> Owning controller Id</param>
+    /// <returns></returns>
+    private Player CreatePlayer(int x ,int y, int controlerIndex) {
+        Player player1 = new Player("colors.png", 1, 1);
+        player1.SetXY(x, y);
+        AddChild(player1);
+
+        Controller controller1 = new Controller(player1, controlerIndex);
+        AddChild(controller1);
+
+        return player1;
+    }
+
+
+    /// <summary>
+    /// Adds a tile to the Level
+    /// </summary>
+    /// <param name="i">array index row</param>
+    /// <param name="j">array index column</param>
+    /// <param name="tileNumber"> Tileset tile id</param>
     public void AddTileToLevel(int i, int j, int tileNumber) {
         var tile = new Tile("tiles.png", 5, 1);
         tile.setSpriteSheetIndex(tileNumber - 1);
@@ -81,6 +99,9 @@ public class Level:GameObject
         tile.setSpriteExtent(_tileWidth, _tileHeight);
         AddChild(tile);
     }
+
+
+
 
 
     /*public void SpawnObjects(Map levelData)

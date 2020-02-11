@@ -9,7 +9,6 @@ class Controller:GameObject
     Player _target;
     int controllerId;
 
-
     Player ControlledTarget {
         get {
             if (_target != null) {
@@ -53,5 +52,10 @@ class Controller:GameObject
                 break;
         }
     }
-}
 
+    private void MoveTarget() {
+
+
+
+    }
+}
