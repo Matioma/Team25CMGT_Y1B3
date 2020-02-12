@@ -11,15 +11,10 @@ abstract class Unit : ArcadeObject
     protected int dx = 0;
     protected int dy = 0;
 
-
     protected int MaxSpeedY = 3;
+    private const int  Gravity= 1;
 
-
-    private int speedX = 0;
-    public int MaxSpeed {
-        get{ return speedX; }
-        set { speedX = value; }
-    }
+    public int MaxSpeed { get; set; } = 0;
     protected int speedY = 0;
 
 
@@ -32,7 +27,7 @@ abstract class Unit : ArcadeObject
     }
 
 
-    protected int jumpForce = 15;
+    protected int jumpForce = 5;
     public int JumpForce {
         get { return jumpForce; }
         set {
@@ -56,13 +51,16 @@ abstract class Unit : ArcadeObject
         ApplyGravity();
     }
 
+
+    /// <summary>
+    /// Moves player
+    /// </summary>
     public void MoveRight(){
-        dx = speedX;
+        dx = MaxSpeed;
     }
     public void MoveLeft(){
-        dx = -speedX;
+        dx = -MaxSpeed;
     }
-
     public void Jump() {
         if (OnGround)
         {
@@ -74,7 +72,7 @@ abstract class Unit : ArcadeObject
     void ApplyGravity() {
         if (speedY < MaxSpeedY)
         {
-            speedY += 1;
+            speedY += Gravity;
         }
         else {
             speedY = MaxSpeedY;
