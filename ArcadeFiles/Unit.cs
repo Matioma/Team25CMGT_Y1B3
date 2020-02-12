@@ -8,8 +8,11 @@ using GXPEngine.Core;
 
 abstract class Unit : ArcadeObject
 {
+    private int dx = 0;
+    private int dy = 0;
+
     protected int speedX = 0;
-    protected int MaxSpeedY = 1;
+    protected int MaxSpeedY = 3;
 
     public int MaxSpeed {
         get{ return speedX; }
@@ -20,7 +23,22 @@ abstract class Unit : ArcadeObject
 
     protected bool onGround = false;
 
-    protected float jumpForce = 15;
+    protected int jumpForce = 15;
+    public int JumpForce {
+        get { return jumpForce; }
+        set {
+            if (value > 0)
+            {
+                jumpForce = -value;
+            }
+            else {
+                jumpForce = value;
+            }
+        }
+
+    }
+
+
 
     public override void Update() {
         Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
@@ -42,7 +60,7 @@ abstract class Unit : ArcadeObject
     public void Jump() {
         if (onGround)
         {
-            speedY = -(int)jumpForce;
+            speedY = JumpForce;
         }
         
     }
@@ -55,7 +73,6 @@ abstract class Unit : ArcadeObject
         else {
             speedY = MaxSpeedY;
         }
-       //speedY += 1;
     }
 
     public void UsePowerUp(int controller) {
