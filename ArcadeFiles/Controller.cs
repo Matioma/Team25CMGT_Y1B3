@@ -6,8 +6,9 @@ using System.Text;
 using GXPEngine;
 class Controller:GameObject
 {
+    static int ControllersNumber = 0;
     Player _target;
-    int controllerId;
+    public int controllerId;
 
     Player ControlledTarget {
         get {
@@ -25,7 +26,16 @@ class Controller:GameObject
 
     public Controller(Player ptarget, int pControllerId) {
         ControlledTarget = ptarget;
-        controllerId = pControllerId;
+        controllerId = ControllersNumber;
+        ControllersNumber++;
+        //controllerId = pControllerId;
+    }
+    public Controller(Player ptarget)
+    {
+        ControlledTarget = ptarget;
+        controllerId = ControllersNumber;
+        ControllersNumber++;
+        //controllerId = pControllerId;
     }
 
     public void Update()
@@ -33,28 +43,37 @@ class Controller:GameObject
         switch (controllerId) {
             case 0:
                 if (Input.GetKey(Key.D)) {
-                    _target.Move(5);
+                    _target.MoveRight();
+                   
                 }
                 if (Input.GetKey(Key.A))
                 {
-                    _target.Move(-5);
+                    _target.MoveLeft();
                 }
                 if (Input.GetKeyDown(Key.W)) {
                     _target.Jump();
+                }
+                if (Input.GetKeyDown(Key.S)) {
+                    _target.UsePowerUp(controllerId);
+
                 }
                 break;
             case 1:
                 if (Input.GetKey(Key.RIGHT))
                 {
-                    _target.Move(5);
+                    _target.MoveRight();
                 }
                 if (Input.GetKey(Key.LEFT))
                 {
-                    _target.Move(-5);
+                    _target.MoveLeft();
                 }
                 if (Input.GetKeyDown(Key.UP))
                 {
                     _target.Jump();
+                }
+                if (Input.GetKeyDown(Key.DOWN))
+                {
+                    _target.UsePowerUp(controllerId);
                 }
                 break;
         }

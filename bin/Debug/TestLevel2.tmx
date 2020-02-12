@@ -26,11 +26,17 @@
   <object id="1" type="Player" x="168" y="350.667" width="30" height="26">
    <properties>
     <property name="MaxSpeed" type="int" value="5"/>
+    <property name="SpriteSheet" type="file" value="colors.png"/>
+    <property name="SpriteSheetColumns" type="int" value="1"/>
+    <property name="SpriteSheetRows" type="int" value="1"/>
    </properties>
   </object>
   <object id="2" type="Player" x="251" y="349" width="30" height="26">
    <properties>
     <property name="MaxSpeed" type="int" value="5"/>
+    <property name="SpriteSheet" type="file" value="checkers.png"/>
+    <property name="SpriteSheetColumns" type="int" value="1"/>
+    <property name="SpriteSheetRows" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

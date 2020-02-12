@@ -9,21 +9,31 @@ abstract class Unit : ArcadeObject
 {
     protected int speedX = 0;
     protected int MaxSpeedY = 1;
+
+    public int MaxSpeed {
+        get{ return speedX; }
+        set { speedX = value; }
+    }
     protected int speedY = 0;
 
 
     protected bool onGround = false;
 
-    protected float jumpForce = 10;
+    protected float jumpForce = 15;
 
     public override void Update() {
         base.Update();
         ApplyGravity();
     }
 
-    public void Move(int speed)
+    public void MoveRight()
     {
-        hitBox.MoveUntilCollision(speed, 0f);
+        hitBox.MoveUntilCollision(speedX, 0f);
+        Console.WriteLine(speedX);
+    }
+    public void MoveLeft()
+    {
+        hitBox.MoveUntilCollision(-speedX, 0f);
     }
 
     public void Jump() {
@@ -43,6 +53,11 @@ abstract class Unit : ArcadeObject
             speedY = MaxSpeedY;
         }
        //speedY += 1;
+    }
+
+    public void UsePowerUp(int controller) {
+        Console.WriteLine(controller + "-used powerup");
+
     }
 }
 

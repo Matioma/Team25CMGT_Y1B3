@@ -29,12 +29,13 @@ public class Level:GameObject
         _tileHeight = levelData.TileHeight;
         
         SpawnTiles(levelData);
+        SpawnObjects(levelData);
 
-        var player =CreatePlayer(50, 150, 0);
+        /*var player =CreatePlayer(100, 150, 0);
         player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
 
-        player=CreatePlayer(150, 200, 1);
-        player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
+        player=CreatePlayer(250, 200, 1);
+        player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);*/
         
     }
 
@@ -53,6 +54,9 @@ public class Level:GameObject
         Layer mainLayer = levelData.Layers[0];
         tiledDataShort = mainLayer.GetTileArray();
 
+        var tileSet = levelData.TileSets[0];
+        
+
         for (int i = 0; i < mainLayer.Height; i++)
         {
             for (int j = 0; j < mainLayer.Width; j++)
@@ -60,33 +64,14 @@ public class Level:GameObject
                 int tileNumber = tiledDataShort[j, i];
                 if (tileNumber > 0)
                 {
-                    AddTileToLevel(i, j, tileNumber);
-                    
+                    int numberOfColumns = tileSet.Columns;
+                    int numberOfRows = tileSet.TileCount / tileSet.Columns;
+                    var newTile = CreateTile(i, j, tileNumber, tileSet.Image.FileName, numberOfColumns, numberOfRows);
+                    newTile.SetHitBoxSize(_tileWidth, _tileHeight);
                 }
             }
         }
     }
-
-    /// <summary>
-    /// Creates a Player object and gives it a controller
-    /// </summary>
-    /// <param name="x">position x</param>
-    /// <param name="y">position y</param>
-    /// <param name="controlerIndex"> Owning controller Id</param>
-    /// <returns></returns>
-    private Player CreatePlayer(int x ,int y, int controlerIndex) {
-        Player player1 = new Player("colors.png", 1, 1);
-        player1.SetXY(x, y);
-
-        player1.SetPivotPoint(PivotPointPosition.BOTTOM);
-        AddChild(player1);
-
-        Controller controller1 = new Controller(player1, controlerIndex);
-        AddChild(controller1);
-
-        return player1;
-    }
-
 
     /// <summary>
     /// Adds a tile to the Level
@@ -94,19 +79,21 @@ public class Level:GameObject
     /// <param name="i">array index row</param>
     /// <param name="j">array index column</param>
     /// <param name="tileNumber"> Tileset tile id</param>
-    public void AddTileToLevel(int i, int j, int tileNumber) {
-        var tile = new Tile("tiles.png", 5, 1);
+    private Tile CreateTile(int i, int j, int tileNumber, string tiledFile , int columns, int rows) {
+        var tile = new Tile(tiledFile, columns, rows);
         tile.SetSpriteSheetIndex(tileNumber - 1);
         tile.SetXY(j * _tileWidth, i * _tileHeight);
         tile.SetSpriteExtent(_tileWidth, _tileHeight);
         AddChild(tile);
+
+        return tile;
     }
 
 
 
 
 
-    /*public void SpawnObjects(Map levelData)
+    public void SpawnObjects(Map levelData)
     {
         if (levelData.ObjectGroups == null || levelData.ObjectGroups.Length == 0)
         {
@@ -121,34 +108,59 @@ public class Level:GameObject
 
         foreach (TiledObject obj in objectGroup.Objects)
         {
-            switch (obj.Name)
+            switch (obj.Type) //
             {
-                case "Rope":
-                    Rope rope = new Rope();
-                    rope.x = obj.X;
-                    rope.y = obj.Y;
-                    AddChild(rope);
-                    break;
-                case "BoxEnemy":
-                    BoxEnemy boxEnemy = new BoxEnemy();
-                    boxEnemy.x = obj.X;
-                    boxEnemy.y = obj.Y;
-                    AddChild(boxEnemy);
-                    break;
                 case "Player":
-                    Player player = new Player(obj.X, obj.Y);
-                    //player.x = ;
-                    //player.y = obj.Y;
-                    LevelManager.Instance.PlayerInstace = player;
+                    string spriteSheet = "colors.png";
+                    int cols=0, rows=0;
+                    int maxSpeed=0;
+
+                    var properties = obj.propertyList;
+                    foreach (Property property in obj.propertyList.properties) {
+                        switch (property.Name)
+                        {
+                            case "MaxSpeed":
+                                maxSpeed = int.Parse(property.Value);
+                                break;
+                            case "SpriteSheet":
+                                spriteSheet = property.Value;
+                                break;
+                            case "SpriteSheetColumns":
+                                cols = int.Parse(property.Value);
+                                Console.WriteLine(cols);
+                                break;
+                            case "SpriteSheetRows":
+                                rows = int.Parse(property.Value);
+                                Console.WriteLine(rows);
+                                break;
+                        }
+                    }
+
+                    Player player = new Player(spriteSheet, cols, rows);
+                    player.SetXY(obj.X, obj.Y);
+                    player.MaxSpeed = maxSpeed;
+
+
+                    player.SetPivotPoint(PivotPointPosition.BOTTOM);
+                    AddChild(player);
+                    Controller controller = new Controller(player);
+                    AddChild(controller);
+
+
+                    //Adding Cameras
+                    if (controller.controllerId == 0)
+                    {
+                        player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
+                    }
+                    else {
+                        player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
+                    }
+
                     break;
-                case "AlligatorPuddle":
-                    Console.WriteLine("SPAWNED");
-                    AliggatorPuddle puddle = new AliggatorPuddle(tileSize * 4, obj.X, obj.Y);
-                    AddChild(puddle);
-                    break;
+               
             }
         }
-    }*/
+    }
 
 
     /*void AddTile(int id, int x, int y)

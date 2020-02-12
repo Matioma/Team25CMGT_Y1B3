@@ -41,6 +41,13 @@ class Player : Unit
         base.Update();
 
         var collision = hitBox.MoveUntilCollision(0, speedY);
+        if(collision != null)
+        {
+            //Console.WriteLine(collision.);
+            //Console.WriteLine(collision.other.x + ":");
+            //Console.Write(collision.point.x);
+        }
+       
         if (collision != null && collision.other.parent is Tile)
         {
             onGround = true;
