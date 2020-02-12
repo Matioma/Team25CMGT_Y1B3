@@ -39,6 +39,9 @@ class Controller:GameObject
                 {
                     _target.Move(-5);
                 }
+                if (Input.GetKeyDown(Key.W)) {
+                    _target.Jump();
+                }
                 break;
             case 1:
                 if (Input.GetKey(Key.RIGHT))
@@ -49,13 +52,12 @@ class Controller:GameObject
                 {
                     _target.Move(-5);
                 }
+                if (Input.GetKeyDown(Key.UP))
+                {
+                    _target.Jump();
+                }
                 break;
         }
     }
 
-    private void MoveTarget() {
-
-
-
-    }
 }

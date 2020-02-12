@@ -26,7 +26,10 @@ abstract class ArcadeObject : GameObject
         AddChild(visuals);
     }
 
-    //Adds collider to the object
+
+    /// <summary>
+    /// Adds collider to the object
+    /// </summary>
     protected void AddHitBox()
     {
         if (hitBox == null)

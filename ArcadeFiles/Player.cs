@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
-class Player : ArcadeObject
+class Player : Unit
 {
     
 
@@ -39,8 +39,15 @@ class Player : ArcadeObject
 
     public override void Update() {
         base.Update();
-        hitBox.MoveUntilCollision(0,0.5f);
-        
+
+        var collision = hitBox.MoveUntilCollision(0, speedY);
+        if (collision != null && collision.other.parent is Tile)
+        {
+            onGround = true;
+        }
+        else {
+            onGround = false;
+        }
     }
 
     public void AddCamera(int x, int y, int width, int height) {
@@ -48,9 +55,5 @@ class Player : ArcadeObject
     }
 
 
-    public void Move(int speed)
-    {
-        hitBox.MoveUntilCollision(speed, 0f);
-        //Update();
-    }
+   
 }
