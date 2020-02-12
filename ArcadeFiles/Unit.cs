@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
+using GXPEngine.Core;
 
 abstract class Unit : ArcadeObject
 {
@@ -22,7 +23,9 @@ abstract class Unit : ArcadeObject
     protected float jumpForce = 15;
 
     public override void Update() {
-        base.Update();
+        Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
+        SetXY(worldPosition.x, worldPosition.y-1);
+        hitBox.SetXY(0, 0);
         ApplyGravity();
     }
 
