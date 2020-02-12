@@ -50,15 +50,15 @@ class Player : Unit
         if (collision != null)
         {
             //Console.WriteLine(collision.normal);
-            Vector2 normal = collision.normal;
-            if (normal.x == 0 && normal.y == -1)
-            {
+            //Vector2 normal = collision.normal;
+            //if (normal.x == 0 && normal.y == -1)
+            //{
                 OnGround = true;
-            }
-            else
-            {
-                OnGround = false;
-            }
+            //}
+            //else
+            //{
+              //  OnGround = false;
+            //}
 
         }
         else {
@@ -88,9 +88,38 @@ class Player : Unit
 
         List<HitBox> hitBoxes = new List<HitBox>();
         foreach (var obj in tiles) {
-            if (Math.Abs(obj.y - y)>= Tile.tileHeight) {
-                hitBoxes.Add(obj.getHitBox());
+
+
+            //Tile below
+            if ((obj.y - y) < 0)
+            {
+                //tile Left
+                if ((obj.x - x) < 0)
+                {
+                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth+ hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+                }
+                //tile right
+                else {
+                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+                }
             }
+            else
+            {
+                if ((Math.Abs(obj.y - y) <= getHitBox().height / 2 - 10) && ((obj.x - x) <= 5))
+                {
+                    hitBoxes.Add(obj.getHitBox());
+                }
+            }
+
+            /*if (Math.Abs(obj.y - y)>= Tile.tileHeight) {
+                hitBoxes.Add(obj.getHitBox());
+            }*/
         }
 
         return hitBoxes.ToArray() ;
