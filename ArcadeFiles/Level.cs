@@ -114,7 +114,6 @@ public class Level:GameObject
                     string spriteSheet = "colors.png";
                     int cols=0, rows=0;
                     int maxSpeed=0;
-                    int jumpSpeed = 0;
 
                     var properties = obj.propertyList;
                     foreach (Property property in obj.propertyList.properties) {
@@ -128,12 +127,11 @@ public class Level:GameObject
                                 break;
                             case "SpriteSheetColumns":
                                 cols = int.Parse(property.Value);
+                                Console.WriteLine(cols);
                                 break;
                             case "SpriteSheetRows":
                                 rows = int.Parse(property.Value);
-                                break;
-                            case "JumpForce":
-                                jumpSpeed = int.Parse(property.Value);
+                                Console.WriteLine(rows);
                                 break;
                         }
                     }
@@ -141,7 +139,7 @@ public class Level:GameObject
                     Player player = new Player(spriteSheet, cols, rows);
                     player.SetXY(obj.X, obj.Y);
                     player.MaxSpeed = maxSpeed;
-                    player.JumpForce = jumpSpeed;
+
 
                     player.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(player);
