@@ -43,8 +43,6 @@ class Controller:GameObject
         switch (controllerId) {
             case 0:
                 if (Input.GetKey(Key.D)) {
-
-                    //_target.
                     _target.MoveRight();
                    
                 }

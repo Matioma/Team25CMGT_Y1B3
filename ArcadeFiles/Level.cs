@@ -140,7 +140,7 @@ public class Level:GameObject
 
                     Player player = new Player(spriteSheet, cols, rows);
                     player.SetXY(obj.X, obj.Y);
-                    player.MaxSpeedX = maxSpeed;
+                    player.MaxSpeed = maxSpeed;
                     player.JumpForce = jumpSpeed;
 
                     player.SetPivotPoint(PivotPointPosition.BOTTOM);
