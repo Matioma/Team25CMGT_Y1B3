@@ -111,20 +111,26 @@ class Player : Unit
             }
             else
             {
-                if ((Math.Abs(obj.y - y) <= getHitBox().height / 2 - 10) && ((obj.x - x) <= 5))
+                //left
+                if ((obj.x - x) < 0)
                 {
-                    hitBoxes.Add(obj.getHitBox());
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+                }
+                else {
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+
                 }
             }
-
-            /*if (Math.Abs(obj.y - y)>= Tile.tileHeight) {
-                hitBoxes.Add(obj.getHitBox());
-            }*/
         }
 
         return hitBoxes.ToArray() ;
     }
-
     private GameObject[] VerticalTilesToConsider()
     {
         tiles = new List<Tile>();
