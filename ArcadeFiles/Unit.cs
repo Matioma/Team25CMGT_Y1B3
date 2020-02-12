@@ -8,24 +8,51 @@ using GXPEngine.Core;
 
 abstract class Unit : ArcadeObject
 {
-    protected int speedX = 0;
-    protected int MaxSpeedY = 4;
+    protected int dy = 0;
+    protected int _dx = 0;
 
-    public int MaxSpeed {
-        get{ return speedX; }
-        set { speedX = value; }
+    /*public int DX {
+        set { dy = value; }
+    }*/
+
+
+
+    protected int MaxSpeedY = 1;
+
+
+    protected int _maxSpeedX = 0;
+    public int MaxSpeedX {
+        get{ return _maxSpeedX; }
+        set { _maxSpeedX = value; }
     }
-    protected int speedY = 0;
 
 
     protected int _jumpForce = 0;
     public int JumpForce {
         get { return _jumpForce; }
-        set { _jumpForce = value; }
+        set {
+            if (value > 0)
+            {
+                _jumpForce = -value;
+            }
+            else {
+                _jumpForce = value;
+            }
+
+        }
     }
 
 
-    protected bool onGround = false;
+    protected bool _onGround = false;
+
+    public bool OnGround
+    {
+        get { return _onGround; }
+        set {
+            _onGround = value;
+        }
+    }
+
 
    
 
@@ -33,46 +60,44 @@ abstract class Unit : ArcadeObject
     public virtual void Update()
     {
         Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
-        if (onGround) {
-            SetXY(worldPosition.x, worldPosition.y - 1);
+        SetXY(worldPosition.x, worldPosition.y);
+        /*if (OnGround) {
+            if(dy>= 0)
+                SetXY(worldPosition.x, worldPosition.y-1);
         }else { 
             SetXY(worldPosition.x, worldPosition.y);
-            //Console.WriteLine("On Ground");
-        }
+        }*/
+
         hitBox.SetXY(0, 0);
         ApplyGravity();
+        
     }
 
     public void MoveRight()
     {
-        hitBox.MoveUntilCollision(speedX, 0f);
-        //Console.WriteLine(speedX);
+        _dx = _maxSpeedX;
     }
     public void MoveLeft()
     {
-        hitBox.MoveUntilCollision(-speedX, 0f);
+        _dx = -_maxSpeedX;
     }
 
     public void Jump() {
-        if (onGround)
+        if (_onGround)
         {
-            speedY = JumpForce;
-
-            Console.WriteLine(speedY);
-            Console.WriteLine("JUMP");
+            dy = JumpForce;
         }
         
     }
 
     void ApplyGravity() {
-        if (speedY < MaxSpeedY)
+        if (dy < MaxSpeedY)
         {
-            speedY += 2;
+            dy += 2;
         }
         else {
-            //speedY = MaxSpeedY;
+            dy = MaxSpeedY;
         }
-       //speedY += 1;
     }
 
     public void UsePowerUp(int controller) {

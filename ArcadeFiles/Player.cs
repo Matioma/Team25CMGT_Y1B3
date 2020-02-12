@@ -40,22 +40,26 @@ class Player : Unit
     public override void Update() {
         base.Update();
 
-        var collision = hitBox.MoveUntilCollision(0, speedY);
-       
-       
-        if (collision != null && collision.other.parent is Tile && speedY>0)
+        var collision = hitBox.MoveUntilCollision(0, dy);
+        if (collision != null)
         {
-            onGround = true;
+            if (collision.normal.x == 0 && collision.normal.y < 0)
+            {
+                if (dy > 0)
+                    OnGround = true;
+            }
+            
+        }else {
+            OnGround = false;
         }
-        else {
-            onGround = false;
-        }
+        
+
+        hitBox.MoveUntilCollision(_dx,0);
+       
+        _dx = 0;
     }
 
     public void AddCamera(int x, int y, int width, int height) {
         PlayerCamera = new Camera(x, y, width, height);
     }
-
-
-   
 }
