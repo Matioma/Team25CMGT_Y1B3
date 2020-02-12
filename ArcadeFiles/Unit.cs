@@ -8,12 +8,14 @@ using GXPEngine.Core;
 
 abstract class Unit : ArcadeObject
 {
-    private int dx = 0;
-    private int dy = 0;
+    protected int dx = 0;
+    protected int dy = 0;
 
-    protected int speedX = 0;
+
     protected int MaxSpeedY = 3;
 
+
+    private int speedX = 0;
     public int MaxSpeed {
         get{ return speedX; }
         set { speedX = value; }
@@ -22,6 +24,13 @@ abstract class Unit : ArcadeObject
 
 
     protected bool onGround = false;
+    public bool OnGround {
+        get { return onGround; }
+        set {
+            onGround = value;
+        }
+    }
+
 
     protected int jumpForce = 15;
     public int JumpForce {
@@ -47,18 +56,15 @@ abstract class Unit : ArcadeObject
         ApplyGravity();
     }
 
-    public void MoveRight()
-    {
-        hitBox.MoveUntilCollision(speedX, 0f);
-        Console.WriteLine(speedX);
+    public void MoveRight(){
+        dx = speedX;
     }
-    public void MoveLeft()
-    {
-        hitBox.MoveUntilCollision(-speedX, 0f);
+    public void MoveLeft(){
+        dx = -speedX;
     }
 
     public void Jump() {
-        if (onGround)
+        if (OnGround)
         {
             speedY = JumpForce;
         }

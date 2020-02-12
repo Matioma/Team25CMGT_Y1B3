@@ -43,18 +43,17 @@ class Player : Unit
         var collision = hitBox.MoveUntilCollision(0, speedY);
         if(collision != null)
         {
-            //Console.WriteLine(collision.);
-            //Console.WriteLine(collision.other.x + ":");
-            //Console.Write(collision.point.x);
         }
        
         if (collision != null && collision.other.parent is Tile)
         {
-            onGround = true;
+            OnGround = true;
         }
         else {
-            onGround = false;
+            OnGround = false;
         }
+        hitBox.MoveUntilCollision(dx, 0f);
+        dx = 0;
     }
 
     public void AddCamera(int x, int y, int width, int height) {
