@@ -27,6 +27,9 @@ public class Level:GameObject
         levelData = MapParser.ReadMap(tiledFile);
         _tileWidth = levelData.TileWidth;
         _tileHeight = levelData.TileHeight;
+
+        Tile.tileHeight = levelData.TileWidth;
+        Tile.tileWidth = levelData.TileHeight;
         
         SpawnTiles(levelData);
         SpawnObjects(levelData);
@@ -84,6 +87,7 @@ public class Level:GameObject
         tile.SetSpriteSheetIndex(tileNumber - 1);
         tile.SetXY(j * _tileWidth, i * _tileHeight);
         tile.SetSpriteExtent(_tileWidth, _tileHeight);
+        //tile.SetPivotPoint(PivotPointPosition.TOP);
         AddChild(tile);
 
         return tile;

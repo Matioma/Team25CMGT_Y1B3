@@ -10,6 +10,8 @@ abstract class ArcadeObject : GameObject
 {
     protected HitBox hitBox;
     protected AnimationSprite visuals;
+    public HitBox getHitBox() { return hitBox; }
+
 
     private PivotPointPosition _pivotPointPosition =PivotPointPosition.LEFT_TOP;
 
@@ -83,7 +85,7 @@ abstract class ArcadeObject : GameObject
                     visuals.SetOrigin(0, visuals.height / 2);
                     break;
                 case PivotPointPosition.LEFT_BOTTOM:
-                    hitBox.SetOrigin(0, visuals.height);
+                    hitBox.SetOrigin(0, visuals.height-1);
                     visuals.SetOrigin(0, visuals.height);
                     break;
                 case PivotPointPosition.TOP:

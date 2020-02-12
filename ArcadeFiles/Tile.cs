@@ -8,6 +8,8 @@ using GXPEngine.Core;
 
 class Tile: ArcadeObject
 {
+    public static int tileWidth;
+    public static int tileHeight;
 
     public Tile(string spriteSheet, int cols, int rows) {
         visuals = new AnimationSprite(spriteSheet, cols, rows);

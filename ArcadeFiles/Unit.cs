@@ -11,7 +11,7 @@ abstract class Unit : ArcadeObject
     protected int dx = 0;
     protected int dy = 0;
 
-    protected int MaxSpeedY = 3;
+    protected int MaxSpeedY = 5;
     private const int  Gravity= 1;
 
     public int MaxSpeed { get; set; } = 0;
@@ -25,7 +25,6 @@ abstract class Unit : ArcadeObject
             onGround = value;
         }
     }
-
 
     protected int jumpForce = 5;
     public int JumpForce {
@@ -46,7 +45,10 @@ abstract class Unit : ArcadeObject
 
     public override void Update() {
         Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
-        SetXY(worldPosition.x, worldPosition.y-1);
+        
+
+
+        SetXY(worldPosition.x, worldPosition.y);
         hitBox.SetXY(0, 0);
         ApplyGravity();
     }
