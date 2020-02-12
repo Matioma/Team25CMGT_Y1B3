@@ -157,7 +157,6 @@ public class Level:GameObject
                     }
 
                     break;
-               
             }
         }
     }
