@@ -29,7 +29,6 @@ class Player : Unit
         }
     }
 
-    List<Tile> tiles = new List<Tile>();
 
 
     public Player(string spriteSheet, int cols, int rows)
@@ -46,122 +45,12 @@ class Player : Unit
     public override void Update() {
         base.Update();
 
-        var collision = hitBox.MoveUntilCollision(0, speedY, VerticalTilesToConsider());
-        if (collision != null)
-        {
-            //Console.WriteLine(collision.normal);
-            //Vector2 normal = collision.normal;
-            //if (normal.x == 0 && normal.y == -1)
-            //{
-                OnGround = true;
-            //}
-            //else
-            //{
-              //  OnGround = false;
-            //}
-
-        }
-        else {
-            OnGround = false;
-        }
-
         
-
-        //Console.WriteLine(tilesBelow.Count);
-        hitBox.MoveUntilCollision(dx, 0f, HorizontalTilesToConsider());
-        dx = 0;
     }
 
     public void AddCamera(int x, int y, int width, int height) {
         PlayerCamera = new Camera(x, y, width, height);
     }
 
-    private GameObject[] HorizontalTilesToConsider() {
-
-        tiles = new List<Tile>();
-        foreach (var gameObject in parent.GetChildren()) {
-            if (gameObject is Tile) {
-                tiles.Add(gameObject as Tile);
-            }
-
-        }
-
-        List<HitBox> hitBoxes = new List<HitBox>();
-        foreach (var obj in tiles) {
-
-
-            //Tile below
-            if ((obj.y - y) < 0)
-            {
-                //tile Left
-                if ((obj.x - x) < 0)
-                {
-                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth+ hitBox.width / 2 + 1))
-                    {
-                        hitBoxes.Add(obj.getHitBox());
-                    }
-                }
-                //tile right
-                else {
-                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + 1))
-                    {
-                        hitBoxes.Add(obj.getHitBox());
-                    }
-                }
-            }
-            else
-            {
-                //left
-                if ((obj.x - x) < 0)
-                {
-                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + 1))
-                    {
-                        hitBoxes.Add(obj.getHitBox());
-                    }
-                }
-                else {
-                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + 1))
-                    {
-                        hitBoxes.Add(obj.getHitBox());
-                    }
-
-                }
-            }
-        }
-
-        return hitBoxes.ToArray() ;
-    }
-    private GameObject[] VerticalTilesToConsider()
-    {
-        tiles = new List<Tile>();
-        foreach (var gameObject in parent.GetChildren())
-        {
-            if (gameObject is Tile)
-            {
-                tiles.Add(gameObject as Tile);
-            }
-        }
-
-        List<HitBox> hitBoxes = new List<HitBox>();
-        foreach (var obj in tiles)
-        {
-            //if tile on the left
-            if ((obj.x - x) < 0)
-            {
-                if ((Math.Abs(obj.x - x) < Tile.tileWidth +getHitBox().width/2 - 10) && ((obj.y - y) <= 5))
-                {
-                    hitBoxes.Add(obj.getHitBox());
-                }
-            }
-            else {
-                if ((Math.Abs(obj.x - x) <= getHitBox().width / 2-10) && ((obj.y - y) <= 5))
-                {
-                    hitBoxes.Add(obj.getHitBox());
-                }
-            }
-
-        }
-
-        return hitBoxes.ToArray();
-    }
+   
 }

@@ -42,6 +42,8 @@ abstract class Unit : ArcadeObject
     }
 
 
+    List<Tile> tiles = new List<Tile>();
+
 
     public override void Update() {
         Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
@@ -51,6 +53,21 @@ abstract class Unit : ArcadeObject
         SetXY(worldPosition.x, worldPosition.y);
         hitBox.SetXY(0, 0);
         ApplyGravity();
+
+
+
+        var collision = hitBox.MoveUntilCollision(0, speedY, VerticalTilesToConsider());
+        if (collision != null)
+        {
+            OnGround = true;
+        }
+        else
+        {
+            OnGround = false;
+        }
+
+        hitBox.MoveUntilCollision(dx, 0f, HorizontalTilesToConsider());
+        dx = 0;
     }
 
 
@@ -84,6 +101,104 @@ abstract class Unit : ArcadeObject
     public void UsePowerUp(int controller) {
         Console.WriteLine(controller + "-used powerup");
 
+    }
+
+
+
+    private GameObject[] HorizontalTilesToConsider()
+    {
+
+        tiles = new List<Tile>();
+        foreach (var gameObject in parent.GetChildren())
+        {
+            if (gameObject is Tile)
+            {
+                tiles.Add(gameObject as Tile);
+            }
+
+        }
+
+        List<HitBox> hitBoxes = new List<HitBox>();
+        foreach (var obj in tiles)
+        {
+
+
+            //Tile below
+            if ((obj.y - y) < 0)
+            {
+                //tile Left
+                if ((obj.x - x) < 0)
+                {
+                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+                }
+                //tile right
+                else
+                {
+                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+                }
+            }
+            else
+            {
+                //left
+                if ((obj.x - x) < 0)
+                {
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+                }
+                else
+                {
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + 1))
+                    {
+                        hitBoxes.Add(obj.getHitBox());
+                    }
+
+                }
+            }
+        }
+
+        return hitBoxes.ToArray();
+    }
+    private GameObject[] VerticalTilesToConsider()
+    {
+        tiles = new List<Tile>();
+        foreach (var gameObject in parent.GetChildren())
+        {
+            if (gameObject is Tile)
+            {
+                tiles.Add(gameObject as Tile);
+            }
+        }
+
+        List<HitBox> hitBoxes = new List<HitBox>();
+        foreach (var obj in tiles)
+        {
+            //if tile on the left
+            if ((obj.x - x) < 0)
+            {
+                if ((Math.Abs(obj.x - x) < Tile.tileWidth + getHitBox().width / 2 - 10) && ((obj.y - y) <= 5))
+                {
+                    hitBoxes.Add(obj.getHitBox());
+                }
+            }
+            else
+            {
+                if ((Math.Abs(obj.x - x) <= getHitBox().width / 2 - 10) && ((obj.y - y) <= 5))
+                {
+                    hitBoxes.Add(obj.getHitBox());
+                }
+            }
+
+        }
+
+        return hitBoxes.ToArray();
     }
 }
 
