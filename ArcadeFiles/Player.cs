@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
-using GXPEngine.Core;
+using GXPEngine.ArcadeFiles.PowerUps;
 
 public class Player : Unit
 {
@@ -101,6 +101,22 @@ public class Player : Unit
                         break;
                     }
                     break;
+                case "MetalWheel":
+                    Console.WriteLine(pair.Key);
+                    ///Checks if pill bonus has active Time
+                    if (pair.Value.PowerUpTimeLeft > 0)
+                    {
+                        activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
+                        var pillEffect = activeEffects[pair.Key] as MetalWheel;
+                       // ActualMaxSpeed += pillEffect.SpeedBonus;
+
+                    }
+                    else
+                    {
+                        effectsThatEnded.Add(pair.Key);
+                        break;
+                    }
+                    break;
             }
         }
 
@@ -120,10 +136,32 @@ public class Player : Unit
     private void ApplyEffect() {
         switch (inventoryPowerUp) {
             case Pill pill:
-                pill.PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
-                activeEffects.Add(pill.GetType(), pill);
-                ActualMaxSpeed += pill.SpeedBonus;
+                if (activeEffects.ContainsKey(pill.GetType()))
+                {
+                    activeEffects[pill.GetType()].PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
+                    pill.LateDestroy();
+                }
+                else {
+                    pill.PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
+                    activeEffects.Add(pill.GetType(), pill);
+                }
+                break;
+            case MetalWheel metalWheel:
+                if (activeEffects.ContainsKey(metalWheel.GetType()))
+                {
+                    activeEffects[metalWheel.GetType()].PowerUpTimeLeft = (int)metalWheel.MetalWheelTime * 1000;
+                    metalWheel.LateDestroy();
+                }
+                else
+                {
+                    metalWheel.PowerUpTimeLeft = (int)metalWheel.MetalWheelTime * 1000;
+                    activeEffects.Add(metalWheel.GetType(), metalWheel);
+                }
                 break;
         }
     }
+
+
+
+
 }

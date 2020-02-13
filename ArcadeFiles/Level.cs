@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
+using GXPEngine.ArcadeFiles.PowerUps;
 using GXPEngine.Core;
 using TiledMapParser;
 
@@ -200,6 +201,40 @@ public class Level:GameObject
                     pill.SpeedDuration = speedDuration;
                     pill.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(pill);
+
+                    break;
+                case "MetalWheelPowerUp":
+                    spriteSheet = "colors.png";
+                    cols = 1;
+                    rows = 1;
+                    float metalWheelDuration = 0;
+
+                    properties = obj.propertyList;
+                    foreach (Property property in obj.propertyList.properties)
+                    {
+                        switch (property.Name)
+                        {
+                            case "SpriteSheet":
+                                spriteSheet = property.Value;
+                                break;
+                            case "SpriteSheetColumns":
+                                cols = int.Parse(property.Value);
+                                break;
+                            case "SpriteSheetRows":
+                                rows = int.Parse(property.Value);
+                                break;
+                            case "MetalWheelDuration":
+                                metalWheelDuration = float.Parse(property.Value);
+                                break;
+                        }
+                    }
+                    MetalWheel metalWheel = new MetalWheel(spriteSheet, cols, rows);
+                    metalWheel.SetXY(obj.X, obj.Y);
+                    metalWheel.MetalWheelTime = metalWheelDuration;
+
+
+                    metalWheel.SetPivotPoint(PivotPointPosition.BOTTOM);
+                    AddChild(metalWheel);
 
                     break;
             }
