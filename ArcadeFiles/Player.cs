@@ -28,8 +28,11 @@ public class Player : Unit
             AddChild(value);
         }
     }
-    protected PowerUp inventoryPowerUp = null; 
+    protected PowerUp inventoryPowerUp = null;
+
     
+    //Holds the active power up and Seconds left until finished
+    Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
 
     public Player(string spriteSheet, int cols, int rows)
@@ -41,9 +44,14 @@ public class Player : Unit
 
 
     public override void Update() {
+        resetPlayerEffects();
+
+
+        ApplyActiveEffects();
+
         base.Update();
 
-        
+
     }
 
     public void AddCamera(int x, int y, int width, int height) {
@@ -67,18 +75,53 @@ public class Player : Unit
             Console.WriteLine("No power Up picked");
         }
         else {
-            Console.WriteLine(inventoryPowerUp.message);
             ApplyEffect();
             inventoryPowerUp.LateDestroy();
             inventoryPowerUp = null;
         }
     }
 
+    private void ApplyActiveEffects()
+    {
+        List<Type> effectsThatEnded =new List<Type>();
+        foreach (var pair in activeEffects) {
+            switch(pair.Key.ToString()){
+
+                ///Checks if pill bonus is active
+                case "Pill":
+                    if (pair.Value.PowerUpTimeLeft > 0)
+                    {
+                        activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
+                        var pillEffect = activeEffects[pair.Key] as Pill;
+                        ActualMaxSpeed += pillEffect.SpeedBonus;
+
+                    }
+                    else {
+                        effectsThatEnded.Add(pair.Key);
+                        break;
+                    }
+                    break;
+            }
+        }
+
+        foreach (var Type in effectsThatEnded) {
+            activeEffects.Remove(Type);
+        }
+    }
+
+    /// <summary>
+    /// Sets the defaults fields values
+    /// </summary>
+    private void resetPlayerEffects() {
+        ActualMaxSpeed = DefaultMaxSpeed;
+    }
+
     private void ApplyEffect() {
         if (inventoryPowerUp is Pill) {
             var pill = inventoryPowerUp as Pill;
+            pill.PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
+            activeEffects.Add(pill.GetType(), pill);
             ActualMaxSpeed += pill.SpeedBonus;
         }
-        Console.WriteLine("ActualMaxSpeed");
     }
 }

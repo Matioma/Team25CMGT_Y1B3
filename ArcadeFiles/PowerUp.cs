@@ -8,6 +8,14 @@ public abstract class PowerUp: ArcadeObject
 {
     public string message = "TestMessage";
 
+    private int _powerUpTimeLeft = 0;
+    public int PowerUpTimeLeft {
+        get { return _powerUpTimeLeft; }
+        set {
+            _powerUpTimeLeft = value;
+        }
+    }
+
     public virtual void Update() {
         var level = parent as Level;
         DoCollisionCheck(level.playersList);
