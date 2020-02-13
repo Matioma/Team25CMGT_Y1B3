@@ -161,7 +161,7 @@ public class Level:GameObject
 
                     break;
 
-                case "PowerUp":
+                case "Pill":
                     spriteSheet = "colors.png";
                     cols = 1;
                     rows = 1;
@@ -184,11 +184,11 @@ public class Level:GameObject
                         }
                     }
 
-                    PowerUp powerUp = new PowerUp(spriteSheet, cols, rows);
-                    powerUp.SetXY(obj.X, obj.Y);
-                    powerUp.name = Name;
-                    powerUp.SetPivotPoint(PivotPointPosition.BOTTOM);
-                    AddChild(powerUp);
+                    Pill pill = new Pill(spriteSheet, cols, rows);
+                    pill.SetXY(obj.X, obj.Y);
+                    pill.name = Name;
+                    pill.SetPivotPoint(PivotPointPosition.BOTTOM);
+                    AddChild(pill);
 
                     break;
             }

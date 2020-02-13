@@ -4,18 +4,11 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
-public class PowerUp: ArcadeObject
+public abstract class PowerUp: ArcadeObject
 {
     public string message = "TestMessage";
-    public PowerUp(string spriteSheet, int cols, int rows)
-    {
-        visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
-        AddChild(visuals);
-        AddHitBox();
-    }
 
-
-    void Update() {
+    public virtual void Update() {
         var level = parent as Level;
         DoCollisionCheck(level.playersList);
     }
