@@ -42,20 +42,11 @@ abstract class Unit : ArcadeObject
     }
 
 
-    List<Tile> tiles = new List<Tile>();
+    List<Tile> _tiles = new List<Tile>();
 
 
     public override void Update() {
-        Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
         
-
-
-        SetXY(worldPosition.x, worldPosition.y);
-        hitBox.SetXY(0, 0);
-        ApplyGravity();
-
-
-
         var collision = hitBox.MoveUntilCollision(0, speedY, VerticalTilesToConsider());
         if (collision != null)
         {
@@ -68,6 +59,14 @@ abstract class Unit : ArcadeObject
 
         hitBox.MoveUntilCollision(dx, 0f, HorizontalTilesToConsider());
         dx = 0;
+
+
+
+        ///Update Unit position
+        Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
+        SetXY(worldPosition.x, worldPosition.y);
+        hitBox.SetXY(0, 0);
+        ApplyGravity();
     }
 
 
@@ -108,18 +107,18 @@ abstract class Unit : ArcadeObject
     private GameObject[] HorizontalTilesToConsider()
     {
 
-        tiles = new List<Tile>();
+        _tiles = new List<Tile>();
         foreach (var gameObject in parent.GetChildren())
         {
             if (gameObject is Tile)
             {
-                tiles.Add(gameObject as Tile);
+                _tiles.Add(gameObject as Tile);
             }
 
         }
 
         List<HitBox> hitBoxes = new List<HitBox>();
-        foreach (var obj in tiles)
+        foreach (var obj in _tiles)
         {
 
 
@@ -168,17 +167,17 @@ abstract class Unit : ArcadeObject
     }
     private GameObject[] VerticalTilesToConsider()
     {
-        tiles = new List<Tile>();
+        _tiles = new List<Tile>();
         foreach (var gameObject in parent.GetChildren())
         {
             if (gameObject is Tile)
             {
-                tiles.Add(gameObject as Tile);
+                _tiles.Add(gameObject as Tile);
             }
         }
 
         List<HitBox> hitBoxes = new List<HitBox>();
-        foreach (var obj in tiles)
+        foreach (var obj in _tiles)
         {
             //if tile on the left
             if ((obj.x - x) < 0)

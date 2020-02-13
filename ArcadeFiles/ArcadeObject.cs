@@ -49,7 +49,7 @@ abstract class ArcadeObject : GameObject
         visuals.width = width;
         visuals.height = height;
     }
-    public void SetSpriteSheetIndex(int index)
+    public void SetSpriteSheetFrame(int index)
     {
         visuals.SetFrame(index);
     }
@@ -115,6 +115,9 @@ abstract class ArcadeObject : GameObject
             }
         }
     }
+
+
+    virtual public void CollidedWith(GameObject other) { }
 }
 
 public enum PivotPointPosition

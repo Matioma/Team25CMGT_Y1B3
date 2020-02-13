@@ -36,9 +36,6 @@ class Player : Unit
         visuals = new AnimationSprite(spriteSheet, cols, rows,-1,false,false);
         AddChild(visuals);
         AddHitBox();
-
-
-        
     }
 
 

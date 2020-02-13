@@ -41,6 +41,7 @@
     <Compile Include="ArcadeFiles\HitBox.cs" />
     <Compile Include="ArcadeFiles\Level.cs" />
     <Compile Include="ArcadeFiles\Player.cs" />
+    <Compile Include="ArcadeFiles\PowerUp.cs" />
     <Compile Include="ArcadeFiles\Tile.cs" />
     <Compile Include="ArcadeFiles\Unit.cs" />
     <Compile Include="MyGame.cs" />

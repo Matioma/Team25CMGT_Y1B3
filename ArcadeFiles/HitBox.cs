@@ -57,6 +57,11 @@ class HitBox : Sprite
 
     }
 
-
+    /*void OnCollision(GameObject other)
+    {
+        var colliderOwner = parent as ArcadeObject;
+        if(colliderOwner!=null)
+            colliderOwner.CollidedWith(other);
+    }*/
 }
 

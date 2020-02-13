@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
  <objecttype name="Player" color="#21a40a">
+  <property name="JumpForce" type="int" default="0"/>
   <property name="MaxSpeed" type="int" default="0"/>
   <property name="SpriteSheet" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="0"/>
   <property name="SpriteSheetRows" type="int" default="0"/>
+ </objecttype>
+ <objecttype name="PowerUp" color="#f6ff41">
+  <property name="Name" type="string"/>
  </objecttype>
 </objecttypes>

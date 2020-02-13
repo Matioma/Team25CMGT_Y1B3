@@ -34,12 +34,6 @@ public class Level:GameObject
         SpawnTiles(levelData);
         SpawnObjects(levelData);
 
-        /*var player =CreatePlayer(100, 150, 0);
-        player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
-
-        player=CreatePlayer(250, 200, 1);
-        player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);*/
-        
     }
 
 
@@ -84,7 +78,7 @@ public class Level:GameObject
     /// <param name="tileNumber"> Tileset tile id</param>
     private Tile CreateTile(int i, int j, int tileNumber, string tiledFile , int columns, int rows) {
         var tile = new Tile(tiledFile, columns, rows);
-        tile.SetSpriteSheetIndex(tileNumber - 1);
+        tile.SetSpriteSheetFrame(tileNumber - 1);
         tile.SetXY(j * _tileWidth, i * _tileHeight);
         tile.SetSpriteExtent(_tileWidth, _tileHeight);
         //tile.SetPivotPoint(PivotPointPosition.TOP);
@@ -165,40 +159,35 @@ public class Level:GameObject
                     }
 
                     break;
+
+                case "PowerUp":
+                    spriteSheet = "colors.png";
+                    cols = 1;
+                    rows = 1;
+                    string Name = "";
+
+                    properties = obj.propertyList;
+                    foreach (Property property in obj.propertyList.properties)
+                    {
+                        switch (property.Name)
+                        {
+                            case "Name":
+                                Name = property.Value;
+                                break;
+                        }
+                    }
+
+                    PowerUp powerUp = new PowerUp(spriteSheet, cols, rows);
+                    powerUp.SetXY(obj.X, obj.Y);
+                    powerUp.name = Name;
+                    powerUp.SetPivotPoint(PivotPointPosition.BOTTOM);
+                    AddChild(powerUp);
+
+                    break;
             }
         }
     }
 
 
-    /*void AddTile(int id, int x, int y)
-    {
-        GameObject gameObject = null;
-        switch (id)
-        {
-            case 0:
-                break;
-            case 1:
-                var ground = new Ground();
-                ground.SetHitBoxSize(tileSize, tileSize);
-                gameObject = ground;
 
-                break;
-            case 2:
-                gameObject = new Stairs();
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            default:
-                throw new Exception("Unknow tile" + id + ";");
-        }
-
-        if (gameObject != null)
-        {
-            gameObject.SetXY(x, y);
-            AddChild(gameObject);
-        }*/
 }
