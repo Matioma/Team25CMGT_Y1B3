@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using GXPEngine;
 class Controller:GameObject
@@ -28,14 +25,12 @@ class Controller:GameObject
         ControlledTarget = ptarget;
         controllerId = ControllersNumber;
         ControllersNumber++;
-        //controllerId = pControllerId;
     }
     public Controller(Player ptarget)
     {
         ControlledTarget = ptarget;
         controllerId = ControllersNumber;
         ControllersNumber++;
-        //controllerId = pControllerId;
     }
 
     public void Update()

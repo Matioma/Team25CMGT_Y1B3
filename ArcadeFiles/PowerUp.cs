@@ -16,8 +16,6 @@ class PowerUp: ArcadeObject
 
 
     void Update() {
-
-        //Console.WriteLine(name);
         var level = parent as Level;
         DoCollisionCheck(level.playersList);
     }
@@ -31,14 +29,5 @@ class PowerUp: ArcadeObject
         }
         
     }
-
-    /*public override void CollidedWith(GameObject other)
-    {
-        if(other is Player)
-            Console.WriteLine(name);
-        //base.CollidedWith(other);
-    }*/
-
-
 
 }

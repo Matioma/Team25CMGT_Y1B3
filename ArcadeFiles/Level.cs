@@ -109,7 +109,7 @@ public class Level:GameObject
             {
                 case "Player":
                     string spriteSheet = "colors.png";
-                    int cols=0, rows=0;
+                    int cols=1, rows=1;
                     int maxSpeed=0;
                     int jumpForce = 0;
 
@@ -172,8 +172,14 @@ public class Level:GameObject
                     {
                         switch (property.Name)
                         {
-                            case "Name":
-                                Name = property.Value;
+                            case "SpriteSheet":
+                                spriteSheet = property.Value;
+                                break;
+                            case "SpriteSheetColumns":
+                                cols = int.Parse(property.Value);
+                                break;
+                            case "SpriteSheetRows":
+                                rows = int.Parse(property.Value);
                                 break;
                         }
                     }

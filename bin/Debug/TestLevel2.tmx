@@ -44,6 +44,9 @@
   <object id="3" type="PowerUp" x="1436.36" y="857.576" width="48.4848" height="51.5152">
    <properties>
     <property name="Name" value="Test"/>
+    <property name="SpriteSheet" type="file" value="checkers.png"/>
+    <property name="SpriteSheetColumns" type="int" value="1"/>
+    <property name="SpriteSheetRows" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>
