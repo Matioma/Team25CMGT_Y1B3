@@ -28,8 +28,8 @@ public class Player : Unit
             AddChild(value);
         }
     }
-
-    protected PowerUp currentPowerUp = null; 
+    protected PowerUp inventoryPowerUp = null; 
+    
 
 
     public Player(string spriteSheet, int cols, int rows)
@@ -53,23 +53,32 @@ public class Player : Unit
 
     public void PickPowerUP(PowerUp pPowerUp) {
        
-        if (currentPowerUp != null) {
-            currentPowerUp.LateDestroy();
+        if (inventoryPowerUp != null) {
+            inventoryPowerUp.LateDestroy();
         }
 
-        currentPowerUp = pPowerUp;
+        inventoryPowerUp = pPowerUp;
     }
 
 
     override public void UsePowerUp() {
-        if (currentPowerUp == null)
+        if (inventoryPowerUp == null)
         {
             Console.WriteLine("No power Up picked");
         }
         else {
-            Console.WriteLine(currentPowerUp.message);
-            currentPowerUp.LateDestroy();
-            currentPowerUp = null;
+            Console.WriteLine(inventoryPowerUp.message);
+            ApplyEffect();
+            inventoryPowerUp.LateDestroy();
+            inventoryPowerUp = null;
         }
+    }
+
+    private void ApplyEffect() {
+        if (inventoryPowerUp is Pill) {
+            var pill = inventoryPowerUp as Pill;
+            ActualMaxSpeed += pill.SpeedBonus;
+        }
+        Console.WriteLine("ActualMaxSpeed");
     }
 }

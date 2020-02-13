@@ -138,7 +138,7 @@ public class Level:GameObject
 
                     Player player = new Player(spriteSheet, cols, rows);
                     player.SetXY(obj.X, obj.Y);
-                    player.MaxSpeed = maxSpeed;
+                    player.DefaultMaxSpeed = maxSpeed;
                     player.JumpForce = jumpForce;
 
 
@@ -166,6 +166,9 @@ public class Level:GameObject
                     cols = 1;
                     rows = 1;
                     string Name = "";
+                    int speedBonus = 0;
+                    float speedDuration = 0; 
+
 
                     properties = obj.propertyList;
                     foreach (Property property in obj.propertyList.properties)
@@ -181,12 +184,20 @@ public class Level:GameObject
                             case "SpriteSheetRows":
                                 rows = int.Parse(property.Value);
                                 break;
+                            case "SpeedBonus":
+                                speedBonus = int.Parse(property.Value);
+                                break;
+                            case "SpeedDuration":
+                                speedDuration = float.Parse(property.Value);
+                                break;
                         }
                     }
 
                     Pill pill = new Pill(spriteSheet, cols, rows);
                     pill.SetXY(obj.X, obj.Y);
                     pill.name = Name;
+                    pill.SpeedBonus = speedBonus;
+                    pill.SpeedDuration = speedDuration;
                     pill.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(pill);
 
