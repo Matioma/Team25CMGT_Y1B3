@@ -9,14 +9,15 @@ using TiledMapParser;
 
 public class Level:GameObject
 {
-    int _tileWidth = 0;
-    int _tileHeight = 0;
  
     short[,] tiledDataShort;
 
     Map levelData;
 
     List<Controller> controllersList = new List<Controller>();
+
+
+    public List<ArcadeObject> playersList = new List<ArcadeObject>();
 
     public Level()
     {
@@ -25,9 +26,7 @@ public class Level:GameObject
 
     public Level(string tiledFile) {
         levelData = MapParser.ReadMap(tiledFile);
-        _tileWidth = levelData.TileWidth;
-        _tileHeight = levelData.TileHeight;
-
+        
         Tile.tileHeight = levelData.TileWidth;
         Tile.tileWidth = levelData.TileHeight;
         
@@ -64,7 +63,7 @@ public class Level:GameObject
                     int numberOfColumns = tileSet.Columns;
                     int numberOfRows = tileSet.TileCount / tileSet.Columns;
                     var newTile = CreateTile(i, j, tileNumber, tileSet.Image.FileName, numberOfColumns, numberOfRows);
-                    newTile.SetHitBoxSize(_tileWidth, _tileHeight);
+                    newTile.SetHitBoxSize(Tile.tileWidth, Tile.tileHeight);
                 }
             }
         }
@@ -79,8 +78,8 @@ public class Level:GameObject
     private Tile CreateTile(int i, int j, int tileNumber, string tiledFile , int columns, int rows) {
         var tile = new Tile(tiledFile, columns, rows);
         tile.SetSpriteSheetFrame(tileNumber - 1);
-        tile.SetXY(j * _tileWidth, i * _tileHeight);
-        tile.SetSpriteExtent(_tileWidth, _tileHeight);
+        tile.SetXY(j * Tile.tileWidth, i * Tile.tileHeight);
+        tile.SetSpriteExtent(Tile.tileWidth, Tile.tileHeight);
         //tile.SetPivotPoint(PivotPointPosition.TOP);
         AddChild(tile);
 
@@ -145,6 +144,8 @@ public class Level:GameObject
 
                     player.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(player);
+
+                    playersList.Add(player);
                     Controller controller = new Controller(player);
                     AddChild(controller);
 

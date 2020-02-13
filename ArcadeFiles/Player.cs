@@ -6,7 +6,7 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
 
-class Player : Unit
+public class Player : Unit
 {
     Camera _cameraRef = null;
     Camera PlayerCamera {

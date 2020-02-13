@@ -6,7 +6,7 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
 
-abstract class Unit : ArcadeObject
+public abstract class Unit : ArcadeObject
 {
     protected int dx = 0;
     protected int dy = 0;

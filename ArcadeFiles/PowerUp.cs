@@ -17,7 +17,19 @@ class PowerUp: ArcadeObject
 
     void Update() {
 
-        Console.WriteLine(name);
+        //Console.WriteLine(name);
+        var level = parent as Level;
+        DoCollisionCheck(level.playersList);
+    }
+
+    protected override void DoCollisionCheck(List<ArcadeObject> arcadeObjects)
+    {
+        foreach (var arcadeObject in arcadeObjects) {
+            if (getHitBox().HitTest(arcadeObject.getHitBox())) {
+                this.LateDestroy();
+            }
+        }
+        
     }
 
     /*public override void CollidedWith(GameObject other)

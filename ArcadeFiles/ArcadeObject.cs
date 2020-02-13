@@ -6,7 +6,7 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
 
-abstract class ArcadeObject : GameObject
+public abstract class ArcadeObject : GameObject
 {
     protected HitBox hitBox;
     protected AnimationSprite visuals;
@@ -118,6 +118,13 @@ abstract class ArcadeObject : GameObject
 
 
     virtual public void CollidedWith(GameObject other) { }
+
+
+    /// <summary>
+    /// Checks collision with a list of gameobjects
+    /// </summary>
+    /// <param name="gameObjects">list of object to check collisions with</param>
+    protected virtual void DoCollisionCheck(List<ArcadeObject> gameObjects) { }
 }
 
 public enum PivotPointPosition

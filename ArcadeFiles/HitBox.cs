@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
-class HitBox : Sprite
+public class HitBox : Sprite
 {
 
 
@@ -59,9 +59,6 @@ class HitBox : Sprite
 
     /*void OnCollision(GameObject other)
     {
-        var colliderOwner = parent as ArcadeObject;
-        if(colliderOwner!=null)
-            colliderOwner.CollidedWith(other);
-    }*/
+      }*/
 }
 
