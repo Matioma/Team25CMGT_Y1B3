@@ -143,6 +143,12 @@ public class Level:GameObject
                     player.JumpForce = jumpForce;
 
 
+                    player.SetSpriteExtent(64, 64);
+                    //player.visuals.SetXY(-player.visuals.width/2, -player.visuals.height);
+
+                    // player.visuals.SetOrigin(player.visuals.width / 2, player.visuals.height);
+                    //Console.WriteLine(player.visuals.width/2);
+                        
                     player.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(player);
 

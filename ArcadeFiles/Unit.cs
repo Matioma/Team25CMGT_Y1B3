@@ -58,7 +58,8 @@ public abstract class Unit : ArcadeObject
 
 
     public override void Update() {
-        
+        base.Update();
+
         var collision = hitBox.MoveUntilCollision(0, speedY, VerticalTilesToConsider());
         if (collision != null)
         {

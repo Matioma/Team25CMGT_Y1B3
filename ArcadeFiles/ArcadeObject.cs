@@ -9,7 +9,7 @@ using GXPEngine.Core;
 public abstract class ArcadeObject : GameObject
 {
     protected HitBox hitBox;
-    protected AnimationSprite visuals;
+    public AnimationSprite visuals;
     public HitBox getHitBox() { return hitBox; }
 
 
@@ -17,7 +17,8 @@ public abstract class ArcadeObject : GameObject
 
 
     public virtual void Update() {
-       
+        //Console.WriteLine("Test"+ (this is Player));
+        //visuals.SetFrame((visuals.currentFrame++)/ visuals.frameCount );
     }
 
     //Adds animation sprite to the object
@@ -56,6 +57,7 @@ public abstract class ArcadeObject : GameObject
     public void SetHitBoxSize(int width, int height) {
         hitBox.setHitBoxSize(new Vector2(width, height));
     }
+
 
 
 
@@ -98,7 +100,9 @@ public abstract class ArcadeObject : GameObject
                     break;
                 case PivotPointPosition.BOTTOM:
                     hitBox.SetOrigin(visuals.width / 2, visuals.height);
-                    visuals.SetOrigin(visuals.width / 2, visuals.height);
+                    //visuals.SetOrigin(visuals.width / 2, visuals.height);
+                    visuals.SetXY(-visuals.width / 2, -visuals.height);
+                    //hitBox.SetXY(-visuals.width / 2, -visuals.height);
                     break;
                 case PivotPointPosition.RIGHT_TOP:
                     hitBox.SetOrigin(visuals.width, 0);

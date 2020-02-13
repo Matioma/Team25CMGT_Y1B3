@@ -8,6 +8,8 @@ using GXPEngine.ArcadeFiles.PowerUps;
 
 public class Player : Unit
 {
+
+    int frame = 0;
     Camera _cameraRef = null;
     Camera PlayerCamera {
         get {
@@ -51,6 +53,10 @@ public class Player : Unit
 
         base.Update();
 
+        frame++;
+       // C
+        visuals.NextFrame();
+        Console.WriteLine(frame% visuals.frameCount);
 
     }
 
