@@ -86,9 +86,9 @@ public class Player : Unit
         List<Type> effectsThatEnded =new List<Type>();
         foreach (var pair in activeEffects) {
             switch(pair.Key.ToString()){
-
-                ///Checks if pill bonus is active
+                
                 case "Pill":
+                    ///Checks if pill bonus has active Time
                     if (pair.Value.PowerUpTimeLeft > 0)
                     {
                         activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
@@ -104,6 +104,7 @@ public class Player : Unit
             }
         }
 
+        //Remove Finished Effects
         foreach (var Type in effectsThatEnded) {
             activeEffects.Remove(Type);
         }
@@ -117,11 +118,12 @@ public class Player : Unit
     }
 
     private void ApplyEffect() {
-        if (inventoryPowerUp is Pill) {
-            var pill = inventoryPowerUp as Pill;
-            pill.PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
-            activeEffects.Add(pill.GetType(), pill);
-            ActualMaxSpeed += pill.SpeedBonus;
+        switch (inventoryPowerUp) {
+            case Pill pill:
+                pill.PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
+                activeEffects.Add(pill.GetType(), pill);
+                ActualMaxSpeed += pill.SpeedBonus;
+                break;
         }
     }
 }
