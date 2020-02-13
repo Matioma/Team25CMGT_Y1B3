@@ -6,10 +6,17 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.ArcadeFiles.PowerUps;
 
+
+enum PlayerStates {
+    IDLE,
+    RUN
+}
+
 public class Player : Unit
 {
-
     int frame = 0;
+    PlayerStates playerState=  PlayerStates.IDLE;
+
     Camera _cameraRef = null;
     Camera PlayerCamera {
         get {
@@ -36,7 +43,6 @@ public class Player : Unit
     //Holds the active power up and Seconds left until finished
     Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
-
     public Player(string spriteSheet, int cols, int rows)
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows,-1,false,false);
@@ -47,18 +53,48 @@ public class Player : Unit
 
     public override void Update() {
         resetPlayerEffects();
-
-
         ApplyActiveEffects();
-
         base.Update();
 
-        frame++;
-       // C
-        visuals.NextFrame();
-        Console.WriteLine(frame% visuals.frameCount);
 
+
+        switch (playerState) {
+            case PlayerStates.IDLE:
+                visuals.Mirror(true, false);
+                break;
+            case PlayerStates.RUN:
+                if (dx > 0)
+                {
+                    visuals.Mirror(true, false);
+                    visuals.NextFrame();
+                }
+                else if (dx < 0)
+                {
+                    visuals.Mirror(false, false);
+                    visuals.NextFrame();
+                }
+                else {
+                    playerState = PlayerStates.IDLE;
+                }
+                break;
+        }
+
+        dx = 0;
     }
+
+
+    public override void MoveRight()
+    {
+        dx = ActualMaxSpeed;
+        playerState = PlayerStates.RUN;
+    }
+    public override void MoveLeft()
+    {
+        dx = -ActualMaxSpeed;
+        playerState = PlayerStates.RUN;
+    }
+
+
 
     public void AddCamera(int x, int y, int width, int height) {
         PlayerCamera = new Camera(x, y, width, height);

@@ -36,9 +36,9 @@
    <properties>
     <property name="JumpForce" type="int" value="15"/>
     <property name="MaxSpeed" type="int" value="5"/>
-    <property name="SpriteSheet" type="file" value="checkers.png"/>
-    <property name="SpriteSheetColumns" type="int" value="1"/>
-    <property name="SpriteSheetRows" type="int" value="1"/>
+    <property name="SpriteSheet" type="file" value="AnimationTest.png"/>
+    <property name="SpriteSheetColumns" type="int" value="5"/>
+    <property name="SpriteSheetRows" type="int" value="2"/>
    </properties>
   </object>
   <object id="10" type="Pill" x="1274.24" y="909.091" width="51.5152" height="54.5455">

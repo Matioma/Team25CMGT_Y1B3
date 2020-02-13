@@ -71,7 +71,7 @@ public abstract class Unit : ArcadeObject
         }
 
         hitBox.MoveUntilCollision(dx, 0f, HorizontalTilesToConsider());
-        dx = 0;
+        
 
 
 
@@ -80,19 +80,23 @@ public abstract class Unit : ArcadeObject
         SetXY(worldPosition.x, worldPosition.y);
         hitBox.SetXY(0, 0);
         ApplyGravity();
+
+
+
+        //dx = 0;
     }
 
 
     /// <summary>
     /// Moves player
     /// </summary>
-    public void MoveRight(){
+    public virtual void MoveRight(){
         dx = ActualMaxSpeed;
     }
-    public void MoveLeft(){
+    public virtual void MoveLeft(){
         dx = -ActualMaxSpeed;
     }
-    public void Jump() {
+    public virtual void Jump() {
         if (OnGround)
         {
             speedY = JumpForce;
