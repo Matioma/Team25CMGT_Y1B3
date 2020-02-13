@@ -97,9 +97,8 @@ public abstract class Unit : ArcadeObject
         }
     }
 
-    public void UsePowerUp(int controller) {
-        Console.WriteLine(controller + "-used powerup");
-
+    virtual public void UsePowerUp() {
+        Console.WriteLine("used powerup");
     }
 
 

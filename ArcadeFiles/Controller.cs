@@ -49,7 +49,7 @@ class Controller:GameObject
                     _target.Jump();
                 }
                 if (Input.GetKeyDown(Key.S)) {
-                    _target.UsePowerUp(controllerId);
+                    _target.UsePowerUp();
 
                 }
                 break;
@@ -68,7 +68,7 @@ class Controller:GameObject
                 }
                 if (Input.GetKeyDown(Key.DOWN))
                 {
-                    _target.UsePowerUp(controllerId);
+                    _target.UsePowerUp();
                 }
                 break;
         }

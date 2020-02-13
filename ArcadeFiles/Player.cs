@@ -29,9 +29,7 @@ public class Player : Unit
         }
     }
 
-
-
-
+    protected PowerUp currentPowerUp = null; 
 
 
     public Player(string spriteSheet, int cols, int rows)
@@ -52,5 +50,26 @@ public class Player : Unit
         PlayerCamera = new Camera(x, y, width, height);
     }
 
-   
+
+    public void PickPowerUP(PowerUp pPowerUp) {
+       
+        if (currentPowerUp != null) {
+            currentPowerUp.LateDestroy();
+        }
+
+        currentPowerUp = pPowerUp;
+    }
+
+
+    override public void UsePowerUp() {
+        if (currentPowerUp == null)
+        {
+            Console.WriteLine("No power Up picked");
+        }
+        else {
+            Console.WriteLine(currentPowerUp.message);
+            currentPowerUp.LateDestroy();
+            currentPowerUp = null;
+        }
+    }
 }

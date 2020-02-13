@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
-class PowerUp: ArcadeObject
+public class PowerUp: ArcadeObject
 {
-    public string name;
+    public string message = "TestMessage";
     public PowerUp(string spriteSheet, int cols, int rows)
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
@@ -24,10 +24,12 @@ class PowerUp: ArcadeObject
     {
         foreach (var arcadeObject in arcadeObjects) {
             if (getHitBox().HitTest(arcadeObject.getHitBox())) {
-                this.LateDestroy();
+                var player =arcadeObject as Player;
+                if (player != null) {
+                    player.PickPowerUP(this);
+                    this.LateRemove();
+                }
             }
         }
-        
     }
-
 }
