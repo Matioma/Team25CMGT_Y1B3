@@ -6,6 +6,12 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
 
+
+enum UnitState
+{
+    IDLE,
+    RUN
+}
 public abstract class Unit : ArcadeObject
 {
     protected int dx = 0;
@@ -198,14 +204,14 @@ public abstract class Unit : ArcadeObject
             //if tile on the left
             if ((obj.x - x) < 0)
             {
-                if ((Math.Abs(obj.x - x) < Tile.tileWidth + getHitBox().width / 2 - 10) && ((obj.y - y) <= 5))
+                if ((Math.Abs(obj.x - x) < Tile.tileWidth + getHitBox().width / 2 - 10) && ((obj.y - y) <= dy+1))
                 {
                     hitBoxes.Add(obj.getHitBox());
                 }
             }
             else
             {
-                if ((Math.Abs(obj.x - x) <= getHitBox().width / 2 - 10) && ((obj.y - y) <= 5))
+                if ((Math.Abs(obj.x - x) <= getHitBox().width / 2 - 10) && ((obj.y - y) <= dy+1))
                 {
                     hitBoxes.Add(obj.getHitBox());
                 }

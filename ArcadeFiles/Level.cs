@@ -81,14 +81,10 @@ public class Level:GameObject
         tile.SetSpriteSheetFrame(tileNumber - 1);
         tile.SetXY(j * Tile.tileWidth, i * Tile.tileHeight);
         tile.SetSpriteExtent(Tile.tileWidth, Tile.tileHeight);
-        //tile.SetPivotPoint(PivotPointPosition.TOP);
         AddChild(tile);
 
         return tile;
     }
-
-
-
 
 
     public void SpawnObjects(Map levelData)
@@ -144,10 +140,6 @@ public class Level:GameObject
 
 
                     player.SetSpriteExtent(64, 64);
-                    //player.visuals.SetXY(-player.visuals.width/2, -player.visuals.height);
-
-                    // player.visuals.SetOrigin(player.visuals.width / 2, player.visuals.height);
-                    //Console.WriteLine(player.visuals.width/2);
                         
                     player.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(player);

@@ -7,15 +7,12 @@ using GXPEngine;
 using GXPEngine.ArcadeFiles.PowerUps;
 
 
-enum PlayerStates {
-    IDLE,
-    RUN
-}
+
 
 public class Player : Unit
 {
     int frame = 0;
-    PlayerStates playerState=  PlayerStates.IDLE;
+    UnitState playerState=  UnitState.IDLE;
 
     Camera _cameraRef = null;
     Camera PlayerCamera {
@@ -59,22 +56,25 @@ public class Player : Unit
 
 
         switch (playerState) {
-            case PlayerStates.IDLE:
+            case UnitState.IDLE:
                 visuals.Mirror(true, false);
                 break;
-            case PlayerStates.RUN:
+            case UnitState.RUN:
                 if (dx > 0)
                 {
                     visuals.Mirror(true, false);
-                    visuals.NextFrame();
+                    Animate(60);
+                    //visuals.NextFrame();
                 }
                 else if (dx < 0)
                 {
                     visuals.Mirror(false, false);
-                    visuals.NextFrame();
+                    Animate(60);
+                    
+                    //visuals.NextFrame();
                 }
                 else {
-                    playerState = PlayerStates.IDLE;
+                    playerState = UnitState.IDLE;
                 }
                 break;
         }
@@ -86,12 +86,12 @@ public class Player : Unit
     public override void MoveRight()
     {
         dx = ActualMaxSpeed;
-        playerState = PlayerStates.RUN;
+        playerState = UnitState.RUN;
     }
     public override void MoveLeft()
     {
         dx = -ActualMaxSpeed;
-        playerState = PlayerStates.RUN;
+        playerState = UnitState.RUN;
     }
 
 

@@ -16,12 +16,22 @@ public abstract class ArcadeObject : GameObject
     private PivotPointPosition _pivotPointPosition =PivotPointPosition.LEFT_TOP;
 
 
+
+
+    private int animationTimer=0;
+
+
     public virtual void Update() {
         //Console.WriteLine("Test"+ (this is Player));
         //visuals.SetFrame((visuals.currentFrame++)/ visuals.frameCount );
     }
 
-    //Adds animation sprite to the object
+    /// <summary>
+    /// Adds animation sprite to the object
+    /// </summary>
+    /// <param name="spriteSheet">file path</param>
+    /// <param name="cols">number of columns</param>
+    /// <param name="rows">number of rows</param>
     protected void CreateVisual(string spriteSheet, int cols, int rows) {
         visuals = new AnimationSprite(spriteSheet, cols, rows);
         AddChild(visuals);
@@ -54,6 +64,19 @@ public abstract class ArcadeObject : GameObject
     {
         visuals.SetFrame(index);
     }
+
+
+    protected void Animate(int millisPerFrame) {
+        animationTimer -= Time.deltaTime;
+
+        if (animationTimer <= 0) {
+            animationTimer = millisPerFrame;
+            visuals.NextFrame();
+        }
+    }
+
+
+
     public void SetHitBoxSize(int width, int height) {
         hitBox.setHitBoxSize(new Vector2(width, height));
     }
