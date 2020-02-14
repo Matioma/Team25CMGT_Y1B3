@@ -69,7 +69,10 @@ public abstract class Unit : ArcadeObject
         var collision = hitBox.MoveUntilCollision(0, speedY, VerticalTilesToConsider());
         if (collision != null)
         {
-            OnGround = true;
+            if (collision.other.y < y)
+                OnGround = true;
+            else
+                OnGround = false;
         }
         else
         {
@@ -150,7 +153,7 @@ public abstract class Unit : ArcadeObject
                 //tile Left
                 if ((obj.x - x) < 0)
                 {
-                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + ActualMaxSpeed))
+                    if ((Math.Abs(obj.y - y) > MaxSpeedY) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + ActualMaxSpeed))
                     {
                         hitBoxes.Add(obj.getHitBox());
                     }
@@ -158,7 +161,7 @@ public abstract class Unit : ArcadeObject
                 //tile right
                 else
                 {
-                    if ((Math.Abs(obj.y - y) > 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + ActualMaxSpeed))
+                    if ((Math.Abs(obj.y - y) > MaxSpeedY) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + ActualMaxSpeed))
                     {
                         hitBoxes.Add(obj.getHitBox());
                     }
@@ -169,14 +172,14 @@ public abstract class Unit : ArcadeObject
                 //left
                 if ((obj.x - x) < 0)
                 {
-                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + ActualMaxSpeed))
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + MaxSpeedY) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + ActualMaxSpeed))
                     {
                         hitBoxes.Add(obj.getHitBox());
                     }
                 }
                 else
                 {
-                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + 1) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + ActualMaxSpeed))
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + MaxSpeedY) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + ActualMaxSpeed))
                     {
                         hitBoxes.Add(obj.getHitBox());
                     }

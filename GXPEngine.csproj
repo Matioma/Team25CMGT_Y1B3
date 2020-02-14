@@ -40,6 +40,7 @@
     <Compile Include="ArcadeFiles\Controller.cs" />
     <Compile Include="ArcadeFiles\HitBox.cs" />
     <Compile Include="ArcadeFiles\Level.cs" />
+    <Compile Include="ArcadeFiles\PowerUpManager.cs" />
     <Compile Include="ArcadeFiles\PowerUps\ChemicalBottle.cs" />
     <Compile Include="ArcadeFiles\PowerUps\MetalWheel.cs" />
     <Compile Include="ArcadeFiles\PowerUps\Pill.cs" />

@@ -63,13 +63,13 @@ public class Player : Unit
                 if (dx > 0)
                 {
                     visuals.Mirror(true, false);
-                    Animate(60);
+                    Animate(300/ActualMaxSpeed);
                     //visuals.NextFrame();
                 }
                 else if (dx < 0)
                 {
                     visuals.Mirror(false, false);
-                    Animate(60);
+                    Animate(300 / ActualMaxSpeed);
                     
                     //visuals.NextFrame();
                 }
@@ -202,8 +202,4 @@ public class Player : Unit
                 break;
         }
     }
-
-
-
-
 }

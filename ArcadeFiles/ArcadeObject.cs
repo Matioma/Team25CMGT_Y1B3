@@ -71,6 +71,7 @@ public abstract class ArcadeObject : GameObject
 
         if (animationTimer <= 0) {
             animationTimer = millisPerFrame;
+            //visuals.SetFrame(visuals.currentFrame );
             visuals.NextFrame();
         }
     }
