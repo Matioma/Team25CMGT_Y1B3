@@ -139,7 +139,7 @@ public class Level:GameObject
                     player.JumpForce = jumpForce;
 
 
-                    player.SetSpriteExtent(64, 64);
+                    player.SetSpriteExtent((int)obj.Width, (int)obj.Height);
                         
                     player.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(player);
@@ -234,6 +234,8 @@ public class Level:GameObject
                     metalWheel.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(metalWheel);
 
+                    break;
+                case "":
                     break;
             }
         }
