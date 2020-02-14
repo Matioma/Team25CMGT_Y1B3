@@ -4,60 +4,45 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
+using GXPEngine.ArcadeFiles.PowerUps;
 
-
-
-class PowerUpManager
+public class PowerUpManager
 {
     Player _owner = null;
 
-    protected PowerUp inventoryPowerUp = null;
-
+    private PowerUp _inventoryPowerUp = null;
     Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
-    PowerUpManager(Player owner) {
+
+    public PowerUpManager(Player owner)
+    {
         _owner = owner;
     }
 
 
-    private void ApplyActiveEffects()
+    public void PickPowerUp(PowerUp powerUp) {
+        if (_inventoryPowerUp != null)
+        {
+            _inventoryPowerUp.LateDestroy();
+        }
+
+        _inventoryPowerUp = powerUp;
+    }
+
+    public void ApplyActiveEffects()
     {
         List<Type> effectsThatEnded = new List<Type>();
         foreach (var pair in activeEffects)
         {
-            switch (pair.Key.ToString())
+            if (pair.Value.PowerUpTimeLeft > 0)
             {
+                activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
+                activeEffects[pair.Key].ApplyEffect(_owner);
 
-                case "Pill":
-                    ///Checks if pill bonus has active Time
-                    if (pair.Value.PowerUpTimeLeft > 0)
-                    {
-                        activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
-                        var pillEffect = activeEffects[pair.Key] as Pill;
-                        //ActualMaxSpeed += pillEffect.SpeedBonus;
-
-                    }
-                    else
-                    {
-                        effectsThatEnded.Add(pair.Key);
-                        break;
-                    }
-                    break;
-                case "MetalWheel":
-                    ///Checks if pill bonus has active Time
-                    if (pair.Value.PowerUpTimeLeft > 0)
-                    {
-                        activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
-                        //var pillEffect = activeEffects[pair.Key] as MetalWheel;
-                        // ActualMaxSpeed += pillEffect.SpeedBonus;
-
-                    }
-                    else
-                    {
-                        effectsThatEnded.Add(pair.Key);
-                        break;
-                    }
-                    break;
+            }
+            else
+            {
+                effectsThatEnded.Add(pair.Key);
             }
         }
 
@@ -65,6 +50,36 @@ class PowerUpManager
         foreach (var Type in effectsThatEnded)
         {
             activeEffects.Remove(Type);
+        }
+    }
+
+    public void UsePowerUp()
+    {
+        if (_inventoryPowerUp == null)
+        {
+            Console.WriteLine("No power Up picked");
+        }
+        else
+        {
+            ActivatePowerUp();
+            _inventoryPowerUp.LateDestroy();
+            _inventoryPowerUp = null;
+        }
+    }
+
+    private void ActivatePowerUp()
+    {
+
+        //check if such player has current effect
+        if (activeEffects.ContainsKey(_inventoryPowerUp.GetType()))
+        {
+            //Reset the effect time
+            activeEffects[_inventoryPowerUp.GetType()].PowerUpTimeLeft = (int)_inventoryPowerUp.PowerUpDuration * 1000;
+            _inventoryPowerUp.LateDestroy();
+        }
+        else {
+            activeEffects.Add(_inventoryPowerUp.GetType(), _inventoryPowerUp);
+            activeEffects[_inventoryPowerUp.GetType()].PowerUpTimeLeft = (int)_inventoryPowerUp.PowerUpDuration * 1000;
         }
     }
 

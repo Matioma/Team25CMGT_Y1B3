@@ -12,4 +12,10 @@ class ChemicalBottle:PowerUp
         AddChild(visuals);
         AddHitBox();
     }
+
+
+    public override void ApplyEffect(Unit target)
+    {
+        throw new NotImplementedException();
+    }
 }

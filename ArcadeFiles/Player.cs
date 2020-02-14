@@ -34,6 +34,11 @@ public class Player : Unit
             AddChild(value);
         }
     }
+
+
+    private PowerUpManager _powerUpManager;
+
+
     protected PowerUp inventoryPowerUp = null;
 
     
@@ -45,12 +50,14 @@ public class Player : Unit
         visuals = new AnimationSprite(spriteSheet, cols, rows,-1,false,false);
         AddChild(visuals);
         AddHitBox();
+        _powerUpManager = new PowerUpManager(this);
     }
 
 
     public override void Update() {
         resetPlayerEffects();
-        ApplyActiveEffects();
+        _powerUpManager.ApplyActiveEffects();
+
         base.Update();
 
 
@@ -78,7 +85,6 @@ public class Player : Unit
                 }
                 break;
         }
-
         dx = 0;
     }
 
@@ -99,73 +105,11 @@ public class Player : Unit
     public void AddCamera(int x, int y, int width, int height) {
         PlayerCamera = new Camera(x, y, width, height);
     }
-
-
     public void PickPowerUP(PowerUp pPowerUp) {
-       
-        if (inventoryPowerUp != null) {
-            inventoryPowerUp.LateDestroy();
-        }
-
-        inventoryPowerUp = pPowerUp;
+        _powerUpManager.PickPowerUp(pPowerUp);
     }
-
-
     override public void UsePowerUp() {
-        if (inventoryPowerUp == null)
-        {
-            Console.WriteLine("No power Up picked");
-        }
-        else {
-            ApplyEffect();
-            inventoryPowerUp.LateDestroy();
-            inventoryPowerUp = null;
-        }
-    }
-
-    private void ApplyActiveEffects()
-    {
-        List<Type> effectsThatEnded =new List<Type>();
-        foreach (var pair in activeEffects) {
-            switch(pair.Key.ToString()){
-                
-                case "Pill":
-                    ///Checks if pill bonus has active Time
-                    if (pair.Value.PowerUpTimeLeft > 0)
-                    {
-                        activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
-                        var pillEffect = activeEffects[pair.Key] as Pill;
-                        ActualMaxSpeed += pillEffect.SpeedBonus;
-
-                    }
-                    else {
-                        effectsThatEnded.Add(pair.Key);
-                        break;
-                    }
-                    break;
-                case "MetalWheel":
-                    Console.WriteLine(pair.Key);
-                    ///Checks if pill bonus has active Time
-                    if (pair.Value.PowerUpTimeLeft > 0)
-                    {
-                        activeEffects[pair.Key].PowerUpTimeLeft -= Time.deltaTime;
-                        var pillEffect = activeEffects[pair.Key] as MetalWheel;
-                       // ActualMaxSpeed += pillEffect.SpeedBonus;
-
-                    }
-                    else
-                    {
-                        effectsThatEnded.Add(pair.Key);
-                        break;
-                    }
-                    break;
-            }
-        }
-
-        //Remove Finished Effects
-        foreach (var Type in effectsThatEnded) {
-            activeEffects.Remove(Type);
-        }
+        _powerUpManager.UsePowerUp();
     }
 
     /// <summary>
@@ -173,33 +117,5 @@ public class Player : Unit
     /// </summary>
     private void resetPlayerEffects() {
         ActualMaxSpeed = DefaultMaxSpeed;
-    }
-
-    private void ApplyEffect() {
-        switch (inventoryPowerUp) {
-            case Pill pill:
-                if (activeEffects.ContainsKey(pill.GetType()))
-                {
-                    activeEffects[pill.GetType()].PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
-                    pill.LateDestroy();
-                }
-                else {
-                    pill.PowerUpTimeLeft = (int)pill.SpeedDuration * 1000;
-                    activeEffects.Add(pill.GetType(), pill);
-                }
-                break;
-            case MetalWheel metalWheel:
-                if (activeEffects.ContainsKey(metalWheel.GetType()))
-                {
-                    activeEffects[metalWheel.GetType()].PowerUpTimeLeft = (int)metalWheel.MetalWheelTime * 1000;
-                    metalWheel.LateDestroy();
-                }
-                else
-                {
-                    metalWheel.PowerUpTimeLeft = (int)metalWheel.MetalWheelTime * 1000;
-                    activeEffects.Add(metalWheel.GetType(), metalWheel);
-                }
-                break;
-        }
     }
 }

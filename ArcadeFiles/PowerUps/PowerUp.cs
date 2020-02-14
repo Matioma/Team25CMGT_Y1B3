@@ -8,6 +8,10 @@ public abstract class PowerUp: ArcadeObject
 {
     public string message = "TestMessage";
 
+
+    public float PowerUpDuration;
+
+
     private int _powerUpTimeLeft = 0;
     public int PowerUpTimeLeft {
         get { return _powerUpTimeLeft; }
@@ -20,6 +24,9 @@ public abstract class PowerUp: ArcadeObject
         var level = parent as Level;
         DoCollisionCheck(level.playersList);
     }
+
+
+    public abstract void ApplyEffect(Unit target);
 
     protected override void DoCollisionCheck(List<ArcadeObject> arcadeObjects)
     {

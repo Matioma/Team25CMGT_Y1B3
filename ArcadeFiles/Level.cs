@@ -196,7 +196,7 @@ public class Level:GameObject
                     pill.SetXY(obj.X, obj.Y);
                     pill.name = Name;
                     pill.SpeedBonus = speedBonus;
-                    pill.SpeedDuration = speedDuration;
+                    pill.PowerUpDuration = speedDuration;
                     pill.SetPivotPoint(PivotPointPosition.BOTTOM);
                     AddChild(pill);
 
@@ -228,7 +228,7 @@ public class Level:GameObject
                     }
                     MetalWheel metalWheel = new MetalWheel(spriteSheet, cols, rows);
                     metalWheel.SetXY(obj.X, obj.Y);
-                    metalWheel.MetalWheelTime = metalWheelDuration;
+                    metalWheel.PowerUpDuration = metalWheelDuration;
 
 
                     metalWheel.SetPivotPoint(PivotPointPosition.BOTTOM);

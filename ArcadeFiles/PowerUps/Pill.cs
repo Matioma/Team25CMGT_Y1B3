@@ -13,17 +13,16 @@ class Pill:PowerUp
         set { _speedBonus = value; }
     }
 
-    private float _speedDuration = 0;
-    public float SpeedDuration
-    {
-        get { return _speedDuration; }
-        set { _speedDuration = value; }
-    }
+    
 
     public Pill(string spriteSheet, int cols, int rows)
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
         AddChild(visuals);
         AddHitBox();
+    }
+    public override void ApplyEffect(Unit target)
+    {
+        target.ActualMaxSpeed += SpeedBonus;
     }
 }

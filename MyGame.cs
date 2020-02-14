@@ -4,7 +4,7 @@ using GXPEngine.Core;
 using TiledMapParser;
 public class MyGame : Game
 {
-    public MyGame() : base(1720, 1080, false)		// Create a window that's 800x600 and NOT fullscreen
+    public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
     {
         Settings.Initialize(); // Loads And Parses settings file
 
