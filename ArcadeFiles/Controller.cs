@@ -38,12 +38,13 @@ class Controller:GameObject
         switch (controllerId) {
             case 0:
                 if (Input.GetKey(Key.D)) {
-                    _target.MoveRight();
+                    _target.MoveHorizontally(true);
                    
                 }
                 if (Input.GetKey(Key.A))
                 {
-                    _target.MoveLeft();
+                    _target.MoveHorizontally(false);
+                    //_target.MoveLeft();
                 }
                 if (Input.GetKeyDown(Key.W)) {
                     _target.Jump();
@@ -56,11 +57,11 @@ class Controller:GameObject
             case 1:
                 if (Input.GetKey(Key.RIGHT))
                 {
-                    _target.MoveRight();
+                    _target.MoveHorizontally(true);
                 }
                 if (Input.GetKey(Key.LEFT))
                 {
-                    _target.MoveLeft();
+                    _target.MoveHorizontally(false);
                 }
                 if (Input.GetKeyDown(Key.UP))
                 {

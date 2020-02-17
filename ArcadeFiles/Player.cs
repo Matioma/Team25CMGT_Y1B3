@@ -14,8 +14,8 @@ public class Player : Unit
     int frame = 0;
     UnitState playerState=  UnitState.IDLE;
 
-    Camera _cameraRef = null;
-    Camera PlayerCamera {
+    ArcadeCamera _cameraRef = null;
+    ArcadeCamera PlayerCamera {
         get {
             if (_cameraRef != null)
                 return _cameraRef;
@@ -89,21 +89,17 @@ public class Player : Unit
     }
 
 
-    public override void MoveRight()
+    public override void MoveHorizontally(bool pRight)
     {
-        dx = ActualMaxSpeed;
-        playerState = UnitState.RUN;
-    }
-    public override void MoveLeft()
-    {
-        dx = -ActualMaxSpeed;
+        base.MoveHorizontally(pRight);
+
         playerState = UnitState.RUN;
     }
 
 
 
     public void AddCamera(int x, int y, int width, int height) {
-        PlayerCamera = new Camera(x, y, width, height);
+        PlayerCamera = new ArcadeCamera(x, y, width, height);
     }
     public void PickPowerUP(PowerUp pPowerUp) {
         _powerUpManager.PickPowerUp(pPowerUp);

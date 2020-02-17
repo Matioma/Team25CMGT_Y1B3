@@ -91,20 +91,20 @@ public abstract class Unit : ArcadeObject
         ApplyGravity();
 
 
-
-        //dx = 0;
     }
 
 
     /// <summary>
     /// Moves player
     /// </summary>
-    public virtual void MoveRight(){
-        dx = ActualMaxSpeed;
+    public virtual void MoveHorizontally( bool pRight){
+        if (pRight)
+            dx = ActualMaxSpeed;
+        else {
+            dx = -ActualMaxSpeed;
+        }
     }
-    public virtual void MoveLeft(){
-        dx = -ActualMaxSpeed;
-    }
+
     public virtual void Jump() {
         if (OnGround)
         {

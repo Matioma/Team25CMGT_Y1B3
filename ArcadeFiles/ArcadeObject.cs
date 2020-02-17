@@ -16,14 +16,10 @@ public abstract class ArcadeObject : GameObject
     private PivotPointPosition _pivotPointPosition =PivotPointPosition.LEFT_TOP;
 
 
-
-
     private int animationTimer=0;
 
 
     public virtual void Update() {
-        //Console.WriteLine("Test"+ (this is Player));
-        //visuals.SetFrame((visuals.currentFrame++)/ visuals.frameCount );
     }
 
     /// <summary>
@@ -71,7 +67,6 @@ public abstract class ArcadeObject : GameObject
 
         if (animationTimer <= 0) {
             animationTimer = millisPerFrame;
-            //visuals.SetFrame(visuals.currentFrame );
             visuals.NextFrame();
         }
     }
@@ -124,7 +119,6 @@ public abstract class ArcadeObject : GameObject
                     break;
                 case PivotPointPosition.BOTTOM:
                     hitBox.SetOrigin(visuals.width / 2, visuals.height);
-                    //visuals.SetOrigin(visuals.width / 2, visuals.height);
                     visuals.SetXY(-visuals.width / 2, -visuals.height);
                     break;
                 case PivotPointPosition.RIGHT_TOP:
