@@ -4,18 +4,19 @@ using GXPEngine.Core;
 using TiledMapParser;
 public class MyGame : Game
 {
+   
+
+    GameManager gameManager;
     public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
     {
-        Settings.Initialize(); // Loads And Parses settings file
+        //Settings.Initialize(); // Loads And Parses settings file
 
-
-        //var levelData = MapParser.ReadMap("TestLevel.tmx");
-        Level level = new Level("TestLevel2.tmx");
-
+        gameManager = new GameManager();
         
-        //ArcadeObject obj= new ArcadeObject(new Vector2(150,150), new Vector2(32,32));
+       
 
-        AddChild(level);
+
+        AddChild(gameManager);
     }
 
     void Update()
@@ -28,7 +29,4 @@ public class MyGame : Game
         new MyGame().Start();					// Create a "MyGame" and start it
     }
 
-    void LoadSettings() {
-
-    }
 }
