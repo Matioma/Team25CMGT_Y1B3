@@ -44,7 +44,6 @@ class Controller:GameObject
                 if (Input.GetKey(Key.A))
                 {
                     _target.MoveHorizontally(false);
-                    //_target.MoveLeft();
                 }
                 if (Input.GetKeyDown(Key.W)) {
                     _target.Jump();
