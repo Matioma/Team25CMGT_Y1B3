@@ -7,7 +7,7 @@ public class MyGame : Game
    
 
     GameManager gameManager;
-    public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
+    public MyGame() : base(1920, 1080, false)		// Create a window that's 800x600 and NOT fullscreen
     {
         //Settings.Initialize(); // Loads And Parses settings file
 
@@ -19,10 +19,6 @@ public class MyGame : Game
         AddChild(gameManager);
     }
 
-    void Update()
-    {
-        
-    }
 
     static void Main()							// Main() is the first method that's called when the program is run
     {

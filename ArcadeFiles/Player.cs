@@ -39,11 +39,6 @@ public class Player : Unit
     private PowerUpManager _powerUpManager;
 
 
-    protected PowerUp inventoryPowerUp = null;
-
-    
-    //Holds the active power up and Seconds left until finished
-    Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
     public Player(string spriteSheet, int cols, int rows)
     {
