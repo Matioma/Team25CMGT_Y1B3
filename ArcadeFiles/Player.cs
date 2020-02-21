@@ -46,6 +46,7 @@ public class Player : Unit
         AddChild(visuals);
         AddHitBox();
         _powerUpManager = new PowerUpManager(this);
+        AddChild(new Controller());
     }
 
 
@@ -94,7 +95,7 @@ public class Player : Unit
 
 
     public void AddCamera(int x, int y, int width, int height) {
-        PlayerCamera = new ArcadeCamera(x, y, width, height);
+        //PlayerCamera = new ArcadeCamera(x, y, width, height);
     }
     public void PickPowerUP(PowerUp pPowerUp) {
         _powerUpManager.PickPowerUp(pPowerUp);

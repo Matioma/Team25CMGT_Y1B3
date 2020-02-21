@@ -15,10 +15,6 @@ class Background:UIElement
 
     void Update() {
         scalingFactor += Time.deltaTime;
-
-        
-
-
         background.SetScaleXY(1 + Math.Abs((float)Math.Sin(scalingFactor / 1000 / 5))/3);
     }
 }

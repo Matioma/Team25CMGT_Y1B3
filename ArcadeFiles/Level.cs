@@ -15,7 +15,7 @@ public class Level:GameObject
 
     Map levelData;
 
-    List<Controller> controllersList = new List<Controller>();
+    //List<Controller> controllersList = new List<Controller>();
 
 
     public List<ArcadeObject> playersList = new List<ArcadeObject>();
@@ -171,20 +171,19 @@ public class Level:GameObject
         AddChild(player);
 
         playersList.Add(player);
-        Controller controller = new Controller(player);
-        AddChild(controller);
+        //Controller controller = new Controller(player);
+        //AddChild(controller);
 
 
         //Adding Cameras
-        if (controller.controllerId == 0)
+        /*if (controller.controllerId == 0)
         {
             player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
         }
         else
         {
             player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
-        }
-
+        }*/
 
     }
 

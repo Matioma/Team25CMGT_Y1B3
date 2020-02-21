@@ -12,7 +12,7 @@ enum UnitState
     IDLE,
     RUN
 }
-public abstract class Unit : ArcadeObject
+public abstract class Unit : ArcadeObject,IControllable
 {
     protected int dx = 0;
     protected int dy = 0;
