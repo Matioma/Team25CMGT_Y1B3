@@ -97,7 +97,7 @@ public abstract class Unit : ArcadeObject,IControllable
     /// <summary>
     /// Moves player
     /// </summary>
-    public virtual void MoveHorizontally( bool pRight){
+    public virtual void RotateWheel( bool pRight){
         if (pRight)
             dx = ActualMaxSpeed;
         else {
@@ -105,7 +105,7 @@ public abstract class Unit : ArcadeObject,IControllable
         }
     }
 
-    public virtual void Jump() {
+    public virtual void PressJumpButton() {
         if (OnGround)
         {
             speedY = JumpForce;
@@ -123,7 +123,7 @@ public abstract class Unit : ArcadeObject,IControllable
         }
     }
 
-    virtual public void UsePowerUp() {
+    virtual public void PressPowerUpButton() {
         Console.WriteLine("used powerup");
     }
 

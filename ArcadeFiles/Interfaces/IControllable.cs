@@ -6,8 +6,8 @@ using GXPEngine;
 
     public interface IControllable
     {
-        void UsePowerUp();
-        void Jump();
+        void PressPowerUpButton();
+        void PressJumpButton();
 
-        void MoveHorizontally(bool pRight);
+        void RotateWheel(bool pRight);
     }

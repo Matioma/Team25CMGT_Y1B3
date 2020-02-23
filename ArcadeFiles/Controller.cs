@@ -60,12 +60,38 @@ class Controller:GameObject
         ControllersNumber++;
     }
 
-    public Controller()
+    public Controller(int numberOfCameras)
     {
        controllerId = ControllersNumber;
 
+       /* if (numberOfCameras == 0)
+        {
+            throw new Exception("Controller with no cameras Created");
 
-       if (controllerId == 0)
+        }*/
+        switch (numberOfCameras) {
+            case 0:
+                throw new Exception("Controller with no cameras Created");
+                break;
+            case 1:
+                AddCamera(0, 0, Game.main.width, Game.main.height);
+                ControllersNumber++;
+                break;
+            case 2:
+                if (controllerId == 0)
+                {
+                    AddCamera(0, 0, Game.main.width / 2, Game.main.height);
+                }
+                else
+                {
+                    AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
+                }
+                break;
+        }
+        ControllersNumber++;
+
+
+      /*  if (controllerId == 0)
        {
            AddCamera(0, 0, Game.main.width / 2, Game.main.height);
        }
@@ -73,7 +99,7 @@ class Controller:GameObject
        {
            AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
        }
-       ControllersNumber++;
+       ControllersNumber++;*/
     }
 
 
@@ -86,50 +112,70 @@ class Controller:GameObject
         if (parent is IControllable)
         {
             IControllable conrolledObject = parent as IControllable;
-            if (parent is Player)
-            {
-                switch (controllerId)
-                {
-                    case 0:
-                        if (Input.GetKey(Key.D))
-                        {
-                            conrolledObject.MoveHorizontally(true);
-                        }
-                        if (Input.GetKey(Key.A))
-                        {
-                            conrolledObject.MoveHorizontally(false);
-                        }
-                        if (Input.GetKeyDown(Key.W))
-                        {
-                            conrolledObject.Jump();
-                        }
-                        if (Input.GetKeyDown(Key.S))
-                        {
-                            conrolledObject.UsePowerUp();
 
-                        }
-                        break;
-                    case 1:
-                        if (Input.GetKey(Key.RIGHT))
-                        {
-                            conrolledObject.MoveHorizontally(true);
-                        }
-                        if (Input.GetKey(Key.LEFT))
-                        {
-                            conrolledObject.MoveHorizontally(false);
-                        }
-                        if (Input.GetKeyDown(Key.UP))
-                        {
-                            conrolledObject.Jump();
-                        }
-                        if (Input.GetKeyDown(Key.DOWN))
-                        {
-                            conrolledObject.UsePowerUp();
-                        }
-                        break;
-                }
-            }
-        } else
+            if (parent is Player)
+          {
+              switch (controllerId)
+              {
+                  case 0:
+                      if (Input.GetKey(Key.D))
+                      {
+                          conrolledObject.RotateWheel(true);
+                      }
+                      if (Input.GetKey(Key.A))
+                      {
+                          conrolledObject.RotateWheel(false);
+                      }
+                      if (Input.GetKeyDown(Key.W))
+                      {
+                          conrolledObject.PressJumpButton();
+                      }
+                      if (Input.GetKeyDown(Key.S))
+                      {
+                          conrolledObject.PressPowerUpButton();
+
+                      }
+                      break;
+                  case 1:
+                      if (Input.GetKey(Key.RIGHT))
+                      {
+                          conrolledObject.RotateWheel(true);
+                      }
+                      if (Input.GetKey(Key.LEFT))
+                      {
+                          conrolledObject.RotateWheel(false);
+                      }
+                      if (Input.GetKeyDown(Key.UP))
+                      {
+                          conrolledObject.PressJumpButton();
+                      }
+                      if (Input.GetKeyDown(Key.DOWN))
+                      {
+                          conrolledObject.PressPowerUpButton();
+                      }
+                      break;
+              }
+          }
+          else {
+              if (Input.GetKey(Key.D) || Input.GetKey(Key.RIGHT))
+              {
+                  conrolledObject.RotateWheel(true);
+              }
+              if (Input.GetKey(Key.A) || Input.GetKey(Key.LEFT))
+              {
+                  conrolledObject.RotateWheel(false);
+              }
+              if (Input.GetKeyDown(Key.W) || Input.GetKeyDown(Key.UP))
+              {
+                  conrolledObject.PressJumpButton();
+              }
+              if (Input.GetKeyDown(Key.S) || Input.GetKeyDown(Key.DOWN))
+              {
+                  conrolledObject.PressPowerUpButton();
+              }
+          }
+        }
+        else
         {
             Console.WriteLine("Parent does not implements IControllable");
         }

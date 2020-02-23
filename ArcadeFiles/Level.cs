@@ -5,7 +5,7 @@ using System.Text;
 
 using GXPEngine;
 using GXPEngine.ArcadeFiles.PowerUps;
-using GXPEngine.Core;
+
 using TiledMapParser;
 
 public class Level:GameObject
@@ -14,6 +14,8 @@ public class Level:GameObject
     short[,] tiledDataShort;
 
     Map levelData;
+    MainMenu mainMenu;
+
 
     //List<Controller> controllersList = new List<Controller>();
 
@@ -95,20 +97,66 @@ public class Level:GameObject
         }
         ObjectGroup objectGroup = levelData.ObjectGroups[0];
 
+        foreach (ObjectGroup objGroup in levelData.ObjectGroups) {
+            if (objGroup.Objects == null || objectGroup.Objects.Length == 0)
+            {
+                continue;
+            }
+
+            //Console.WriteLine(objGroup.Name);
+
+            switch (objGroup.Name.ToLower())
+            {
+                case "menu":
+                    mainMenu = new MainMenu();
+                    AddChild(mainMenu);
+                    foreach (TiledObject obj in objGroup.Objects)
+                    {
+                        GameObject gameObject;
+                        switch (obj.Type) //
+                        {
+                            case "UIImage":
+                                gameObject= ParseUIImage(obj);
+                                mainMenu.AddChild(gameObject);
+                                break;
+                            case "UIButton":
+                                gameObject = ParseUIButton(obj);
+                                mainMenu.AddChild(gameObject);
+                                break;
+                            default:
+                                Console.WriteLine("Unknown Type for menu Objects");
+                                break;
+                        }
+                    }
+                    MenuLayer(objGroup);
+                    break;
+                default:
+                    DefaultLayerCreation(objGroup);
+                    break;
+            }
+
+
+
+        }
+
+
         if (objectGroup.Objects == null || objectGroup.Objects.Length == 0)
         {
             return;
         }
 
-        foreach (TiledObject obj in objectGroup.Objects)
+        
+    }
+
+    private void DefaultLayerCreation(ObjectGroup objGroup)
+    {
+        foreach (TiledObject obj in objGroup.Objects)
         {
             switch (obj.Type) //
             {
                 case "Player":
                     ParsePlayerData(obj);
-                    
                     break;
-
                 case "Pill":
                     ParsePillData(obj);
 
@@ -123,11 +171,30 @@ public class Level:GameObject
                     ParseUIButton(obj);
                     break;
                 default:
-                    //throw new Exception("Unknown type");
                     break;
             }
         }
     }
+
+    void MenuLayer(ObjectGroup objGroup) {
+        foreach (TiledObject obj in objGroup.Objects)
+        {
+            switch (obj.Type) //
+            {
+                case "UIImage":
+                    ParseUIImage(obj);
+                    break;
+                case "UIButton":
+                    ParseUIButton(obj);
+                    break;
+                default:
+                    Console.WriteLine("Unknown Type for menu Objects");
+                    break;
+            }
+        }
+    }
+
+
 
     void ParsePlayerData(TiledObject obj) {
         string spriteSheet = "colors.png";
@@ -171,20 +238,6 @@ public class Level:GameObject
         AddChild(player);
 
         playersList.Add(player);
-        //Controller controller = new Controller(player);
-        //AddChild(controller);
-
-
-        //Adding Cameras
-        /*if (controller.controllerId == 0)
-        {
-            player.AddCamera(0, 0, Game.main.width / 2, Game.main.height);
-        }
-        else
-        {
-            player.AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
-        }*/
-
     }
 
     void ParsePillData(TiledObject obj) {
@@ -264,7 +317,7 @@ public class Level:GameObject
         AddChild(metalWheel);
     }
 
-    void ParseUIImage(TiledObject obj) {
+    UIElement ParseUIImage(TiledObject obj) {
         var spriteSheet = "colors.png";
         var cols = 1;
         var rows = 1;
@@ -285,17 +338,16 @@ public class Level:GameObject
                     break;
             }
         }
-        UIElement uiElement = new Background(spriteSheet, cols, rows);
-        uiElement.SetXY(obj.X, obj.Y);
+        UIElement uiElement = new UIImage(spriteSheet, cols, rows);
+        uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
         uiElement.background.width = (int)obj.Width;
         uiElement.background.height = (int)obj.Height;
 
 
-        AddChild(uiElement);
-
+        return uiElement;
     }
 
-    void ParseUIButton(TiledObject obj)
+    UIButton ParseUIButton(TiledObject obj)
     {
         var spriteSheet = "colors.png";
         var cols = 1;
@@ -318,12 +370,12 @@ public class Level:GameObject
             }
         }
         UIButton uiElement = new UIButton(spriteSheet, cols, rows);
-        uiElement.SetXY(obj.X, obj.Y);
+        uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
         uiElement.background.width = (int)obj.Width;
         uiElement.background.height = (int)obj.Height;
 
-        AddChild(uiElement);
 
+        return uiElement;
     }
 
 }

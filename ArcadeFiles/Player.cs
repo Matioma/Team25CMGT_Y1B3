@@ -46,7 +46,7 @@ public class Player : Unit
         AddChild(visuals);
         AddHitBox();
         _powerUpManager = new PowerUpManager(this);
-        AddChild(new Controller());
+        AddChild(new Controller(2));
     }
 
 
@@ -85,9 +85,9 @@ public class Player : Unit
     }
 
 
-    public override void MoveHorizontally(bool pRight)
+    public override void RotateWheel(bool pRight)
     {
-        base.MoveHorizontally(pRight);
+        base.RotateWheel(pRight);
 
         playerState = UnitState.RUN;
     }
@@ -100,7 +100,7 @@ public class Player : Unit
     public void PickPowerUP(PowerUp pPowerUp) {
         _powerUpManager.PickPowerUp(pPowerUp);
     }
-    override public void UsePowerUp() {
+    override public void PressPowerUpButton() {
         _powerUpManager.UsePowerUp();
     }
 
