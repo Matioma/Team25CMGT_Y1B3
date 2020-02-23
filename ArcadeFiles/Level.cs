@@ -120,8 +120,10 @@ public class Level:GameObject
                                 mainMenu.AddChild(gameObject);
                                 break;
                             case "UIButton":
-                                gameObject = ParseUIButton(obj);
-                                mainMenu.AddChild(gameObject);
+                                //gameObject = ParseUIButton(obj);
+
+                                mainMenu.AddButton(ParseUIButton(obj));
+                                //mainMenu.AddChild(gameObject);
                                 break;
                             default:
                                 Console.WriteLine("Unknown Type for menu Objects");
@@ -352,6 +354,7 @@ public class Level:GameObject
         var spriteSheet = "colors.png";
         var cols = 1;
         var rows = 1;
+        string targetLevel = "";
 
         var properties = obj.propertyList;
         foreach (Property property in obj.propertyList.properties)
@@ -367,12 +370,16 @@ public class Level:GameObject
                 case "SpriteSheetRows":
                     rows = int.Parse(property.Value);
                     break;
+                case "TargetLevel":
+                    targetLevel = property.Value;
+                    break;
             }
         }
         UIButton uiElement = new UIButton(spriteSheet, cols, rows);
         uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
         uiElement.background.width = (int)obj.Width;
         uiElement.background.height = (int)obj.Height;
+        uiElement.TargetLevel = targetLevel;
 
 
         return uiElement;

@@ -12,9 +12,6 @@ public class MyGame : Game
         //Settings.Initialize(); // Loads And Parses settings file
 
         gameManager = new GameManager();
-        
-       
-
 
         AddChild(gameManager);
     }

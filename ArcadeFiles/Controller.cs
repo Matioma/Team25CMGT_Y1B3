@@ -3,7 +3,7 @@
 using GXPEngine;
 class Controller:GameObject
 {
-    static int ControllersNumber = 0;
+    public static int ControllersNumber = 0;
     Player _target;
     public int controllerId;
 
@@ -64,11 +64,6 @@ class Controller:GameObject
     {
        controllerId = ControllersNumber;
 
-       /* if (numberOfCameras == 0)
-        {
-            throw new Exception("Controller with no cameras Created");
-
-        }*/
         switch (numberOfCameras) {
             case 0:
                 throw new Exception("Controller with no cameras Created");
@@ -89,17 +84,6 @@ class Controller:GameObject
                 break;
         }
         ControllersNumber++;
-
-
-      /*  if (controllerId == 0)
-       {
-           AddCamera(0, 0, Game.main.width / 2, Game.main.height);
-       }
-       else
-       {
-           AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
-       }
-       ControllersNumber++;*/
     }
 
 

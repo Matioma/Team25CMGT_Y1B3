@@ -36,19 +36,17 @@ class GameManager:GameObject
 
 
         ActiveLevel = new Level("MainMenu.tmx");
-        //ActiveLevel = new Level("TestLevel2.tmx");
         AddChild(ActiveLevel);
 
         _instance = this;
     }
-
-
-
     public void OpenLevel(string path) {
+        Controller.ControllersNumber = 0;
         ActiveLevel.LateDestroy();
         ActiveLevel = new Level(path);
 
         AddChild(ActiveLevel);
+        
     }
 
 }
