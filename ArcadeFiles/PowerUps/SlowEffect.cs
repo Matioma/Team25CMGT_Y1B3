@@ -28,14 +28,13 @@ class SlowEffect:PowerUp
 
     protected override void onPickUp()
     {
-        Console.WriteLine(this + "Picked UP");
+        Console.WriteLine(this + "Picked UP SlowEffect ");
         //this.LateRemove();
-
     }
     protected override void onPowerUpUse()
     {
         Console.Write("Power Up used SlowEffect");
-        this.LateDestroy();
+        //this.LateDestroy();
     }
 }
 

@@ -27,51 +27,55 @@
    <properties>
     <property name="JumpForce" type="int" value="15"/>
     <property name="MaxSpeed" type="int" value="5"/>
-    <property name="SpriteSheet" type="file" value="AnimationTest.png"/>
+    <property name="SpriteSheet" type="file" value="Art/Animation_test_p1.png"/>
     <property name="SpriteSheetColumns" type="int" value="5"/>
-    <property name="SpriteSheetRows" type="int" value="2"/>
+    <property name="SpriteSheetRows" type="int" value="4"/>
    </properties>
   </object>
   <object id="2" type="Player" x="251" y="349" width="64" height="64">
    <properties>
     <property name="JumpForce" type="int" value="15"/>
     <property name="MaxSpeed" type="int" value="5"/>
-    <property name="SpriteSheet" type="file" value="AnimationTest.png"/>
+    <property name="SpriteSheet" type="file" value="Art/Animation_test_p2.png"/>
     <property name="SpriteSheetColumns" type="int" value="5"/>
-    <property name="SpriteSheetRows" type="int" value="2"/>
+    <property name="SpriteSheetRows" type="int" value="4"/>
    </properties>
   </object>
   <object id="10" type="Pill" x="1274.24" y="909.091" width="51.5152" height="54.5455">
    <properties>
     <property name="SpeedBonus" type="int" value="5"/>
     <property name="SpeedDuration" type="float" value="5"/>
-    <property name="SpriteSheet" type="file" value="pills.png"/>
+    <property name="SpriteSheet" type="file" value="Art/pill_test.png"/>
     <property name="SpriteSheetColumns" type="int" value="1"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
+    <property name="scale" type="float" value="0.5"/>
    </properties>
   </object>
   <object id="11" type="Pill" x="2880.3" y="354.546" width="51.5152" height="54.5455">
    <properties>
     <property name="SpeedBonus" type="int" value="5"/>
     <property name="SpeedDuration" type="float" value="5"/>
-    <property name="SpriteSheet" type="file" value="pills.png"/>
+    <property name="SpriteSheet" type="file" value="Art/pill_test.png"/>
     <property name="SpriteSheetColumns" type="int" value="1"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
+    <property name="scale" type="float" value="0.5"/>
    </properties>
   </object>
   <object id="12" type="MetalWheelPowerUp" x="1900" y="639.394" width="51.5152" height="45.4545">
    <properties>
     <property name="MetalWheelDuration" type="float" value="5"/>
-    <property name="SpriteSheet" type="file" value="ChemicalBottle.png"/>
+    <property name="SpriteSheet" type="file" value="Art/acid_test.png"/>
     <property name="SpriteSheetColumns" type="int" value="1"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
+    <property name="scale" type="float" value="0.5"/>
    </properties>
   </object>
-  <object id="14" type="ToxicWaste" x="2276" y="422" width="140" height="40">
+  <object id="14" type="ToxicWaste" x="2327.33" y="412.667" width="120" height="90">
    <properties>
     <property name="SpeedReduction" type="int" value="2"/>
     <property name="SpeedReductionTime" type="int" value="1"/>
-    <property name="SpriteSheet" type="file" value="HitBox.png"/>
+    <property name="SpriteSheet" type="file" value="Art/acid_puddle_test.png"/>
+    <property name="scale" type="float" value="0.5"/>
    </properties>
   </object>
  </objectgroup>

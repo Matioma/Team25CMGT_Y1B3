@@ -246,6 +246,7 @@ public class Level:GameObject
         string Name = "";
         int speedBonus = 0;
         float speedDuration = 0;
+        float scale=1;
 
 
         var properties = obj.propertyList;
@@ -268,6 +269,9 @@ public class Level:GameObject
                 case "SpeedDuration":
                     speedDuration = float.Parse(property.Value);
                     break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    break;
             }
         }
 
@@ -276,7 +280,9 @@ public class Level:GameObject
         pill.name = Name;
         pill.SpeedBonus = speedBonus;
         pill.PowerUpDuration = speedDuration;
+        //pill.SetSpriteExtent((int)obj.Width, (int)obj.Height);
         pill.SetPivotPoint(PivotPointPosition.BOTTOM);
+        pill.SetScaleXY(scale);
         AddChild(pill);
 
 
@@ -287,6 +293,7 @@ public class Level:GameObject
         var cols = 1;
         var rows = 1;
         float metalWheelDuration = 0;
+        float scale = 1;
 
         var properties = obj.propertyList;
         foreach (Property property in obj.propertyList.properties)
@@ -305,12 +312,16 @@ public class Level:GameObject
                 case "MetalWheelDuration":
                     metalWheelDuration = float.Parse(property.Value);
                     break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    break;
             }
         }
         MetalWheel metalWheel = new MetalWheel(spriteSheet, cols, rows);
         metalWheel.SetXY(obj.X, obj.Y);
         metalWheel.PowerUpDuration = metalWheelDuration;
 
+        metalWheel.SetScaleXY(scale);
 
         metalWheel.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(metalWheel);
@@ -341,7 +352,6 @@ public class Level:GameObject
         uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
         uiElement.background.width = (int)obj.Width;
         uiElement.background.height = (int)obj.Height;
-
 
         return uiElement;
     }
@@ -388,6 +398,7 @@ public class Level:GameObject
         int cols = 1, rows = 1;
         int speedReduction = 0;
         int speedReductionTime = 0;
+        float scale = 1;
 
         var properties = obj.propertyList;
         foreach (Property property in obj.propertyList.properties)
@@ -410,6 +421,9 @@ public class Level:GameObject
                 case "SpeedReductionTime":
                     speedReductionTime = int.Parse(property.Value);
                     break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    break;
                 default:
                     Console.WriteLine("unknown Property");
                     break;
@@ -421,10 +435,10 @@ public class Level:GameObject
         slowObj.PowerUpDuration = speedReductionTime;
         slowObj.SpeedReduction = speedReduction;
 
-        Console.WriteLine(speedReduction + "/" + speedReductionTime);
+        //Console.WriteLine(speedReduction + "/" + speedReductionTime);
 
-        slowObj.SetSpriteExtent((int)obj.Width, (int)obj.Height);
-
+        //slowObj.SetSpriteExtent((int)obj.Width, (int)obj.Height);
+        slowObj.SetScaleXY(scale);
 
         slowObj.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(slowObj);

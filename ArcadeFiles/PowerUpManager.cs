@@ -17,7 +17,7 @@ public class PowerUpManager
         set {
             if (_inventoryPowerUp != null)
             {
-                _inventoryPowerUp.LateDestroy();
+                //_inventoryPowerUp.LateDestroy();
             }
             _inventoryPowerUp = value;
 
@@ -25,10 +25,6 @@ public class PowerUpManager
             {
                 _inventoryPowerUp.Picked();
             }
-                
-            //Console.WriteLine(value+ "-Test");
-            
-            //Console.WriteLine("Currently Possed Power up" + _inventoryPowerUp) ;
         }
     } 
 
@@ -38,12 +34,6 @@ public class PowerUpManager
     public PowerUpManager(Player owner)
     {
         _owner = owner;
-    }
-
-
-    void Update() {
-        //Console.WriteLine(_inventoryPowerUp);
-
     }
 
     public void PickPowerUp(PowerUp powerUp) {
@@ -57,16 +47,12 @@ public class PowerUpManager
         }
         else
         {
-            Console.WriteLine("used power up");
-            ActivatePowerUp();
+            AddEffect(InventoryPowerUp);
+            //ActivatePowerUp();
             InventoryPowerUp.Use();
-                    //_inventoryPowerUp.powerUpActivated();
-                    //_inventoryPowerUp.LateDestroy();
             InventoryPowerUp = null;
         }
     }
-
-
 
     /// <summary>
     /// Applies current effects
@@ -87,7 +73,6 @@ public class PowerUpManager
                 effectsThatEnded.Add(pair.Key);
             }
         }
-
         //Remove Finished Effects
         foreach (var Type in effectsThatEnded)
         {
@@ -99,8 +84,6 @@ public class PowerUpManager
     /// <summary>
     /// Uses the power up from the inventory
     /// </summary>
-   
-
     private void ActivatePowerUp()
     {
         //check if such player has current effect
@@ -108,11 +91,29 @@ public class PowerUpManager
         {
             //Reset the effect time
             activeEffects[InventoryPowerUp.GetType()].PowerUpTimeLeft = (int)InventoryPowerUp.PowerUpDuration * 1000;
-            InventoryPowerUp.LateDestroy();
+            //InventoryPowerUp.LateDestroy();
         }
         else {
             activeEffects.Add(InventoryPowerUp.GetType(), InventoryPowerUp);
             activeEffects[InventoryPowerUp.GetType()].PowerUpTimeLeft = (int)InventoryPowerUp.PowerUpDuration * 1000;
+        }
+    }
+
+
+
+    private void AddEffect( PowerUp powerUp)
+    {
+        //check if such player has current effect
+        if (activeEffects.ContainsKey(powerUp.GetType()))
+        {
+            //Reset the effect time
+            activeEffects[powerUp.GetType()].PowerUpTimeLeft = (int)powerUp.PowerUpDuration * 1000;
+            //InventoryPowerUp.LateDestroy();
+        }
+        else
+        {
+            activeEffects.Add(powerUp.GetType(), powerUp);
+            activeEffects[powerUp.GetType()].PowerUpTimeLeft = (int)powerUp.PowerUpDuration * 1000;
         }
     }
 

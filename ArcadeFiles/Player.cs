@@ -9,6 +9,8 @@ using GXPEngine.ArcadeFiles.PowerUps;
 
 
 
+
+
 public class Player : Unit
 {
     int frame = 0;
@@ -60,21 +62,19 @@ public class Player : Unit
 
         switch (playerState) {
             case UnitState.IDLE:
-                visuals.Mirror(true, false);
+                visuals.Mirror(false, false);
                 break;
             case UnitState.RUN:
                 if (dx > 0)
                 {
-                    visuals.Mirror(true, false);
-                    Animate(300/ActualMaxSpeed);
-                    //visuals.NextFrame();
+                    visuals.Mirror(false, false);
+                    //Animate(300/ActualMaxSpeed);
+                    Animate(300 / ActualMaxSpeed,0,9,true);
                 }
                 else if (dx < 0)
                 {
-                    visuals.Mirror(false, false);
-                    Animate(300 / ActualMaxSpeed);
-                    
-                    //visuals.NextFrame();
+                    visuals.Mirror(true, false);
+                    Animate(300 / ActualMaxSpeed, 0, 9, true);
                 }
                 else {
                     playerState = UnitState.IDLE;

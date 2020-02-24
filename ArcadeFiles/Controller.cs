@@ -76,11 +76,11 @@ class Controller:GameObject
             case 2:
                 if (controllerId == 0)
                 {
-                    AddCamera(0, 0, Game.main.width / 2, Game.main.height);
+                    AddCamera(0, 0, Game.main.width, Game.main.height/2);
                 }
                 else
                 {
-                    AddCamera(Game.main.width / 2, 0, Game.main.width / 2, Game.main.height);
+                    AddCamera(0, Game.main.height/2, Game.main.width , Game.main.height/2);
                 }
                 break;
         }

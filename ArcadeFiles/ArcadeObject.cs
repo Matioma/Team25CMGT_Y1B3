@@ -18,6 +18,7 @@ public abstract class ArcadeObject : GameObject
 
     private int animationTimer=0;
 
+    private int currentFrame=0;
 
     public virtual void Update() {
     }
@@ -68,6 +69,32 @@ public abstract class ArcadeObject : GameObject
         if (animationTimer <= 0) {
             animationTimer = millisPerFrame;
             visuals.NextFrame();
+            Console.WriteLine(visuals.currentFrame);
+        }
+    }
+    protected void Animate(int millisPerFrame, int frameStart, int frameCount, bool animBackwards)
+    {
+        animationTimer -= Time.deltaTime;
+
+
+        if (animationTimer <= 0)
+        {
+            animationTimer = millisPerFrame;
+            if (animBackwards)
+            {
+                if (visuals.currentFrame == 0)
+                {
+                    visuals.SetFrame(frameStart + frameCount);
+                }
+               /// Console.WriteLine((visuals.currentFrame - 1 + frameStart) % frameCount + frameStart);
+                visuals.SetFrame((visuals.currentFrame - 1 + frameStart) % frameCount + frameStart);
+            }
+            else {
+                visuals.SetFrame((visuals.currentFrame + 1 + frameStart) % frameCount + frameStart);
+            }
+            
+            
+            //visuals.NextFrame();
         }
     }
 
