@@ -56,6 +56,12 @@
     <Compile Include="ArcadeFiles\UI\UIElement.cs" />
     <Compile Include="ArcadeFiles\UI\Background.cs" />
     <Compile Include="ArcadeFiles\Unit.cs" />
+    <Compile Include="ArcadeFiles\UnitControl\States\InAir.cs" />
+    <Compile Include="ArcadeFiles\UnitControl\States\Idle.cs" />
+    <Compile Include="ArcadeFiles\UnitControl\IState.cs" />
+    <Compile Include="ArcadeFiles\UnitControl\StateMachine.cs" />
+    <Compile Include="ArcadeFiles\UnitControl\State.cs" />
+    <Compile Include="ArcadeFiles\UnitControl\States\Run.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
     <Compile Include="GXPEngine\Game.cs" />

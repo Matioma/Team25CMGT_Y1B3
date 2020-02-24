@@ -16,8 +16,8 @@ public enum UnitState
 }
 public abstract class Unit : ArcadeObject,IControllable
 {
-    protected int dx = 0;
-    protected int dy = 0;
+    public int dx = 0;
+    public int dy = 0;
 
 
     protected int MaxSpeedY = 5;
@@ -45,7 +45,8 @@ public abstract class Unit : ArcadeObject,IControllable
             onGround = value;
             if (OnGround == false)
             {
-                playerState = UnitState.IN_AIR;
+                stateMachine.CurrentState = UnitState.IN_AIR;
+                //playerState = UnitState.IN_AIR;
             }
             else {
 
@@ -69,9 +70,15 @@ public abstract class Unit : ArcadeObject,IControllable
 
     }
 
+
     public UnitState playerState = UnitState.IDLE;
+    public StateMachine stateMachine;
 
     List<Tile> _tiles = new List<Tile>();
+
+    public Unit() {
+        stateMachine = new StateMachine(this);
+    }
 
 
     public override void Update() {
