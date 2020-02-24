@@ -52,7 +52,6 @@ public class Player : Unit
 
         
         AddChild(stateMachine);
-        //AddChild(new StateMachine(this));
     }
 
 

@@ -34,7 +34,6 @@ public abstract class Unit : ArcadeObject,IControllable
         }
     }
     public int ActualMaxSpeed { get; set;}
-
     protected int speedY = 0;
 
 
@@ -70,8 +69,6 @@ public abstract class Unit : ArcadeObject,IControllable
 
     }
 
-
-    public UnitState playerState = UnitState.IDLE;
     public StateMachine stateMachine;
 
     List<Tile> _tiles = new List<Tile>();
