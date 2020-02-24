@@ -67,6 +67,12 @@
     <property name="SpriteSheetRows" type="int" value="1"/>
    </properties>
   </object>
-  <object id="14" type="ToxicWaste" x="2276" y="376" width="140" height="40"/>
+  <object id="14" type="ToxicWaste" x="2276" y="422" width="140" height="40">
+   <properties>
+    <property name="SpeedReduction" type="int" value="2"/>
+    <property name="SpeedReductionTime" type="int" value="1"/>
+    <property name="SpriteSheet" type="file" value="HitBox.png"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

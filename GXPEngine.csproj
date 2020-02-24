@@ -42,6 +42,7 @@
     <Compile Include="ArcadeFiles\GameManager.cs" />
     <Compile Include="ArcadeFiles\HitBox.cs" />
     <Compile Include="ArcadeFiles\Interfaces\IControllable.cs" />
+    <Compile Include="ArcadeFiles\Interfaces\InstantlyUsable.cs" />
     <Compile Include="ArcadeFiles\Level.cs" />
     <Compile Include="ArcadeFiles\PowerUpManager.cs" />
     <Compile Include="ArcadeFiles\PowerUps\ChemicalBottle.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="ArcadeFiles\PowerUps\Pill.cs" />
     <Compile Include="ArcadeFiles\Player.cs" />
     <Compile Include="ArcadeFiles\PowerUps\PowerUp.cs" />
+    <Compile Include="ArcadeFiles\PowerUps\SlowEffect.cs" />
     <Compile Include="ArcadeFiles\Tile.cs" />
     <Compile Include="ArcadeFiles\UI\MainMenu.cs" />
     <Compile Include="ArcadeFiles\UI\UIButton.cs" />

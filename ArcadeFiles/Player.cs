@@ -99,6 +99,10 @@ public class Player : Unit
     }
     public void PickPowerUP(PowerUp pPowerUp) {
         _powerUpManager.PickPowerUp(pPowerUp);
+        if (pPowerUp is Pill || pPowerUp is MetalWheel)
+        {
+            _powerUpManager.UsePowerUp();
+        }
     }
     override public void PressPowerUpButton() {
         _powerUpManager.UsePowerUp();

@@ -161,7 +161,6 @@ public class Level:GameObject
                     break;
                 case "Pill":
                     ParsePillData(obj);
-
                     break;
                 case "MetalWheelPowerUp":
                     ParseMetalWheelData(obj);
@@ -171,6 +170,10 @@ public class Level:GameObject
                     break;
                 case "UIButton":
                     ParseUIButton(obj);
+                    break;
+                case "ToxicWaste":
+                    ParseSlowEffect(obj);
+
                     break;
                 default:
                     break;
@@ -385,4 +388,57 @@ public class Level:GameObject
         return uiElement;
     }
 
+
+    void ParseSlowEffect(TiledObject obj) {
+        string spriteSheet = "colors.png";
+        int cols = 1, rows = 1;
+        int speedReduction = 0;
+        int speedReductionTime = 0;
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+                
+                case "SpriteSheet":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+                case "SpeedReduction":
+                    speedReduction = int.Parse(property.Value);
+                    break;
+                case "SpeedReductionTime":
+                    speedReductionTime = int.Parse(property.Value);
+                    break;
+                default:
+                    Console.WriteLine("unknown Property");
+                    break;
+            }
+        }
+
+        SlowEffect slowObj = new SlowEffect(spriteSheet, cols, rows);
+        slowObj.SetXY(obj.X, obj.Y);
+        slowObj.PowerUpDuration = speedReductionTime;
+        slowObj.SpeedReduction = speedReduction;
+
+
+        Console.WriteLine(speedReduction + "/" + speedReductionTime);
+        //player = maxSpeed;
+        //player.= jumpForce;
+
+
+        slowObj.SetSpriteExtent((int)obj.Width, (int)obj.Height);
+
+        slowObj.SetPivotPoint(PivotPointPosition.BOTTOM);
+        AddChild(slowObj);
+
+        //playersList.Add(player);
+
+    }
 }

@@ -17,7 +17,7 @@ namespace GXPEngine.ArcadeFiles.PowerUps
 
         public override void ApplyEffect(Unit target)
         {
-            throw new NotImplementedException();
+            //Console.WriteLine("Metal wheel");
         }
     }
 }
