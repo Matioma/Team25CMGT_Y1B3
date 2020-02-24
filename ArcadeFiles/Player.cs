@@ -14,7 +14,7 @@ using GXPEngine.ArcadeFiles.PowerUps;
 public class Player : Unit
 {
     int frame = 0;
-    UnitState playerState=  UnitState.IDLE;
+    
 
     ArcadeCamera _cameraRef = null;
     ArcadeCamera PlayerCamera {
@@ -58,17 +58,17 @@ public class Player : Unit
 
         base.Update();
 
-
+        Console.WriteLine(OnGround);
 
         switch (playerState) {
             case UnitState.IDLE:
                 visuals.Mirror(false, false);
+                Animate(300/ActualMaxSpeed, 0,1,true);
                 break;
             case UnitState.RUN:
                 if (dx > 0)
                 {
                     visuals.Mirror(false, false);
-                    //Animate(300/ActualMaxSpeed);
                     Animate(300 / ActualMaxSpeed,0,9,true);
                 }
                 else if (dx < 0)
@@ -77,6 +77,21 @@ public class Player : Unit
                     Animate(300 / ActualMaxSpeed, 0, 9, true);
                 }
                 else {
+                    playerState = UnitState.IDLE;
+                }
+                break;
+            case UnitState.IN_AIR:
+                if (dx > 0)
+                {
+                    visuals.Mirror(false, false);
+                }
+                else if (dx < 0)
+                {
+                    visuals.Mirror(true, false);
+                }
+
+                Animate(300 / ActualMaxSpeed, 16, 1, false);
+                if (OnGround) {
                     playerState = UnitState.IDLE;
                 }
                 break;

@@ -75,8 +75,6 @@ public abstract class ArcadeObject : GameObject
     protected void Animate(int millisPerFrame, int frameStart, int frameCount, bool animBackwards)
     {
         animationTimer -= Time.deltaTime;
-
-
         if (animationTimer <= 0)
         {
             animationTimer = millisPerFrame;
@@ -86,15 +84,11 @@ public abstract class ArcadeObject : GameObject
                 {
                     visuals.SetFrame(frameStart + frameCount);
                 }
-               /// Console.WriteLine((visuals.currentFrame - 1 + frameStart) % frameCount + frameStart);
                 visuals.SetFrame((visuals.currentFrame - 1 + frameStart) % frameCount + frameStart);
             }
             else {
                 visuals.SetFrame((visuals.currentFrame + 1 + frameStart) % frameCount + frameStart);
             }
-            
-            
-            //visuals.NextFrame();
         }
     }
 

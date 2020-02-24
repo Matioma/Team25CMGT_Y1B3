@@ -7,10 +7,12 @@ using GXPEngine;
 using GXPEngine.Core;
 
 
-enum UnitState
+public enum UnitState
 {
     IDLE,
-    RUN
+    RUN,
+    IN_AIR,
+    JUMPED,
 }
 public abstract class Unit : ArcadeObject,IControllable
 {
@@ -36,11 +38,19 @@ public abstract class Unit : ArcadeObject,IControllable
     protected int speedY = 0;
 
 
-    protected bool onGround = false;
+    private bool onGround = false;
     public bool OnGround {
         get { return onGround; }
         set {
             onGround = value;
+            if (OnGround == false)
+            {
+                playerState = UnitState.IN_AIR;
+            }
+            else {
+
+            }
+            
         }
     }
 
@@ -59,6 +69,7 @@ public abstract class Unit : ArcadeObject,IControllable
 
     }
 
+    public UnitState playerState = UnitState.IDLE;
 
     List<Tile> _tiles = new List<Tile>();
 
