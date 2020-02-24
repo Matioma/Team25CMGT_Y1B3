@@ -25,6 +25,23 @@ public abstract class PowerUp: ArcadeObject
         DoCollisionCheck(level.playersList);
     }
 
+    public void Use() {
+        onPowerUpUse();
+    }
+    public void Picked() {
+        onPickUp();
+    }
+
+    protected virtual void onPowerUpUse()
+    {
+        Console.Write("Power Up used base");
+        this.LateDestroy();
+    }
+
+    protected virtual void onPickUp() {
+        Console.WriteLine(this+ "Picked UP base");
+        this.LateRemove();
+    }
 
     public abstract void ApplyEffect(Unit target);
 
@@ -35,7 +52,6 @@ public abstract class PowerUp: ArcadeObject
                 var player =arcadeObject as Player;
                 if (player != null) {
                     player.PickPowerUP(this);
-                    this.LateRemove();
                 }
             }
         }

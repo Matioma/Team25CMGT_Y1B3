@@ -17,7 +17,6 @@ public class Level:GameObject
     MainMenu mainMenu;
 
 
-    //List<Controller> controllersList = new List<Controller>();
 
 
     public List<ArcadeObject> playersList = new List<ArcadeObject>();
@@ -88,7 +87,6 @@ public class Level:GameObject
         return tile;
     }
 
-
     public void SpawnObjects(Map levelData)
     {
         if (levelData.ObjectGroups == null || levelData.ObjectGroups.Length == 0)
@@ -146,15 +144,13 @@ public class Level:GameObject
         {
             return;
         }
-
-        
     }
 
     private void DefaultLayerCreation(ObjectGroup objGroup)
     {
         foreach (TiledObject obj in objGroup.Objects)
         {
-            switch (obj.Type) //
+            switch (obj.Type)
             {
                 case "Player":
                     ParsePlayerData(obj);
@@ -198,8 +194,6 @@ public class Level:GameObject
             }
         }
     }
-
-
 
     void ParsePlayerData(TiledObject obj) {
         string spriteSheet = "colors.png";
@@ -427,18 +421,13 @@ public class Level:GameObject
         slowObj.PowerUpDuration = speedReductionTime;
         slowObj.SpeedReduction = speedReduction;
 
-
         Console.WriteLine(speedReduction + "/" + speedReductionTime);
-        //player = maxSpeed;
-        //player.= jumpForce;
-
 
         slowObj.SetSpriteExtent((int)obj.Width, (int)obj.Height);
 
+
         slowObj.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(slowObj);
-
-        //playersList.Add(player);
 
     }
 }

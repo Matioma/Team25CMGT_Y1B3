@@ -23,9 +23,19 @@ class SlowEffect:PowerUp
 
     public override void ApplyEffect(Unit target)
     {
-        //throw new NotImplementedException();
-        Console.WriteLine("SLOWED!");
         target.ActualMaxSpeed -= _speedReduction;
+    }
+
+    protected override void onPickUp()
+    {
+        Console.WriteLine(this + "Picked UP");
+        //this.LateRemove();
+
+    }
+    protected override void onPowerUpUse()
+    {
+        Console.Write("Power Up used SlowEffect");
+        this.LateDestroy();
     }
 }
 

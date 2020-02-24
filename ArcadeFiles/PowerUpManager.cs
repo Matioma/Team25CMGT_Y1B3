@@ -10,7 +10,28 @@ public class PowerUpManager
 {
     Player _owner = null;
 
-    private PowerUp _inventoryPowerUp = null;
+
+    PowerUp _inventoryPowerUp = null;
+    private PowerUp InventoryPowerUp {
+        get { return _inventoryPowerUp; }
+        set {
+            if (_inventoryPowerUp != null)
+            {
+                _inventoryPowerUp.LateDestroy();
+            }
+            _inventoryPowerUp = value;
+
+            if(value != null)
+            {
+                _inventoryPowerUp.Picked();
+            }
+                
+            //Console.WriteLine(value+ "-Test");
+            
+            //Console.WriteLine("Currently Possed Power up" + _inventoryPowerUp) ;
+        }
+    } 
+
     Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
 
@@ -20,15 +41,36 @@ public class PowerUpManager
     }
 
 
-    public void PickPowerUp(PowerUp powerUp) {
-        if (_inventoryPowerUp != null)
-        {
-            _inventoryPowerUp.LateDestroy();
-        }
+    void Update() {
+        //Console.WriteLine(_inventoryPowerUp);
 
-        _inventoryPowerUp = powerUp;
     }
 
+    public void PickPowerUp(PowerUp powerUp) {
+        InventoryPowerUp = powerUp;
+    }
+    public void UsePowerUp()
+    {
+        if (InventoryPowerUp == null)
+        {
+            Console.WriteLine("No power Up picked");
+        }
+        else
+        {
+            Console.WriteLine("used power up");
+            ActivatePowerUp();
+            InventoryPowerUp.Use();
+                    //_inventoryPowerUp.powerUpActivated();
+                    //_inventoryPowerUp.LateDestroy();
+            InventoryPowerUp = null;
+        }
+    }
+
+
+
+    /// <summary>
+    /// Applies current effects
+    /// </summary>
     public void ApplyActiveEffects()
     {
         List<Type> effectsThatEnded = new List<Type>();
@@ -53,33 +95,24 @@ public class PowerUpManager
         }
     }
 
-    public void UsePowerUp()
-    {
-        if (_inventoryPowerUp == null)
-        {
-            Console.WriteLine("No power Up picked");
-        }
-        else
-        {
-            ActivatePowerUp();
-            _inventoryPowerUp.LateDestroy();
-            _inventoryPowerUp = null;
-        }
-    }
+
+    /// <summary>
+    /// Uses the power up from the inventory
+    /// </summary>
+   
 
     private void ActivatePowerUp()
     {
-
         //check if such player has current effect
-        if (activeEffects.ContainsKey(_inventoryPowerUp.GetType()))
+        if (activeEffects.ContainsKey(InventoryPowerUp.GetType()))
         {
             //Reset the effect time
-            activeEffects[_inventoryPowerUp.GetType()].PowerUpTimeLeft = (int)_inventoryPowerUp.PowerUpDuration * 1000;
-            _inventoryPowerUp.LateDestroy();
+            activeEffects[InventoryPowerUp.GetType()].PowerUpTimeLeft = (int)InventoryPowerUp.PowerUpDuration * 1000;
+            InventoryPowerUp.LateDestroy();
         }
         else {
-            activeEffects.Add(_inventoryPowerUp.GetType(), _inventoryPowerUp);
-            activeEffects[_inventoryPowerUp.GetType()].PowerUpTimeLeft = (int)_inventoryPowerUp.PowerUpDuration * 1000;
+            activeEffects.Add(InventoryPowerUp.GetType(), InventoryPowerUp);
+            activeEffects[InventoryPowerUp.GetType()].PowerUpTimeLeft = (int)InventoryPowerUp.PowerUpDuration * 1000;
         }
     }
 

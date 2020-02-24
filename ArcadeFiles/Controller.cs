@@ -29,6 +29,7 @@ class Controller:GameObject
                 Console.Write("Warning! - replacing a camera from a player");
             }
             _cameraRef = value;
+
             AddChild(value);
         }
     }
