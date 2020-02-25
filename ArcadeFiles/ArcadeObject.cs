@@ -158,6 +158,7 @@ public abstract class ArcadeObject : GameObject
                     break;
                 case PivotPointPosition.BOTTOM:
                     hitBox.SetOrigin(visuals.width / 2, visuals.height);
+                    //visuals.SetOrigin(visuals.width / 2, visuals.height);
                     visuals.SetXY(-visuals.width / 2, -visuals.height);
                     break;
                 case PivotPointPosition.RIGHT_TOP:

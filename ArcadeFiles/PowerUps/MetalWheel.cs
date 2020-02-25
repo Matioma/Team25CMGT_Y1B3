@@ -11,7 +11,9 @@ namespace GXPEngine.ArcadeFiles.PowerUps
         {
             visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
             AddChild(visuals);
-            AddHitBox();
+
+            AddHitBox(visuals.width, visuals.height);
+            hitBox.SetXY(visuals.width/2, 2*visuals.height);
         }
 
 

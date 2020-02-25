@@ -18,7 +18,8 @@ class SlowEffect:PowerUp
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
         AddChild(visuals);
-        AddHitBox();
+        AddHitBox(visuals.width, visuals.height);
+        hitBox.SetXY(2*visuals.width, 2*visuals.height);
     }
 
     public override void ApplyEffect(Unit target)
