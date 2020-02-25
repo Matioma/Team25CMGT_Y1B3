@@ -170,6 +170,9 @@ public class Level:GameObject
                 case "FinishPoint":
                     ParseFinish(obj);
                     break;
+                case "AcidBottle":
+                    ParseAcidWater(obj);
+                    break;
                 default:
                     break;
             }
@@ -354,9 +357,9 @@ public class Level:GameObject
                 case "SpriteSheetRows":
                     rows = int.Parse(property.Value);
                     break;
-                case "SpeedReduction":
+                /*case "SpeedReduction":
                     speedReduction = int.Parse(property.Value);
-                    break;
+                    break;*/
                 case "SpeedReductionTime":
                     speedReductionTime = int.Parse(property.Value);
                     break;
@@ -372,7 +375,8 @@ public class Level:GameObject
         SlowEffect slowObj = new SlowEffect(spriteSheet, cols, rows);
         slowObj.SetXY(obj.X, obj.Y);
         slowObj.PowerUpDuration = speedReductionTime;
-        slowObj.SpeedReduction = speedReduction;
+        //SlowEffect.SpeedReduction = speedReduction;
+        //slowObj.SpeedReduction = speedReduction;
 
         slowObj.SetScaleXY(scale);
         slowObj.SetPivotPoint(PivotPointPosition.BOTTOM);
@@ -427,6 +431,47 @@ public class Level:GameObject
         finishPoint.SetPivotPoint(PivotPointPosition.BOTTOM);
         
         AddChild(finishPoint);
+
+    }
+
+    void ParseAcidWater(TiledObject obj)
+    {
+        string spriteSheet = "colors.png";
+        int cols = 1, rows = 1;
+        float scale = 1;
+
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+
+                case "SpriteSheet":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    break;
+                default:
+                    Console.WriteLine("unknown Property");
+                    break;
+            }
+        }
+
+        AcidBottle acidBottle = new AcidBottle(spriteSheet, cols, rows);
+        acidBottle.SetXY(obj.X, obj.Y);
+
+        acidBottle.SetScaleXY(scale);
+        acidBottle.SetPivotPoint(PivotPointPosition.BOTTOM);
+
+        AddChild(acidBottle);
 
     }
 
@@ -495,9 +540,6 @@ public class Level:GameObject
 
         uiElement.background.width = (int)(obj.Width);
         uiElement.background.height = (int)(obj.Height);
-
-        //uiElement.background.width = (int)(obj.Width * Game.main.width/1920);
-        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
         uiElement.TargetLevel = targetLevel;
 
 

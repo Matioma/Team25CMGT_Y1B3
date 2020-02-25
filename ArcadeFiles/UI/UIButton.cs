@@ -34,7 +34,7 @@ class UIButton : UIElement
 
     public void ActivateButton() {
         if (TargetLevel != null && TargetLevel != "") {
-            Console.WriteLine("ButtonActivated ");
+            //Console.WriteLine("ButtonActivated ");
             GameManager.Instance.OpenLevel(TargetLevel);
 
         }

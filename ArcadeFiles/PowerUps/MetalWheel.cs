@@ -13,7 +13,7 @@ namespace GXPEngine.ArcadeFiles.PowerUps
             AddChild(visuals);
 
             AddHitBox(visuals.width, visuals.height);
-            hitBox.SetXY(visuals.width/2, 2*visuals.height);
+            hitBox.SetXY(160, 280);
         }
 
 

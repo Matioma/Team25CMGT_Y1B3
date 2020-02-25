@@ -82,6 +82,10 @@ class Settings
                 float value = float.Parse(settingsLine[1]);
                 HitBox.ColliderAlpha = value;
                 break;
+            case "sloweffectreduction":
+                    int slowEffect = int.Parse(settingsLine[1]);
+                    SlowEffect.SpeedReduction = slowEffect;
+                break;
             default:
                 break;
             }

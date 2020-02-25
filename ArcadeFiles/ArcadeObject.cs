@@ -87,7 +87,6 @@ public abstract class ArcadeObject : GameObject
         if (animationTimer <= 0) {
             animationTimer = millisPerFrame;
             visuals.NextFrame();
-            Console.WriteLine(visuals.currentFrame);
         }
     }
     public void Animate(int millisPerFrame, int frameStart, int frameCount, bool animBackwards)

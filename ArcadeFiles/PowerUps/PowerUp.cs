@@ -11,6 +11,8 @@ public abstract class PowerUp: ArcadeObject
 
     public float PowerUpDuration;
 
+    protected PowerUpManager owner;
+
 
     private int _powerUpTimeLeft = 0;
     public int PowerUpTimeLeft {
@@ -29,8 +31,9 @@ public abstract class PowerUp: ArcadeObject
     public void Use() {
         onPowerUpUse();
     }
-    public void Picked() {
+    public void Picked(PowerUpManager pOwner) {
         onPickUp();
+        owner = pOwner;
     }
 
     protected virtual void onPowerUpUse()

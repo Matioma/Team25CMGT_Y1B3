@@ -7,7 +7,10 @@ using GXPEngine;
 
 class GameManager:GameObject
 {
-    Level ActiveLevel;
+    Level activeLevel;
+    public Level ActiveLevel{
+        get { return activeLevel; }
+    }
 
     static GameManager _instance = null;
     public static GameManager Instance {
@@ -35,18 +38,18 @@ class GameManager:GameObject
         Settings.Initialize();
 
 
-        ActiveLevel = new Level("MainMenu.tmx");
+        activeLevel = new Level("MainMenu.tmx");
 
-        AddChild(ActiveLevel);
+        AddChild(activeLevel);
 
         _instance = this;
     }
     public void OpenLevel(string path) {
         Controller.ControllersNumber = 0;
-        ActiveLevel.LateDestroy();
-        ActiveLevel = new Level(path);
+        activeLevel.LateDestroy();
+        activeLevel = new Level(path);
 
-        AddChild(ActiveLevel);
+        AddChild(activeLevel);
         
     }
 

@@ -9,6 +9,10 @@ using GXPEngine.ArcadeFiles.PowerUps;
 public class PowerUpManager
 {
     Player _owner = null;
+    public Player Owner {
+        get { return _owner; }
+    }
+
 
 
     PowerUp _inventoryPowerUp = null;
@@ -23,7 +27,7 @@ public class PowerUpManager
 
             if(value != null)
             {
-                _inventoryPowerUp.Picked();
+                _inventoryPowerUp.Picked(this);
             }
         }
     } 

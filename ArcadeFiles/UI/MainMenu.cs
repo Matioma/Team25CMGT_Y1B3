@@ -45,7 +45,7 @@ class MainMenu : GameObject, IControllable
     public void PressPowerUpButton()
     {
         uIButtons[SelectedIndex % uIButtons.Count].ActivateButton();
-        Console.WriteLine("PowerUp");
+        //Console.WriteLine("PowerUp");
         //SelectButton();
         //throw new NotImplementedException();
     }

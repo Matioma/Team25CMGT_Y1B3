@@ -6,8 +6,8 @@ using System.Text;
 using GXPEngine;
 class SlowEffect:PowerUp
 {
-    int _speedReduction = 0;
-    public int SpeedReduction
+    static int _speedReduction = 0;
+    public static int SpeedReduction
     {
         get { return _speedReduction; }
         set { _speedReduction = value; }
