@@ -38,6 +38,10 @@ public class PowerUpManager
 
     public void PickPowerUp(PowerUp powerUp) {
         InventoryPowerUp = powerUp;
+
+        if (powerUp is Pill  || powerUp is SlowEffect || powerUp is MetalWheel) {
+            UsePowerUp();
+        }
     }
     public void UsePowerUp()
     {
@@ -48,7 +52,6 @@ public class PowerUpManager
         else
         {
             AddEffect(InventoryPowerUp);
-            //ActivatePowerUp();
             InventoryPowerUp.Use();
             InventoryPowerUp = null;
         }
@@ -101,7 +104,7 @@ public class PowerUpManager
 
 
 
-    private void AddEffect( PowerUp powerUp)
+    public void AddEffect( PowerUp powerUp)
     {
         //check if such player has current effect
         if (activeEffects.ContainsKey(powerUp.GetType()))
