@@ -166,7 +166,7 @@ public abstract class ArcadeObject : GameObject
     /// Checks collision with a list of gameobjects
     /// </summary>
     /// <param name="gameObjects">list of object to check collisions with</param>
-    protected virtual void DoCollisionCheck(List<ArcadeObject> gameObjects) { }
+    protected virtual void DoCollisionCheck(List<ArcadeObject> gameObjects) {}
 }
 
 public enum PivotPointPosition

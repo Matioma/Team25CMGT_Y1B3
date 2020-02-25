@@ -81,7 +81,7 @@ class MainMenu : GameObject, IControllable
 
         if (SelectedIndex < 0) {
             SelectedIndex = uIButtons.Count - 1;
-            Console.WriteLine(SelectedIndex + "/" + uIButtons.Count);
+            //Console.WriteLine(SelectedIndex + "/" + uIButtons.Count);
         }
         uIButtons[SelectedIndex % uIButtons.Count].Select();
         timer = actionDelay;

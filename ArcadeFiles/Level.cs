@@ -118,10 +118,7 @@ public class Level:GameObject
                                 mainMenu.AddChild(gameObject);
                                 break;
                             case "UIButton":
-                                //gameObject = ParseUIButton(obj);
-
                                 mainMenu.AddButton(ParseUIButton(obj));
-                                //mainMenu.AddChild(gameObject);
                                 break;
                             default:
                                 Console.WriteLine("Unknown Type for menu Objects");
@@ -169,7 +166,9 @@ public class Level:GameObject
                     break;
                 case "ToxicWaste":
                     ParseSlowEffect(obj);
-
+                    break;
+                case "FinishPoint":
+                    ParseFinish(obj);
                     break;
                 default:
                     break;
@@ -350,8 +349,12 @@ public class Level:GameObject
         }
         UIElement uiElement = new UIImage(spriteSheet, cols, rows);
         uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
-        uiElement.background.width = (int)obj.Width;
-        uiElement.background.height = (int)obj.Height;
+
+        uiElement.background.width = (int)(obj.Width);
+        uiElement.background.height = (int)(obj.Height);
+
+        //uiElement.background.width = (int)(obj.Width * Game.main.width / 1920);
+        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
 
         return uiElement;
     }
@@ -384,8 +387,12 @@ public class Level:GameObject
         }
         UIButton uiElement = new UIButton(spriteSheet, cols, rows);
         uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
-        uiElement.background.width = (int)obj.Width;
-        uiElement.background.height = (int)obj.Height;
+
+        uiElement.background.width = (int)(obj.Width);
+        uiElement.background.height = (int)(obj.Height);
+
+        //uiElement.background.width = (int)(obj.Width * Game.main.width/1920);
+        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
         uiElement.TargetLevel = targetLevel;
 
 
@@ -442,6 +449,53 @@ public class Level:GameObject
 
         slowObj.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(slowObj);
+
+    }
+
+    void ParseFinish(TiledObject obj) {
+        string spriteSheet = "colors.png";
+        int cols = 1, rows = 1;
+        float scale = 1;
+
+        string target1Win = "";
+        string target2Win = "";
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+
+                case "SpriteSheet":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+                case "Player1WinTarget":
+                    target1Win = property.Value;
+                    break;
+                case "Player2WinTarget":
+                    target2Win = property.Value;
+                    break;
+                default:
+                    Console.WriteLine("unknown Property");
+                    break;
+            }
+        }
+
+        FinishPoint finishPoint = new FinishPoint(spriteSheet, cols, rows);
+        finishPoint.SetXY(obj.X, obj.Y);
+        finishPoint._target1Win = target1Win;
+        finishPoint._target2Win = target2Win;
+
+        finishPoint.SetScaleXY(scale);
+
+        finishPoint.SetPivotPoint(PivotPointPosition.BOTTOM);
+        AddChild(finishPoint);
 
     }
 }

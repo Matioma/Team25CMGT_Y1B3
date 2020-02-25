@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="15" tilewidth="70" tileheight="70" infinite="0" nextlayerid="8" nextobjectid="12">
+ <editorsettings>
+  <export format="tmx"/>
+ </editorsettings>
+ <tileset firstgid="1" name="TilesTest" tilewidth="70" tileheight="70" tilecount="4" columns="2">
+  <image source="TilesTest.png" width="140" height="140"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ffffff" id="2" name="Menu">
+  <object id="10" type="UIImage" x="0" y="0" width="1920" height="1080">
+   <properties>
+    <property name="BackgroundImage" type="file" value="Art/menu_bg.png"/>
+    <property name="SpriteSheetColumns" type="int" value="1"/>
+    <property name="SpriteSheetRows" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="11" type="UIButton" x="52" y="60" width="1840" height="988">
+   <properties>
+    <property name="BackgroundImage" type="file" value="Art/game_over_p1.png"/>
+    <property name="SpriteSheetColumns" type="int" value="1"/>
+    <property name="SpriteSheetRows" type="int" value="1"/>
+    <property name="TargetLevel" type="file" value="MainMenu.tmx"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

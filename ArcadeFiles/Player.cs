@@ -71,7 +71,6 @@ public class Player : Unit
     {
         base.RotateWheel(pRight);
         stateMachine.CurrentState = UnitState.RUN;
-        //playerState = UnitState.RUN;
     }
 
 
