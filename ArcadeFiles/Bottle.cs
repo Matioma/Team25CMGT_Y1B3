@@ -43,10 +43,8 @@ class Bottle:Unit
         slowEffect.SetPivotPoint(PivotPointPosition.BOTTOM);
 
         slowEffect.SetXY(x, y - 20);
-        //slowEffect.SpeedReduction = 3;
         slowEffect.PowerUpDuration = 1;
         slowEffect.SetScaleXY(0.5f);
-
 
         GameManager.Instance.ActiveLevel.AddChildAt(slowEffect, GameManager.Instance.ActiveLevel.GetChildren().Count - 10);
     }
