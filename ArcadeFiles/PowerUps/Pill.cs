@@ -20,6 +20,15 @@ class Pill:PowerUp
         visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
         AddChild(visuals);
         AddHitBox();
+
+
+        //visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
+        //AddChild(visuals);
+        //AddHitBox();
+        //AddHitBox(visuals.width, visuals.height);
+        //this.x += 250;
+        //this.y += visuals.height;
+        //SetScaleXY(-1);
     }
     public override void ApplyEffect(Unit target)
     {

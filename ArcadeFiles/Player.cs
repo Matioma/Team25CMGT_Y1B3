@@ -47,9 +47,10 @@ public class Player : Unit
         visuals = new AnimationSprite(spriteSheet, cols, rows,-1,false,false);
         AddChild(visuals);
         AddHitBox();
+
+
         _powerUpManager = new PowerUpManager(this);
         AddChild(new Controller(2));
-
         
         AddChild(stateMachine);
     }

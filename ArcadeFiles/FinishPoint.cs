@@ -18,7 +18,7 @@ class FinishPoint:ArcadeObject
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
         AddChild(visuals);
-        AddHitBox();
+        AddHitBox(visuals.width,visuals.height);
     }
 
 

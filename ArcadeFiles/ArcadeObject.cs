@@ -18,7 +18,6 @@ public abstract class ArcadeObject : GameObject
 
     private int animationTimer=0;
 
-    private int currentFrame=0;
 
     public virtual void Update() {
     }
@@ -49,6 +48,18 @@ public abstract class ArcadeObject : GameObject
             throw new Exception("tried to add aditional hitBox to ArcadeObject");
         }
     }
+    protected void AddHitBox( int width, int height)
+    {
+        if (hitBox == null)
+        {
+            hitBox = new HitBox(width,height);
+            AddChild(hitBox);
+        }
+        else
+        {
+            throw new Exception("tried to add aditional hitBox to ArcadeObject");
+        }
+    }
 
 
     //Sets the size of the animation sprite
@@ -56,7 +67,14 @@ public abstract class ArcadeObject : GameObject
     {
         visuals.width = width;
         visuals.height = height;
+        SetHitBoxSize(width, height);
     }
+
+    public void ScaleXY(float value) {
+        visuals.width = (int)(visuals.width* value);
+        visuals.height = (int)(visuals.height * value);
+    }
+
     public void SetSpriteSheetFrame(int index)
     {
         visuals.SetFrame(index);
@@ -143,8 +161,8 @@ public abstract class ArcadeObject : GameObject
                     visuals.SetXY(-visuals.width / 2, -visuals.height);
                     break;
                 case PivotPointPosition.RIGHT_TOP:
-                    hitBox.SetOrigin(visuals.width, 0);
-                    visuals.SetOrigin(visuals.width, 0);
+                    //hitBox.SetOrigin(visuals.width, 0);
+                    //visuals.SetOrigin(visuals.width, 0);
                     break;
                 case PivotPointPosition.RIGHT_CENTER:
                     hitBox.SetOrigin(visuals.width, visuals.height / 2);

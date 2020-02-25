@@ -160,8 +160,6 @@ public abstract class Unit : ArcadeObject,IControllable
         List<HitBox> hitBoxes = new List<HitBox>();
         foreach (var obj in _tiles)
         {
-
-
             //Tile below
             if ((obj.y - y) < 0)
             {
@@ -187,14 +185,14 @@ public abstract class Unit : ArcadeObject,IControllable
                 //left
                 if ((obj.x - x) < 0)
                 {
-                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + MaxSpeedY) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + ActualMaxSpeed))
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + JumpForce) && (Math.Abs(obj.x - x) <= Tile.tileWidth + hitBox.width / 2 + ActualMaxSpeed))
                     {
                         hitBoxes.Add(obj.getHitBox());
                     }
                 }
                 else
                 {
-                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + MaxSpeedY) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + ActualMaxSpeed))
+                    if ((Math.Abs(obj.y - y) > Tile.tileHeight + hitBox.height + JumpForce) && (Math.Abs(obj.x - x) <= hitBox.width / 2 + ActualMaxSpeed))
                     {
                         hitBoxes.Add(obj.getHitBox());
                     }

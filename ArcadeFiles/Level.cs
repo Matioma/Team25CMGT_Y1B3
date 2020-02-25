@@ -231,7 +231,6 @@ public class Level:GameObject
 
 
         player.SetSpriteExtent((int)obj.Width, (int)obj.Height);
-
         player.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(player);
 
@@ -279,9 +278,12 @@ public class Level:GameObject
         pill.name = Name;
         pill.SpeedBonus = speedBonus;
         pill.PowerUpDuration = speedDuration;
+
+
+        pill.SetScaleXY(scale);
         //pill.SetSpriteExtent((int)obj.Width, (int)obj.Height);
         pill.SetPivotPoint(PivotPointPosition.BOTTOM);
-        pill.SetScaleXY(scale);
+        
         AddChild(pill);
 
 
@@ -320,86 +322,16 @@ public class Level:GameObject
         metalWheel.SetXY(obj.X, obj.Y);
         metalWheel.PowerUpDuration = metalWheelDuration;
 
-        metalWheel.SetScaleXY(scale);
 
+        metalWheel.SetScaleXY(scale);
         metalWheel.SetPivotPoint(PivotPointPosition.BOTTOM);
+        
+
+        
         AddChild(metalWheel);
     }
 
-    UIElement ParseUIImage(TiledObject obj) {
-        var spriteSheet = "colors.png";
-        var cols = 1;
-        var rows = 1;
-
-        var properties = obj.propertyList;
-        foreach (Property property in obj.propertyList.properties)
-        {
-            switch (property.Name)
-            {
-                case "BackgroundImage":
-                    spriteSheet = property.Value;
-                    break;
-                case "SpriteSheetColumns":
-                    cols = int.Parse(property.Value);
-                    break;
-                case "SpriteSheetRows":
-                    rows = int.Parse(property.Value);
-                    break;
-            }
-        }
-        UIElement uiElement = new UIImage(spriteSheet, cols, rows);
-        uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
-
-        uiElement.background.width = (int)(obj.Width);
-        uiElement.background.height = (int)(obj.Height);
-
-        //uiElement.background.width = (int)(obj.Width * Game.main.width / 1920);
-        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
-
-        return uiElement;
-    }
-
-    UIButton ParseUIButton(TiledObject obj)
-    {
-        var spriteSheet = "colors.png";
-        var cols = 1;
-        var rows = 1;
-        string targetLevel = "";
-
-        var properties = obj.propertyList;
-        foreach (Property property in obj.propertyList.properties)
-        {
-            switch (property.Name)
-            {
-                case "BackgroundImage":
-                    spriteSheet = property.Value;
-                    break;
-                case "SpriteSheetColumns":
-                    cols = int.Parse(property.Value);
-                    break;
-                case "SpriteSheetRows":
-                    rows = int.Parse(property.Value);
-                    break;
-                case "TargetLevel":
-                    targetLevel = property.Value;
-                    break;
-            }
-        }
-        UIButton uiElement = new UIButton(spriteSheet, cols, rows);
-        uiElement.SetXY(obj.X - Game.main.width/2, obj.Y - Game.main.height / 2);
-
-        uiElement.background.width = (int)(obj.Width);
-        uiElement.background.height = (int)(obj.Height);
-
-        //uiElement.background.width = (int)(obj.Width * Game.main.width/1920);
-        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
-        uiElement.TargetLevel = targetLevel;
-
-
-        return uiElement;
-    }
-
-
+  
     void ParseSlowEffect(TiledObject obj) {
         string spriteSheet = "colors.png";
         int cols = 1, rows = 1;
@@ -442,16 +374,14 @@ public class Level:GameObject
         slowObj.PowerUpDuration = speedReductionTime;
         slowObj.SpeedReduction = speedReduction;
 
-        //Console.WriteLine(speedReduction + "/" + speedReductionTime);
-
-        //slowObj.SetSpriteExtent((int)obj.Width, (int)obj.Height);
         slowObj.SetScaleXY(scale);
-
         slowObj.SetPivotPoint(PivotPointPosition.BOTTOM);
+        
+
+        
         AddChild(slowObj);
 
     }
-
     void ParseFinish(TiledObject obj) {
         string spriteSheet = "colors.png";
         int cols = 1, rows = 1;
@@ -492,10 +422,85 @@ public class Level:GameObject
         finishPoint._target1Win = target1Win;
         finishPoint._target2Win = target2Win;
 
-        finishPoint.SetScaleXY(scale);
 
+        finishPoint.SetScaleXY(scale);
         finishPoint.SetPivotPoint(PivotPointPosition.BOTTOM);
+        
         AddChild(finishPoint);
 
+    }
+
+    UIElement ParseUIImage(TiledObject obj)
+    {
+        var spriteSheet = "colors.png";
+        var cols = 1;
+        var rows = 1;
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+                case "BackgroundImage":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+            }
+        }
+        UIElement uiElement = new UIImage(spriteSheet, cols, rows);
+        uiElement.SetXY(obj.X - Game.main.width / 2, obj.Y - Game.main.height / 2);
+
+        uiElement.background.width = (int)(obj.Width);
+        uiElement.background.height = (int)(obj.Height);
+
+        //uiElement.background.width = (int)(obj.Width * Game.main.width / 1920);
+        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
+
+        return uiElement;
+    }
+
+    UIButton ParseUIButton(TiledObject obj)
+    {
+        var spriteSheet = "colors.png";
+        var cols = 1;
+        var rows = 1;
+        string targetLevel = "";
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+                case "BackgroundImage":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+                case "TargetLevel":
+                    targetLevel = property.Value;
+                    break;
+            }
+        }
+        UIButton uiElement = new UIButton(spriteSheet, cols, rows);
+        uiElement.SetXY(obj.X - Game.main.width / 2, obj.Y - Game.main.height / 2);
+
+        uiElement.background.width = (int)(obj.Width);
+        uiElement.background.height = (int)(obj.Height);
+
+        //uiElement.background.width = (int)(obj.Width * Game.main.width/1920);
+        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
+        uiElement.TargetLevel = targetLevel;
+
+
+        return uiElement;
     }
 }

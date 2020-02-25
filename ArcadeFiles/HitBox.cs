@@ -36,7 +36,11 @@ public class HitBox : Sprite
 
     public HitBox() : base("hitbox.png") {
     }
-
+    public HitBox(int width, int height) : base("hitbox.png")
+    {
+        this.width = width;
+        this.height = height;
+    }
     void Update() {
         toggleDebugMode();
     }
