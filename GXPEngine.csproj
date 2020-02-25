@@ -39,6 +39,7 @@
     <Compile Include="ArcadeFiles\ArcadeCamera.cs" />
     <Compile Include="ArcadeFiles\ArcadeObject.cs" />
     <Compile Include="ArcadeFiles\Controller.cs" />
+    <Compile Include="ArcadeFiles\FinishPoint.cs" />
     <Compile Include="ArcadeFiles\GameManager.cs" />
     <Compile Include="ArcadeFiles\HitBox.cs" />
     <Compile Include="ArcadeFiles\Interfaces\IControllable.cs" />
