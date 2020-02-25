@@ -23,6 +23,7 @@ public abstract class PowerUp: ArcadeObject
     public virtual void Update() {
         var level = parent as Level;
         DoCollisionCheck(level.playersList);
+        Animate(300);
     }
 
     public void Use() {
