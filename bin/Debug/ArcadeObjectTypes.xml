@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
+ <objecttype name="FinishPoint" color="#86a400">
+  <property name="Player1WinTarget" type="file" default=""/>
+  <property name="Player2WinTarget" type="file" default=""/>
+  <property name="SpriteSheet" type="file" default=""/>
+  <property name="SpriteSheetColumns" type="int" default="1"/>
+  <property name="SpriteSheetRows" type="int" default="1"/>
+  <property name="scale" type="float" default="1"/>
+ </objecttype>
  <objecttype name="MetalWheelPowerUp" color="#0507a4">
   <property name="MetalWheelDuration" type="float" default="0"/>
   <property name="SpriteSheet" type="file" default="ChemicalBottle.png"/>
   <property name="SpriteSheetColumns" type="int" default="1"/>
   <property name="SpriteSheetRows" type="int" default="1"/>
+  <property name="scale" type="float" default="1"/>
  </objecttype>
  <objecttype name="Pill" color="#f6ff41">
   <property name="SpeedBonus" type="int" default="0"/>
@@ -12,6 +21,7 @@
   <property name="SpriteSheet" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="0"/>
   <property name="SpriteSheetRows" type="int" default="0"/>
+  <property name="scale" type="float" default="1"/>
  </objecttype>
  <objecttype name="Player" color="#21a40a">
   <property name="JumpForce" type="int" default="0"/>
@@ -21,15 +31,18 @@
   <property name="SpriteSheetRows" type="int" default="0"/>
  </objecttype>
  <objecttype name="ToxicWaste" color="#ff0000">
-  <property name="SpeedReduction" type="int" default="1"/>
-  <property name="SpriteSheet" type="file" default="HitBox.png"/>
+  <property name="SpeedReduction" type="int" default="0"/>
+  <property name="SpeedReductionTime" type="int" default="0"/>
+  <property name="SpriteSheet" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="1"/>
   <property name="SpriteSheetRows" type="int" default="1"/>
+  <property name="scale" type="float" default="1"/>
  </objecttype>
- <objecttype name="UIElement" color="#a0a0a4">
+ <objecttype name="UIButton" color="#a0a0a4">
   <property name="BackgroundImage" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="0"/>
   <property name="SpriteSheetRows" type="int" default="0"/>
+  <property name="TargetLevel" type="file" default=""/>
  </objecttype>
  <objecttype name="UIImage" color="#a0a0a4">
   <property name="BackgroundImage" type="file" default=""/>
