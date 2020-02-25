@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using GXPEngine;
 public abstract class PowerUp: ArcadeObject
 {
     public string message = "TestMessage";
@@ -28,7 +24,7 @@ public abstract class PowerUp: ArcadeObject
         Animate(300);
     }
 
-    public void Use() {
+    public void Used() {
         onPowerUpUse();
     }
     public void Picked(PowerUpManager pOwner) {

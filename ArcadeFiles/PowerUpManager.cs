@@ -25,12 +25,12 @@ public class PowerUpManager
             }
             _inventoryPowerUp = value;
 
-            if(value != null)
+            if (value != null)
             {
                 _inventoryPowerUp.Picked(this);
             }
         }
-    } 
+    }
 
     Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
@@ -41,11 +41,21 @@ public class PowerUpManager
     }
 
     public void PickPowerUp(PowerUp powerUp) {
-        InventoryPowerUp = powerUp;
+        if (powerUp is SlowEffect)
+        {
+            AddEffect(powerUp);
+            powerUp.Picked(this);
+            powerUp.Used();
+            
+            return;
+        }
 
-        if (powerUp is Pill  || powerUp is SlowEffect || powerUp is MetalWheel) {
+
+        InventoryPowerUp = powerUp;
+        if (InventoryPowerUp is Pill || InventoryPowerUp is MetalWheel) {
             UsePowerUp();
         }
+        
     }
     public void UsePowerUp()
     {
@@ -56,7 +66,7 @@ public class PowerUpManager
         else
         {
             AddEffect(InventoryPowerUp);
-            InventoryPowerUp.Use();
+            InventoryPowerUp.Used();
             InventoryPowerUp = null;
         }
     }

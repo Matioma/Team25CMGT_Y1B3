@@ -500,8 +500,13 @@ public class Level:GameObject
         UIElement uiElement = new UIImage(spriteSheet, cols, rows);
         uiElement.SetXY(obj.X - Game.main.width / 2, obj.Y - Game.main.height / 2);
 
-        uiElement.background.width = (int)(obj.Width);
-        uiElement.background.height = (int)(obj.Height);
+        float ratioDifferance = Game.main.width/obj.Width;
+        float heightDif = Game.main.height / obj.Height;
+        //Console.WriteLine(obj.Width+":"+ratioDifferance);
+        //Console.WriteLine(obj.Width + "-" + heightDif);
+
+        uiElement.background.width = (int)(obj.Width*ratioDifferance);
+        uiElement.background.height = (int)(obj.Height * heightDif);
 
         //uiElement.background.width = (int)(obj.Width * Game.main.width / 1920);
         //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
@@ -536,12 +541,17 @@ public class Level:GameObject
             }
         }
         UIButton uiElement = new UIButton(spriteSheet, cols, rows);
+
+
+        float ratioDifferance = 1;
+
         uiElement.SetXY(obj.X - Game.main.width / 2, obj.Y - Game.main.height / 2);
 
-        uiElement.background.width = (int)(obj.Width);
-        uiElement.background.height = (int)(obj.Height);
+        uiElement.background.width = (int)(obj.Width/ratioDifferance);
+        uiElement.background.height = (int)(obj.Height / ratioDifferance);
         uiElement.TargetLevel = targetLevel;
 
+        //Console.WriteLine(obj.Width / ratioDifferance + ":" + obj.Width);
 
         return uiElement;
     }
