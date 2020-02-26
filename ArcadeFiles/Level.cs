@@ -569,6 +569,7 @@ public class Level:GameObject
         var spriteSheet = "colors.png";
         var cols = 1;
         var rows = 1;
+        float scale = 1.0f;
 
         var properties = obj.propertyList;
         foreach (Property property in obj.propertyList.properties)
@@ -584,14 +585,13 @@ public class Level:GameObject
                 case "SpriteSheetRows":
                     rows = int.Parse(property.Value);
                     break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    break;
 
             }
         }
 
-        Console.WriteLine("Ttest");
-        Console.WriteLine(obj.Width);
-        Console.WriteLine(obj.Height);
-        //Console.WriteLine(rows);
 
         UIImage uiElement = new UIImage(spriteSheet, cols, rows);
         uiElement.SetXY(obj.X , obj.Y);
@@ -600,9 +600,9 @@ public class Level:GameObject
 
         uiElement.background.width = (int)(obj.Width);
         uiElement.background.height = (int)(obj.Height);
-     
 
-        //Console.WriteLine(obj.Width / ratioDifferance + ":" + obj.Width);
+        uiElement.SetScaleXY(scale, scale);
+     
 
         return uiElement;
     }
