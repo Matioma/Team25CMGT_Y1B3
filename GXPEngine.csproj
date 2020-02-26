@@ -58,6 +58,7 @@
     <Compile Include="ArcadeFiles\UI\UIButton.cs" />
     <Compile Include="ArcadeFiles\UI\UIElement.cs" />
     <Compile Include="ArcadeFiles\UI\Background.cs" />
+    <Compile Include="ArcadeFiles\UI\UIImage.cs" />
     <Compile Include="ArcadeFiles\Unit.cs" />
     <Compile Include="ArcadeFiles\UnitControl\States\InAir.cs" />
     <Compile Include="ArcadeFiles\UnitControl\States\Idle.cs" />

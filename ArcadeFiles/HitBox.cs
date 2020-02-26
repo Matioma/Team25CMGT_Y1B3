@@ -40,6 +40,7 @@ public class HitBox : Sprite
     {
         this.width = width;
         this.height = height;
+        alpha = 0.0f;
     }
     void Update() {
         toggleDebugMode();

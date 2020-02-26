@@ -183,6 +183,9 @@ public class Level:GameObject
                 case "AcidBottle":
                     ParseAcidWater(obj);
                     break;
+                case "UIBackgroundStatic":
+                    AddChildAt(ParseStaticBackground(obj),0);
+                    break;
                 default:
                     break;
             }
@@ -194,7 +197,7 @@ public class Level:GameObject
         {
             switch (obj.Type) //
             {
-                case "UIImage":
+                case "UIBackground":
                     ParseUIImage(obj);
                     break;
                 case "UIButton":
@@ -507,7 +510,7 @@ public class Level:GameObject
                     break;
             }
         }
-        UIElement uiElement = new UIImage(spriteSheet, cols, rows);
+        UIElement uiElement = new Background(spriteSheet, cols, rows);
         uiElement.SetXY(obj.X - Game.main.width / 2, obj.Y - Game.main.height / 2);
 
         float ratioDifferance = Game.main.width/obj.Width;
@@ -555,6 +558,49 @@ public class Level:GameObject
         uiElement.background.width = (int)(obj.Width/ratioDifferance);
         uiElement.background.height = (int)(obj.Height / ratioDifferance);
         uiElement.TargetLevel = targetLevel;
+
+        //Console.WriteLine(obj.Width / ratioDifferance + ":" + obj.Width);
+
+        return uiElement;
+    }
+
+    UIImage ParseStaticBackground(TiledObject obj)
+    {
+        var spriteSheet = "colors.png";
+        var cols = 1;
+        var rows = 1;
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+                case "SpriteSheet":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+
+            }
+        }
+
+        Console.WriteLine("Ttest");
+        Console.WriteLine(obj.Width);
+        Console.WriteLine(obj.Height);
+        //Console.WriteLine(rows);
+
+        UIImage uiElement = new UIImage(spriteSheet, cols, rows);
+        uiElement.SetXY(obj.X , obj.Y);
+
+        
+
+        uiElement.background.width = (int)(obj.Width);
+        uiElement.background.height = (int)(obj.Height);
+     
 
         //Console.WriteLine(obj.Width / ratioDifferance + ":" + obj.Width);
 
