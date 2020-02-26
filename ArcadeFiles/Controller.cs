@@ -78,6 +78,10 @@ class Controller:GameObject
                 if (controllerId == 0)
                 {
                     AddCamera(0, 0, Game.main.width, Game.main.height/2 - Separator.SepHeight/2);
+
+                   // AddCamera(120, 120, Game.main.width, Game.main.height / 2 - Separator.SepHeight / 2);
+                   // AddCamera(120, 120, Game.main.width, Game.main.height / 2 - Separator.SepHeight / 2);
+                    //AddCamera(0, 0, 120, 120);
                 }
                 else
                 {

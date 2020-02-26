@@ -100,6 +100,7 @@ public class Level:GameObject
             if (objGroup.Name.ToLower() == "ui") {
                 
                 AddChildAt(new Separator(),0);
+                AddChild(new InventorySlot());
             }
             
 
