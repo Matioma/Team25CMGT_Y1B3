@@ -96,12 +96,19 @@ public class Level:GameObject
         ObjectGroup objectGroup = levelData.ObjectGroups[0];
 
         foreach (ObjectGroup objGroup in levelData.ObjectGroups) {
+            Console.WriteLine(objGroup.Name.ToLower());
+            if (objGroup.Name.ToLower() == "ui") {
+                
+                AddChildAt(new Separator(),0);
+            }
+            
+
+
             if (objGroup.Objects == null || objectGroup.Objects.Length == 0)
             {
                 continue;
             }
 
-            //Console.WriteLine(objGroup.Name);
 
             switch (objGroup.Name.ToLower())
             {
@@ -127,6 +134,9 @@ public class Level:GameObject
                     }
                     MenuLayer(objGroup);
                     break;
+            
+
+
                 default:
                     DefaultLayerCreation(objGroup);
                     break;
@@ -367,7 +377,7 @@ public class Level:GameObject
                     scale = float.Parse(property.Value);
                     break;
                 default:
-                    Console.WriteLine("unknown Property");
+                    Console.WriteLine("unknown Property sloweffect");
                     break;
             }
         }
@@ -502,14 +512,9 @@ public class Level:GameObject
 
         float ratioDifferance = Game.main.width/obj.Width;
         float heightDif = Game.main.height / obj.Height;
-        //Console.WriteLine(obj.Width+":"+ratioDifferance);
-        //Console.WriteLine(obj.Width + "-" + heightDif);
 
         uiElement.background.width = (int)(obj.Width*ratioDifferance);
         uiElement.background.height = (int)(obj.Height * heightDif);
-
-        //uiElement.background.width = (int)(obj.Width * Game.main.width / 1920);
-        //uiElement.background.height = (int)(obj.Height * Game.main.height / 1080);
 
         return uiElement;
     }

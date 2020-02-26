@@ -41,6 +41,8 @@ public class Player : Unit
     private PowerUpManager _powerUpManager;
 
 
+    //private EasyDraw easyDraw;
+
 
     public Player(string spriteSheet, int cols, int rows)
     {
@@ -53,6 +55,7 @@ public class Player : Unit
         AddChild(new Controller(2));
         
         AddChild(stateMachine);
+
     }
 
 
@@ -68,6 +71,8 @@ public class Player : Unit
             dx = 0;
 
         }
+
+        //easyDraw.DrawSprite(new Sprite("Colors.png", false,false)) ;
     }
 
 

@@ -9,6 +9,7 @@ class Controller:GameObject
 
 
     ArcadeCamera _cameraRef = null;
+
     ArcadeCamera ConrollerCamera
     {
         get
@@ -76,11 +77,11 @@ class Controller:GameObject
             case 2:
                 if (controllerId == 0)
                 {
-                    AddCamera(0, 0, Game.main.width, Game.main.height/2);
+                    AddCamera(0, 0, Game.main.width, Game.main.height/2 - Separator.SepHeight/2);
                 }
                 else
                 {
-                    AddCamera(0, Game.main.height/2, Game.main.width , Game.main.height/2);
+                    AddCamera(0, Game.main.height / 2 + Separator.SepHeight / 2, Game.main.width, Game.main.height / 2) ;
                 }
                 break;
         }

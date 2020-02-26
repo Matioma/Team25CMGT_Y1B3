@@ -52,6 +52,7 @@
     <Compile Include="ArcadeFiles\Player.cs" />
     <Compile Include="ArcadeFiles\PowerUps\PowerUp.cs" />
     <Compile Include="ArcadeFiles\PowerUps\SlowEffect.cs" />
+    <Compile Include="ArcadeFiles\Separator.cs" />
     <Compile Include="ArcadeFiles\Tile.cs" />
     <Compile Include="ArcadeFiles\UI\MainMenu.cs" />
     <Compile Include="ArcadeFiles\UI\UIButton.cs" />

@@ -83,10 +83,31 @@ class Settings
                 HitBox.ColliderAlpha = value;
                 break;
             case "sloweffectreduction":
-                    int slowEffect = int.Parse(settingsLine[1]);
-                    SlowEffect.SpeedReduction = slowEffect;
+                int slowEffect = int.Parse(settingsLine[1]);
+                SlowEffect.SpeedReduction = slowEffect;
                 break;
-            default:
+
+            case "separatorfilename":
+                string fileName = settingsLine[1];
+                Separator.FileName = fileName;
+                break;
+            case "separatorcols":
+                int cols = int.Parse(settingsLine[1]);
+                Separator.cols = cols;
+                break;
+            case "separatorrows":
+                var rows = int.Parse(settingsLine[1]);
+                Separator.rows = rows;
+                break;
+            case "separatorwidth":
+                var sepWidth = int.Parse(settingsLine[1]);
+                Separator.SepWidth= sepWidth;
+                break;
+            case "separatorheight":
+                var sepHeight = int.Parse(settingsLine[1]);
+                Separator.SepHeight = sepHeight;
+                    break;
+                default:
                 break;
             }
         }

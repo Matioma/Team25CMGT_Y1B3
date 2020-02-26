@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
+ <objecttype name="AcidBottle" color="#81a401">
+  <property name="SpriteSheet" type="file" default=""/>
+  <property name="SpriteSheetColumns" type="int" default="0"/>
+  <property name="SpriteSheetRows" type="int" default="0"/>
+  <property name="scale" type="float" default="0"/>
+ </objecttype>
  <objecttype name="FinishPoint" color="#86a400">
   <property name="Player1WinTarget" type="file" default=""/>
   <property name="Player2WinTarget" type="file" default=""/>
@@ -29,6 +35,12 @@
   <property name="SpriteSheet" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="0"/>
   <property name="SpriteSheetRows" type="int" default="0"/>
+ </objecttype>
+ <objecttype name="Separator" color="#a0a0a4">
+  <property name="SpriteSheet" type="file" default=""/>
+  <property name="SpriteSheetColumns" type="int" default="0"/>
+  <property name="SpriteSheetRows" type="int" default="0"/>
+  <property name="width" type="int" default="0"/>
  </objecttype>
  <objecttype name="ToxicWaste" color="#ff0000">
   <property name="SpeedReduction" type="int" default="0"/>
