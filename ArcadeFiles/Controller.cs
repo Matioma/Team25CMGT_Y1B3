@@ -102,6 +102,7 @@ class Controller:GameObject
           {
               switch (controllerId)
               {
+
                   case 0:
                       if (Input.GetKey(Key.D))
                       {
@@ -111,30 +112,30 @@ class Controller:GameObject
                       {
                           conrolledObject.RotateWheel(false);
                       }
-                      if (Input.GetKeyDown(Key.W))
+                      if (Input.GetKeyDown(Key.X))
                       {
                           conrolledObject.PressJumpButton();
                       }
-                      if (Input.GetKeyDown(Key.S))
+                      if (Input.GetKeyDown(Key.C))
                       {
                           conrolledObject.PressPowerUpButton();
 
                       }
                       break;
                   case 1:
-                      if (Input.GetKey(Key.RIGHT))
+                      if (Input.GetKey(Key.G))
                       {
                           conrolledObject.RotateWheel(true);
                       }
-                      if (Input.GetKey(Key.LEFT))
+                      if (Input.GetKey(Key.F))
                       {
                           conrolledObject.RotateWheel(false);
                       }
-                      if (Input.GetKeyDown(Key.UP))
+                      if (Input.GetKeyDown(Key.B))
                       {
                           conrolledObject.PressJumpButton();
                       }
-                      if (Input.GetKeyDown(Key.DOWN))
+                      if (Input.GetKeyDown(Key.V))
                       {
                           conrolledObject.PressPowerUpButton();
                       }
@@ -142,19 +143,19 @@ class Controller:GameObject
               }
           }
           else {
-              if (Input.GetKey(Key.D) || Input.GetKey(Key.RIGHT))
+              if (Input.GetKey(Key.D) || Input.GetKey(Key.G))
               {
                   conrolledObject.RotateWheel(true);
               }
-              if (Input.GetKey(Key.A) || Input.GetKey(Key.LEFT))
+              if (Input.GetKey(Key.A) || Input.GetKey(Key.F))
               {
                   conrolledObject.RotateWheel(false);
               }
-              if (Input.GetKeyDown(Key.W) || Input.GetKeyDown(Key.UP))
+              if (Input.GetKeyDown(Key.X) || Input.GetKeyDown(Key.B))
               {
                   conrolledObject.PressJumpButton();
               }
-              if (Input.GetKeyDown(Key.S) || Input.GetKeyDown(Key.DOWN))
+              if (Input.GetKeyDown(Key.C) || Input.GetKeyDown(Key.V))
               {
                   conrolledObject.PressPowerUpButton();
               }

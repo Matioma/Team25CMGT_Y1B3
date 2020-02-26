@@ -62,9 +62,12 @@ public class Player : Unit
 
         base.Update();
 
-       
 
-        dx = 0;
+        dx *= 0.9f;
+        if (Math.Abs(dx) <= 0.1f) {
+            dx = 0;
+
+        }
     }
 
 

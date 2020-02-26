@@ -16,8 +16,8 @@ public enum UnitState
 }
 public abstract class Unit : ArcadeObject,IControllable
 {
-    public int dx = 0;
-    public int dy = 0;
+    public float dx = 0;
+    public float dy = 0;
 
 
     protected int MaxSpeedY = 5;
