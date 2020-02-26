@@ -43,6 +43,8 @@ public class Player : Unit
 
     //private EasyDraw easyDraw;
 
+    public Dictionary<Type, AnimationSprite> popUps = new Dictionary<Type, AnimationSprite>(); 
+
 
     public Player(string spriteSheet, int cols, int rows)
     {
@@ -56,6 +58,21 @@ public class Player : Unit
         
         AddChild(stateMachine);
 
+
+        popUps.Add(typeof(Pill), new AnimationSprite("art/popup_pill.png", 1, 1));
+        popUps.Add(typeof(AcidBottle), new AnimationSprite("art/popup_acid.png", 1, 1));
+        //popUps.Add(typeof(Pill), new AnimationSprite("popup_carrot.png", 1, 1));
+        popUps.Add(typeof(MetalWheel), new AnimationSprite("art/popup_wheel.png", 1, 1));
+        //popUps.Add(typeof(Pill), new AnimationSprite("popup_glasses.png", 1, 1));
+
+        foreach (var pair in popUps) {
+            AnimationSprite animationSprite = pair.Value;
+            animationSprite.SetOrigin(animationSprite.width / 2, animationSprite.height);
+            animationSprite.SetScaleXY(0.4f);
+            animationSprite.SetXY(0,-60);
+            pair.Value.alpha = 0;
+            AddChild(pair.Value);
+        }
     }
 
 

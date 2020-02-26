@@ -25,6 +25,14 @@ class Pill:PowerUp
 
         
     }
+
+
+    protected override void onPowerUpUse()
+    {
+        owner.PowerUpUsed(this);
+
+        this.LateDestroy();
+    }
     public override void ApplyEffect(Unit target)
     {
         target.ActualMaxSpeed += SpeedBonus;

@@ -34,12 +34,10 @@ public abstract class PowerUp: ArcadeObject
 
     protected virtual void onPowerUpUse()
     {
-        Console.Write("Power Up used base");
         this.LateDestroy();
     }
 
     protected virtual void onPickUp() {
-        Console.WriteLine(this+ "Picked UP base");
         this.LateRemove();
     }
 

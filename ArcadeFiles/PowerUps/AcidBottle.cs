@@ -18,19 +18,16 @@ class AcidBottle:PowerUp
     {
     }
 
+
+
+    //override 
     protected override void onPickUp()
     {
-        Console.WriteLine(this + "Picked UP");
-        //SlowEffect temp = new SlowEffect("Art/acid_puddle_test.png", 2, 1);
-        
-      
-
         this.LateRemove();
     }
     protected override void onPowerUpUse()
     {
-        Console.WriteLine(this+ "Power Up used");
-
+       
         var position = TransformPoint(x, y);
 
 
@@ -42,18 +39,9 @@ class AcidBottle:PowerUp
 
         GameManager.Instance.ActiveLevel.AddChildAt(bottle, GameManager.Instance.ActiveLevel.GetChildren().Count - 10);
 
-        /*var slowEffect = new SlowEffect("Art/puddle.png", 2, 1);
-        slowEffect.SetPivotPoint(PivotPointPosition.BOTTOM);
-        
-        slowEffect.SetXY(owner.Owner.x-150, owner.Owner.y+30);
-        //slowEffect.SpeedReduction = 3;
-        slowEffect.PowerUpDuration = 1;
-        slowEffect.SetScaleXY(0.5f);
-        */
 
-        //GameManager.Instance.ActiveLevel.AddChildAt(slowEffect,GameManager.Instance.ActiveLevel.GetChildren().Count - 10);
-
-        this.LateDestroy();
+        owner.PowerUpUsed(this);
+        //this.LateDestroy();
     }
 }
 

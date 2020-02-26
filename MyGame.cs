@@ -7,7 +7,7 @@ public class MyGame : Game
    
 
     GameManager gameManager;
-    public MyGame() : base(1366, 768, true)		// Create a window that's 800x600 and NOT fullscreen
+    public MyGame() : base(1366, 768, false)		// Create a window that's 800x600 and NOT fullscreen
     {
         //Settings.Initialize(); // Loads And Parses settings file
 

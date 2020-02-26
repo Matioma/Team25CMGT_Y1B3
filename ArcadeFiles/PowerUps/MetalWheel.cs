@@ -16,10 +16,16 @@ namespace GXPEngine.ArcadeFiles.PowerUps
             hitBox.SetXY(160, 280);
         }
 
+        protected override void onPowerUpUse()
+        {
+            owner.PowerUpUsed(this);
+
+            this.LateDestroy();
+        }
 
         public override void ApplyEffect(Unit target)
         {
-            //Console.WriteLine("Metal wheel");
+           
         }
 
        

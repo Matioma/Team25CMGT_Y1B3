@@ -8,6 +8,8 @@ using GXPEngine.ArcadeFiles.PowerUps;
 
 public class PowerUpManager
 {
+
+
     Player _owner = null;
     public Player Owner {
         get { return _owner; }
@@ -35,6 +37,8 @@ public class PowerUpManager
     Dictionary<Type, PowerUp> activeEffects = new Dictionary<Type, PowerUp>();
 
 
+
+
     public PowerUpManager(Player owner)
     {
         _owner = owner;
@@ -46,7 +50,7 @@ public class PowerUpManager
             AddEffect(powerUp);
             powerUp.Picked(this);
             powerUp.Used();
-            
+
             return;
         }
 
@@ -55,7 +59,7 @@ public class PowerUpManager
         if (InventoryPowerUp is Pill || InventoryPowerUp is MetalWheel) {
             UsePowerUp();
         }
-        
+
     }
     public void UsePowerUp()
     {
@@ -89,6 +93,14 @@ public class PowerUpManager
             {
                 effectsThatEnded.Add(pair.Key);
             }
+
+            if (pair.Value.PowerUpTimeLeft <= 0) {
+                if (Owner.popUps.ContainsKey(pair.Key))
+                {
+                    Owner.popUps[pair.Key].alpha = 0;
+                }
+
+            }
         }
         //Remove Finished Effects
         foreach (var Type in effectsThatEnded)
@@ -108,6 +120,8 @@ public class PowerUpManager
         {
             //Reset the effect time
             activeEffects[InventoryPowerUp.GetType()].PowerUpTimeLeft = (int)InventoryPowerUp.PowerUpDuration * 1000;
+
+
             //InventoryPowerUp.LateDestroy();
         }
         else {
@@ -118,14 +132,16 @@ public class PowerUpManager
 
 
 
-    public void AddEffect( PowerUp powerUp)
+    public void AddEffect(PowerUp powerUp)
     {
         //check if such player has current effect
         if (activeEffects.ContainsKey(powerUp.GetType()))
         {
             //Reset the effect time
             activeEffects[powerUp.GetType()].PowerUpTimeLeft = (int)powerUp.PowerUpDuration * 1000;
-            //InventoryPowerUp.LateDestroy();
+
+
+
         }
         else
         {
@@ -134,4 +150,10 @@ public class PowerUpManager
         }
     }
 
+
+    public void PowerUpUsed(PowerUp powerUp)
+    {
+        Owner.popUps[powerUp.GetType()].alpha = 1;
+    }
 }
+

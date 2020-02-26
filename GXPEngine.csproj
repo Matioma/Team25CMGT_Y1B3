@@ -45,6 +45,7 @@
     <Compile Include="ArcadeFiles\HitBox.cs" />
     <Compile Include="ArcadeFiles\Interfaces\IControllable.cs" />
     <Compile Include="ArcadeFiles\Level.cs" />
+    <Compile Include="ArcadeFiles\PowerUpIndicator.cs" />
     <Compile Include="ArcadeFiles\PowerUpManager.cs" />
     <Compile Include="ArcadeFiles\PowerUps\AcidBottle.cs" />
     <Compile Include="ArcadeFiles\PowerUps\MetalWheel.cs" />
