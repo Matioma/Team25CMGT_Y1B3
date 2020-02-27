@@ -6,7 +6,7 @@ using System.Text;
 using GXPEngine;
 public class InventorySlot:GameObject
 {
-    string defaultSprite = "colors.png";
+    string defaultSprite = "art/inventory.png";
 
     AnimationSprite background;
     AnimationSprite visuals;

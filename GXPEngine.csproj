@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="ArcadeFiles\ArcadeCamera.cs" />
     <Compile Include="ArcadeFiles\ArcadeObject.cs" />
+    <Compile Include="ArcadeFiles\AudioManager.cs" />
     <Compile Include="ArcadeFiles\Bottle.cs" />
     <Compile Include="ArcadeFiles\Controller.cs" />
     <Compile Include="ArcadeFiles\FinishPoint.cs" />

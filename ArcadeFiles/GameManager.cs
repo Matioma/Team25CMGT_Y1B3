@@ -13,6 +13,7 @@ class GameManager:GameObject
     }
 
     static GameManager _instance = null;
+    AudioManager audioManager;
     public static GameManager Instance {
         get {
             if (_instance == null) {
@@ -34,8 +35,14 @@ class GameManager:GameObject
 
 
     }
+
+    void Update() {
+
+    }
     public GameManager() {
         Settings.Initialize();
+        audioManager = new AudioManager();
+        //audioManager.AddBackgroundSound("Using_powerup.mp3");
 
 
         activeLevel = new Level("MainMenu.tmx");

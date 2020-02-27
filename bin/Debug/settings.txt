@@ -10,13 +10,13 @@ ColliderAlpha=0.6	// Sets how transparent should be the Alpha when debuging coll
 
 //SlowPuddle Effects
 
-SlowEffectReduction=4 //how much the player should be slowed
+SlowEffectReduction=3 //how much the player should be slowed
 
 
 
 //SeparatorData
 
-SeparatorFileName=hitbox.png
+SeparatorFileName=Border.jpg
 SeparatorCols=1
 SeparatorRows=1
 SeparatorWidth=1366
