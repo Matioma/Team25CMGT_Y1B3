@@ -15,12 +15,12 @@ class Run:State
         if (unit.dx > 0)
         {
             unit.visuals.Mirror(false, false);
-            unit.Animate(300 / unit.ActualMaxSpeed, 10, 11, true);
+            unit.Animate(300 / unit.ActualMaxSpeed, 10, 11, false);
         }
         else if (unit.dx < 0)
         {
             unit.visuals.Mirror(true, false);
-            unit.Animate(300 / unit.ActualMaxSpeed, 10, 11, true);
+            unit.Animate(300 / unit.ActualMaxSpeed, 10, 11, false);
         }
         else
         {

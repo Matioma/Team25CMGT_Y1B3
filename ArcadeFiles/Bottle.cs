@@ -30,6 +30,7 @@ class Bottle:Unit
         if (OnGround)
         {
             OnBottleBreak();
+            dx *= 0.96f;
         }
     }
 

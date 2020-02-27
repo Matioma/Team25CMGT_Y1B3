@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="15" tilewidth="70" tileheight="70" infinite="0" nextlayerid="6" nextobjectid="12">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="15" tilewidth="70" tileheight="70" infinite="0" nextlayerid="6" nextobjectid="15">
  <editorsettings>
   <export target="." format="tmx"/>
  </editorsettings>
@@ -33,7 +33,7 @@
     <property name="SpriteSheetRows" type="int" value="1"/>
    </properties>
   </object>
-  <object id="5" type="UIButton" x="100" y="124" width="400" height="198">
+  <object id="5" type="UIButton" x="100" y="212" width="400" height="198">
    <properties>
     <property name="BackgroundImage" type="file" value="Art/start_button.png"/>
     <property name="SpriteSheetColumns" type="int" value="2"/>
@@ -49,12 +49,20 @@
     <property name="TargetLevel" type="file" value="TestLevel2.tmx"/>
    </properties>
   </object>
-  <object id="9" type="UIButton" x="100" y="537.225" width="400" height="198">
+  <object id="9" type="UIButton" x="100" y="453.225" width="400" height="198">
    <properties>
     <property name="BackgroundImage" type="file" value="Art/quit_button.png"/>
     <property name="SpriteSheetColumns" type="int" value="2"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
     <property name="TargetLevel" type="file" value="TestLevel2.tmx"/>
+   </properties>
+  </object>
+  <object id="12" type="UIBackgroundStatic" x="12" y="20" width="1352" height="736">
+   <properties>
+    <property name="SpriteSheet" type="file" value="Art/menu_sprites.png"/>
+    <property name="SpriteSheetColumns" type="int" value="1"/>
+    <property name="SpriteSheetRows" type="int" value="1"/>
+    <property name="scale" type="float" value="1"/>
    </properties>
   </object>
  </objectgroup>

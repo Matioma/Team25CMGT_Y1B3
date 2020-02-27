@@ -154,6 +154,9 @@ public class Level:GameObject
                             case "UIButton":
                                 mainMenu.AddButton(ParseUIButton(obj));
                                 break;
+                            case "UIBackgroundStatic":
+                                AddChild(ParseStaticBackground(obj));
+                                break;
                             default:
                                 Console.WriteLine("Unknown Type for menu Objects");
                                 break;

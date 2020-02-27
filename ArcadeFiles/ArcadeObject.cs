@@ -105,9 +105,7 @@ public abstract class ArcadeObject : GameObject
             }
             else {
                 visuals.SetFrame((visuals.currentFrame + 1 + frameStart) % frameCount + frameStart);
-                
             }
-            Console.WriteLine(visuals.currentFrame);
             animationTimer = millisPerFrame;
         }
     }
