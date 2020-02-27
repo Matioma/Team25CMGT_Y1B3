@@ -13,6 +13,7 @@ public enum UnitState
     RUN,
     IN_AIR,
     JUMPED,
+    STUNNED
 }
 public abstract class Unit : ArcadeObject,IControllable
 {
@@ -44,7 +45,10 @@ public abstract class Unit : ArcadeObject,IControllable
             onGround = value;
             if (OnGround == false)
             {
-                stateMachine.CurrentState = UnitState.IN_AIR;
+                if (stateMachine.CurrentState != UnitState.STUNNED) {
+                    stateMachine.CurrentState = UnitState.IN_AIR;
+                }
+                
                 //playerState = UnitState.IN_AIR;
             }
             else {
@@ -115,19 +119,29 @@ public abstract class Unit : ArcadeObject,IControllable
     /// Moves player
     /// </summary>
     public virtual void RotateWheel( bool pRight){
-        if (pRight)
-            dx = ActualMaxSpeed;
-        else {
-            dx = -ActualMaxSpeed;
+        if (stateMachine.CurrentState != UnitState.STUNNED)
+        {
+
+            stateMachine.CurrentState = UnitState.RUN;
+            if (pRight)
+                dx = ActualMaxSpeed;
+            else
+            {
+                dx = -ActualMaxSpeed;
+            }
         }
     }
 
     public virtual void PressJumpButton() {
-        if (OnGround)
-        {
-            speedY = JumpForce;
-            AudioManager.Instance.PlaySound("Audio/Jumping.wav");
+        if (stateMachine.CurrentState != UnitState.STUNNED) {
+            if (OnGround)
+            {
+                speedY = JumpForce;
+                AudioManager.Instance.PlaySound("Audio/Jumping.wav");
+            }
         }
+
+       
         
     }
 
@@ -142,6 +156,7 @@ public abstract class Unit : ArcadeObject,IControllable
     }
 
     virtual public void PressPowerUpButton() {
+      
         Console.WriteLine("used powerup");
     }
 

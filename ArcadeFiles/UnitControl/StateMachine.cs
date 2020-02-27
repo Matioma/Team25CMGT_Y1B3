@@ -18,8 +18,9 @@ public class StateMachine:GameObject
         states.Add(UnitState.IDLE, new Idle(this));
         states.Add(UnitState.IN_AIR, new InAir(this));
         states.Add(UnitState.RUN, new Run(this));
+        states.Add(UnitState.STUNNED, new Stuned(this));
 
-        currentState = UnitState.IDLE;
+        CurrentState = UnitState.IDLE;
     }
 
 

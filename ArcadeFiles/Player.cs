@@ -104,10 +104,7 @@ public class Player : Unit
     public override void RotateWheel(bool pRight)
     {
         base.RotateWheel(pRight);
-        stateMachine.CurrentState = UnitState.RUN;
     }
-
-
 
     public void AddCamera(int x, int y, int width, int height) {
         //PlayerCamera = new ArcadeCamera(x, y, width, height);
@@ -116,7 +113,10 @@ public class Player : Unit
         _powerUpManager.PickPowerUp(pPowerUp);
     }
     override public void PressPowerUpButton() {
-        _powerUpManager.UsePowerUp();
+        if (stateMachine.CurrentState != UnitState.STUNNED)
+        {
+            _powerUpManager.UsePowerUp();
+        }
     }
 
     /// <summary>
