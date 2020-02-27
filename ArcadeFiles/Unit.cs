@@ -173,7 +173,7 @@ public abstract class Unit : ArcadeObject,IControllable
                     }
                 }
             }
-            else
+            else if((obj.y - y)<0)
             {
                 //left
                 if ((obj.x - x) < 0)
