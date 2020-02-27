@@ -87,11 +87,12 @@
     <property name="scale" type="float" value="0.5"/>
    </properties>
   </object>
-  <object id="18" type="FinishPoint" x="6128" y="772" width="66" height="64">
+  <object id="18" type="FinishPoint" x="6046" y="640" width="210" height="350">
    <properties>
     <property name="Player1WinTarget" type="file" value="EndScreen1.tmx"/>
     <property name="Player2WinTarget" type="file" value="EndScreen2.tmx"/>
-    <property name="SpriteSheet" type="file" value="HitBox.png"/>
+    <property name="SpriteSheet" type="file" value="Art/finish.png"/>
+    <property name="scale" type="float" value="0.35"/>
    </properties>
   </object>
   <object id="19" type="AcidBottle" x="1938" y="628" width="112" height="66">

@@ -461,6 +461,10 @@ public class Level:GameObject
                 case "Player2WinTarget":
                     target2Win = property.Value;
                     break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    
+                    break;
                 default:
                     Console.WriteLine("unknown Property");
                     break;
@@ -473,8 +477,9 @@ public class Level:GameObject
         finishPoint._target2Win = target2Win;
 
 
-        finishPoint.SetScaleXY(scale);
-        finishPoint.SetPivotPoint(PivotPointPosition.BOTTOM);
+        finishPoint.SetSpriteExtent((int)(obj.Width*scale), (int)(obj.Height * scale));
+        //finishPoint.SetScaleXY(scale);
+        //finishPoint.SetPivotPoint(PivotPointPosition.BOTTOM);
         
         AddChild(finishPoint);
 
