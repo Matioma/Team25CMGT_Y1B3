@@ -41,8 +41,8 @@ class GameManager:GameObject
         Settings.Initialize();
         audioManager = new AudioManager();
         //audioManager.AddBackgroundSound("Using_powerup.mp3");
-       
 
+        //AddChild(new TextObject(50,50,150,50));
 
         activeLevel = new Level("MainMenu.tmx");
 
@@ -68,13 +68,9 @@ class GameManager:GameObject
     {
         Controller.ControllersNumber = 0;
         activeLevel.LateDestroy();
-        activeLevel = new Level(path);
+        activeLevel = new Level(path,score1.ToString(),score2.ToString());
 
         AddChild(activeLevel);
-
-
-
-        Console.WriteLine(score1 + ": "+ score2);
     }
 
 }

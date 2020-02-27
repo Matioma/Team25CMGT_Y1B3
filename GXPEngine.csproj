@@ -58,6 +58,7 @@
     <Compile Include="ArcadeFiles\Separator.cs" />
     <Compile Include="ArcadeFiles\Tile.cs" />
     <Compile Include="ArcadeFiles\UI\MainMenu.cs" />
+    <Compile Include="ArcadeFiles\UI\TextObject.cs" />
     <Compile Include="ArcadeFiles\UI\UIButton.cs" />
     <Compile Include="ArcadeFiles\UI\UIElement.cs" />
     <Compile Include="ArcadeFiles\UI\Background.cs" />

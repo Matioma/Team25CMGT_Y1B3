@@ -19,6 +19,10 @@ public class Level:GameObject
     public List<ArcadeObject> playersList = new List<ArcadeObject>();
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
 
+
+    //string score1 = "200039";
+    //string score2 = "743532";
+
     public Level()
     {
    
@@ -32,7 +36,22 @@ public class Level:GameObject
         
         SpawnTiles(levelData);
         SpawnObjects(levelData);
+    }
 
+
+    public Level(string tiledFile, string score1, string score2)
+    {
+        levelData = MapParser.ReadMap(tiledFile);
+
+        Tile.tileHeight = levelData.TileWidth;
+        Tile.tileWidth = levelData.TileHeight;
+
+        SpawnTiles(levelData);
+        SpawnObjects(levelData);
+
+
+        AddChild(new TextObject(score1, 780, 60, 500, 250, 10));
+        AddChild(new TextObject(score2, 760, 550, 500, 250,-16));
     }
 
 
