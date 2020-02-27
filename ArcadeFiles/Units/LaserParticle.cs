@@ -6,16 +6,25 @@ using System.Text;
 using GXPEngine;
 class LaserParticle:Unit
 {
-    public LaserParticle(string spriteSheet, int cols, int rows)
+    Player shooter;
+    public LaserParticle(string spriteSheet, int cols, int rows, bool isShootingToRight, Player shooter)
     {
         visuals = new AnimationSprite(spriteSheet, cols, rows, -1, false, false);
         AddChild(visuals);
         //AddHitBox();
         AddHitBox(visuals.width, visuals.height);
         hitBox.SetXY(0f, -5.0f);
-        //AddHitBox(visuals.width, visuals.height);
 
-        dx = -10;
+        this.shooter = shooter;
+        
+        if (isShootingToRight)
+        {
+            dx = 10;
+        }
+        else {
+            dx = -10;
+        }
+
     }
 
    
@@ -29,12 +38,17 @@ class LaserParticle:Unit
         dy = 0;
 
         foreach (var obj in getHitBox().GetCollisions()) {
-            if (obj is Player)
+            if (obj.parent is Player)
             {
-                Console.WriteLine("GG");
+
+                var hitPlayer = obj.parent as Player;
+                if (hitPlayer != shooter) {
+                    hitPlayer.stateMachine.CurrentState = UnitState.STUNNED;
+                    LateDestroy();
+                }
             }
             else if (obj.parent is Tile) {
-                Console.WriteLine("Colided with tile");
+                //Console.WriteLine("Colided with tile");
                 LateDestroy();
             }
 

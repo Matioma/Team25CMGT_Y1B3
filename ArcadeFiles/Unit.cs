@@ -20,6 +20,8 @@ public abstract class Unit : ArcadeObject,IControllable
     public float dx = 0;
     public float dy = 0;
 
+    public bool isLookingRight =true;
+
 
     protected int MaxSpeedY = 5;
     private const int  Gravity= 1;
@@ -124,10 +126,14 @@ public abstract class Unit : ArcadeObject,IControllable
 
             stateMachine.CurrentState = UnitState.RUN;
             if (pRight)
+            {
                 dx = ActualMaxSpeed;
+                isLookingRight = true;
+            }
             else
             {
                 dx = -ActualMaxSpeed;
+                isLookingRight = false;
             }
         }
     }
