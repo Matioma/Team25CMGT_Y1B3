@@ -20,6 +20,7 @@ public class Level:GameObject
 
 
     public List<ArcadeObject> playersList = new List<ArcadeObject>();
+    public List<InventorySlot> inventorySlots = new List<InventorySlot>();
 
     public Level()
     {
@@ -89,6 +90,8 @@ public class Level:GameObject
 
     public void SpawnObjects(Map levelData)
     {
+       
+
         if (levelData.ObjectGroups == null || levelData.ObjectGroups.Length == 0)
         {
             return;
@@ -98,9 +101,31 @@ public class Level:GameObject
         foreach (ObjectGroup objGroup in levelData.ObjectGroups) {
             Console.WriteLine(objGroup.Name.ToLower());
             if (objGroup.Name.ToLower() == "ui") {
-                
                 AddChildAt(new Separator(),0);
-                AddChild(new InventorySlot());
+
+                InventorySlot slot = new InventorySlot(0, 0, 70, 70);
+                slot.ControllerId = 0;
+
+                //Assign slot to player 0
+                var player = playersList[0] as Player;
+                player.slotObject = slot;
+
+                AddChild(slot);
+                inventorySlots.Add(slot);
+
+                slot = new InventorySlot(0, Game.main.height / 2 + Separator.SepHeight / 2, 70, 70);
+                slot.ControllerId = 1;
+
+
+                //Assign the slot to player 2
+                player = playersList[1] as Player;
+                player.slotObject = slot;
+
+
+                
+                AddChild(slot);
+                inventorySlots.Add(slot);
+
             }
             
 
@@ -251,6 +276,9 @@ public class Level:GameObject
         player.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(player);
 
+
+       
+        
         playersList.Add(player);
     }
 

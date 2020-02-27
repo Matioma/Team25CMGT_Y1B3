@@ -31,6 +31,8 @@ public class PowerUpManager
             {
                 _inventoryPowerUp.Picked(this);
             }
+            Owner.slotObject.SetVisuals(value);
+            //Console.WriteLine("GG");
         }
     }
 

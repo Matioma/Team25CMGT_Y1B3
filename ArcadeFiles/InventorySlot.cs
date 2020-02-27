@@ -4,20 +4,80 @@ using System.Linq;
 using System.Text;
 
 using GXPEngine;
-class InventorySlot:GameObject
+public class InventorySlot:GameObject
 {
-    public InventorySlot() {
-        SetXY(-1000, -1000);
-        //visuals = new AnimationSprite(FileName, cols, rows);
-        //visuals.width = 10;
-        //visuals.height = 10;
+    string defaultSprite = "colors.png";
 
-        //AddChild(visuals);
+    AnimationSprite background;
+    AnimationSprite visuals;
 
-        var arcadeCamera = new ArcadeCamera(0, 0, 60, 60);
-        arcadeCamera.SetXY(10, 10);
-        this.AddChild(arcadeCamera);
-
-
+    public int _index= 0;
+    public int ControllerId
+    {
+        get { return _index; }
+        set
+        {
+            if (value == 0) {
+                SetXY(-6000,-6000);
+            }
+            else{
+                SetXY(-2000, -2000);
+            }
+            _index = value;
+        }
     }
+
+    public int xPos;
+    public int yPos;
+    public int pWidth;
+    public int pHeight;
+
+    public InventorySlot(int px,int py, int pwidth,int pheight) {
+        xPos = px;
+        yPos = py;
+        pWidth = pwidth;
+        pHeight = pheight;
+
+
+        background = new AnimationSprite(defaultSprite, 1,1,-1,false);
+
+        background.width = pwidth;
+        background.height = pheight;
+        AddChild(background);
+
+
+
+        //Add viewPort
+        var arcadeCamera = new ArcadeCamera(px, py, pwidth, pheight);
+        arcadeCamera.SetXY(pwidth/2,pheight/2);
+        this.AddChild(arcadeCamera);
+    }
+
+    public void SetVisuals(PowerUp powerUp) {
+
+
+        /*if (visuals != null)
+        {
+            visuals.LateDestroy();
+        }
+
+        if (powerUp != null) { 
+            if (powerUp is AcidBottle)
+            {
+                visuals = new AnimationSprite(defaultSprite, 1, 1, -1, false);
+            }
+            Console.WriteLine(powerUp.GetType());
+
+            if (visuals != null)
+            {
+                visuals.width = pWidth;
+                visuals.height = pHeight;
+                AddChild(visuals);
+            }
+        }*/
+
+        
+       
+    }
+
 }

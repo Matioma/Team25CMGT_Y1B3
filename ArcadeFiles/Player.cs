@@ -39,6 +39,7 @@ public class Player : Unit
 
 
     private PowerUpManager _powerUpManager;
+    public InventorySlot slotObject;
 
 
     //private EasyDraw easyDraw;

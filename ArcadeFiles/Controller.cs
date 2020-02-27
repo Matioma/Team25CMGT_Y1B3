@@ -6,6 +6,8 @@ class Controller:GameObject
     public static int ControllersNumber = 0;
     Player _target;
     public int controllerId;
+    
+
 
 
     ArcadeCamera _cameraRef = null;
@@ -79,8 +81,12 @@ class Controller:GameObject
                 {
                     AddCamera(0, 0, Game.main.width, Game.main.height/2 - Separator.SepHeight/2);
 
-                   // AddCamera(120, 120, Game.main.width, Game.main.height / 2 - Separator.SepHeight / 2);
-                   // AddCamera(120, 120, Game.main.width, Game.main.height / 2 - Separator.SepHeight / 2);
+                    //GameManager.Instance.ActiveLevel.AddChild(new InventorySlot(0, 0, 70, 70));
+                    //GameManager.Instance.ActiveLevel.AddChild(new InventorySlot(0, Game.main.height / 2 + Separator.SepHeight / 2, 70, 70));
+
+                    //GameManager.Instance.ActiveLevel.AddChild(new InventorySlot(0,0,100,100));
+                    // AddCamera(120, 120, Game.main.width, Game.main.height / 2 - Separator.SepHeight / 2);
+                    // AddCamera(120, 120, Game.main.width, Game.main.height / 2 - Separator.SepHeight / 2);
                     //AddCamera(0, 0, 120, 120);
                 }
                 else
