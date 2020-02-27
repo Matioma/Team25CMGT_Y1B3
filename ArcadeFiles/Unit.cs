@@ -71,7 +71,9 @@ public abstract class Unit : ArcadeObject,IControllable
 
     public StateMachine stateMachine;
 
-    List<Tile> _tiles = new List<Tile>();
+    //List<Tile> _tiles = new List<Tile>();
+
+    public static List<Tile> _tiles = new List<Tile>();
 
     public Unit() {
         stateMachine = new StateMachine(this);

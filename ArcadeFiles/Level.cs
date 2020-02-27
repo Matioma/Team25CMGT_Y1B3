@@ -84,6 +84,7 @@ public class Level:GameObject
         tile.SetXY(j * Tile.tileWidth, i * Tile.tileHeight);
         tile.SetSpriteExtent(Tile.tileWidth, Tile.tileHeight);
         AddChild(tile);
+        Unit._tiles.Add(tile);
 
         return tile;
     }

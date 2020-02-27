@@ -6,7 +6,7 @@ using System.Text;
 using GXPEngine;
 using GXPEngine.Core;
 
-class Tile: ArcadeObject
+public class Tile: ArcadeObject
 {
     public static int tileWidth;
     public static int tileHeight;
