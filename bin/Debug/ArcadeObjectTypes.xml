@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
- <objecttype name="AcidBottle" color="#81a401">
+ <objecttype name="AcidBottle" color="#0a0aa4">
   <property name="SpriteSheet" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="0"/>
   <property name="SpriteSheetRows" type="int" default="0"/>
@@ -35,6 +35,12 @@
   <property name="SpriteSheet" type="file" default=""/>
   <property name="SpriteSheetColumns" type="int" default="0"/>
   <property name="SpriteSheetRows" type="int" default="0"/>
+ </objecttype>
+ <objecttype name="SunGlasses" color="#a40652">
+  <property name="SpriteSheet" type="file" default=""/>
+  <property name="SpriteSheetColumns" type="int" default="0"/>
+  <property name="SpriteSheetRows" type="int" default="0"/>
+  <property name="scale" type="float" default="0"/>
  </objecttype>
  <objecttype name="ToxicWaste" color="#ff0000">
   <property name="SpeedReduction" type="int" default="0"/>
