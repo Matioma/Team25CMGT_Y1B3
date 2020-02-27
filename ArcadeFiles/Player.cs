@@ -69,7 +69,7 @@ public class Player : Unit
 
         popUps.Add(typeof(Pill), new AnimationSprite("art/popup_pill.png", 1, 1));
         popUps.Add(typeof(AcidBottle), new AnimationSprite("art/popup_acid.png", 1, 1));
-        //popUps.Add(typeof(Pill), new AnimationSprite("popup_carrot.png", 1, 1));
+        popUps.Add(typeof(SunGlasses), new AnimationSprite("art/popup_glasses.png", 1, 1));
         popUps.Add(typeof(MetalWheel), new AnimationSprite("art/popup_wheel.png", 1, 1));
         //popUps.Add(typeof(Pill), new AnimationSprite("popup_glasses.png", 1, 1));
 
@@ -89,6 +89,7 @@ public class Player : Unit
         _powerUpManager.ApplyActiveEffects();
 
         base.Update();
+        base.ApplyGravity();
 
 
         dx *= 0.9f;

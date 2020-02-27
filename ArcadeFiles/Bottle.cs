@@ -25,8 +25,11 @@ class Bottle:Unit
     }
 
     public void Update() {
+
         base.Update();
-      
+        ApplyGravity();
+
+
         if (OnGround)
         {
             OnBottleBreak();

@@ -234,6 +234,9 @@ public class Level:GameObject
                 case "AcidBottle":
                     ParseAcidWater(obj);
                     break;
+                case "SunGlasses":
+                    ParseSunGlasses(obj);
+                    break;
                 case "UIBackgroundStatic":
                     AddChildAt(ParseStaticBackground(obj),0);
                     break;
@@ -547,6 +550,47 @@ public class Level:GameObject
         acidBottle.SetPivotPoint(PivotPointPosition.BOTTOM);
 
         AddChild(acidBottle);
+
+    }
+
+    void ParseSunGlasses(TiledObject obj)
+    {
+        string spriteSheet = "colors.png";
+        int cols = 1, rows = 1;
+        float scale = 1;
+
+
+        var properties = obj.propertyList;
+        foreach (Property property in obj.propertyList.properties)
+        {
+            switch (property.Name)
+            {
+
+                case "SpriteSheet":
+                    spriteSheet = property.Value;
+                    break;
+                case "SpriteSheetColumns":
+                    cols = int.Parse(property.Value);
+                    break;
+                case "SpriteSheetRows":
+                    rows = int.Parse(property.Value);
+                    break;
+                case "scale":
+                    scale = float.Parse(property.Value);
+                    break;
+                default:
+                    Console.WriteLine("unknown Property");
+                    break;
+            }
+        }
+
+        SunGlasses sunGlasses = new SunGlasses(spriteSheet, cols, rows);
+        sunGlasses.SetXY(obj.X, obj.Y);
+
+        sunGlasses.SetScaleXY(scale);
+        sunGlasses.SetPivotPoint(PivotPointPosition.BOTTOM);
+
+        AddChild(sunGlasses);
 
     }
 

@@ -55,6 +55,7 @@
     <Compile Include="ArcadeFiles\Player.cs" />
     <Compile Include="ArcadeFiles\PowerUps\PowerUp.cs" />
     <Compile Include="ArcadeFiles\PowerUps\SlowEffect.cs" />
+    <Compile Include="ArcadeFiles\PowerUps\SunGlasses.cs" />
     <Compile Include="ArcadeFiles\Separator.cs" />
     <Compile Include="ArcadeFiles\Tile.cs" />
     <Compile Include="ArcadeFiles\UI\MainMenu.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="ArcadeFiles\UnitControl\State.cs" />
     <Compile Include="ArcadeFiles\UnitControl\States\Run.cs" />
     <Compile Include="ArcadeFiles\UnitControl\States\Stunned.cs" />
+    <Compile Include="ArcadeFiles\Units\LaserParticle.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
     <Compile Include="GXPEngine\Game.cs" />

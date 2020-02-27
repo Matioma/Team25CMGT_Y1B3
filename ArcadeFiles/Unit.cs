@@ -109,7 +109,7 @@ public abstract class Unit : ArcadeObject,IControllable
         Vector2 worldPosition = hitBox.TransformPoint(hitBox.x, hitBox.y);
         SetXY(worldPosition.x, worldPosition.y);
         hitBox.SetXY(0, 0);
-        ApplyGravity();
+        //ApplyGravity();
 
 
     }
@@ -145,7 +145,7 @@ public abstract class Unit : ArcadeObject,IControllable
         
     }
 
-    void ApplyGravity() {
+    public void ApplyGravity() {
         if (speedY < MaxSpeedY)
         {
             speedY += Gravity;

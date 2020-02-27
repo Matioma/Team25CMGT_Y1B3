@@ -69,6 +69,10 @@ public class InventorySlot:GameObject
             {
                 visuals = new AnimationSprite("art/popup_acid.png", 1, 1, -1, false);
             }
+            if (powerUp is SunGlasses)
+            {
+                visuals = new AnimationSprite("art/popup_glasses.png", 1, 1, -1, false);
+            }
             Console.WriteLine(powerUp.GetType());
 
             if (visuals != null)

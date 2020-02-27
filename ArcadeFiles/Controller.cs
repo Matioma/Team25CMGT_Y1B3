@@ -134,11 +134,11 @@ class Controller:GameObject
                       }
                       break;
                   case 1:
-                      if (Input.GetKey(Key.D))
+                      if (Input.GetKey(Key.A))
                       {
                           conrolledObject.RotateWheel(true);
                       }
-                      if (Input.GetKey(Key.A))
+                      if (Input.GetKey(Key.D))
                       {
                           conrolledObject.RotateWheel(false);
                       }
