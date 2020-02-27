@@ -22,18 +22,46 @@ class AudioManager
 
     public AudioManager() {
         _instance = this;
+
+        Sound sound = new Sound("Audio/Hamsters.mp3", true);
+        sound.Play();
+
+        //PlaySound("Getting_Damaged.mp3");
     }
 
     public void PlaySound(string fileName) {
         if (SoundDictionary.ContainsKey(fileName))
         {
-            SoundDictionary[fileName].Play();
+
+            Sound tempSound = SoundDictionary[fileName];
+            tempSound.Play();
+            //Sound sound = new Sound(fileName);
+            //SoundDictionary.Add(fileName, sound);
+            //sound.Play();
+
+        }
+        else {
+            Sound sound = new Sound(fileName);
+            SoundDictionary.Add(fileName, sound);
+            sound.Play();
+        }
+        
+
+        //Sound sound = new Sound(fileName);
+        //sound.Play();
+        //SoundDictionary[fileName].Play();
+
+
+        /*if (SoundDictionary.ContainsKey(fileName))
+        {
         }
         else {
             SoundDictionary.Add(fileName,new Sound(fileName));
-            SoundDictionary[fileName].Play();
+            
         }
-
+        SoundDictionary[fileName].Play();
+        Console.WriteLine(fileName);
+        */
     }
 
     public void AddBackgroundSound(string fileName) {

@@ -19,7 +19,7 @@ namespace GXPEngine.ArcadeFiles.PowerUps
         protected override void onPowerUpUse()
         {
             owner.PowerUpUsed(this);
-
+            AudioManager.Instance.PlaySound("Audio/Using_powerup.mp3");
             this.LateDestroy();
         }
 

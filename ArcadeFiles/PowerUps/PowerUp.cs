@@ -38,6 +38,7 @@ public abstract class PowerUp: ArcadeObject
     }
 
     protected virtual void onPickUp() {
+        AudioManager.Instance.PlaySound("Pickingup_powerup.wav");
         this.LateRemove();
     }
 

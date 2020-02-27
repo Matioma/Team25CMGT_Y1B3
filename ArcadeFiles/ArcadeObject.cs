@@ -94,7 +94,7 @@ public abstract class ArcadeObject : GameObject
         animationTimer -= Time.deltaTime;
         if (animationTimer <= 0)
         {
-            animationTimer = millisPerFrame;
+            
             if (animBackwards)
             {
                 if (visuals.currentFrame == 0)
@@ -105,7 +105,10 @@ public abstract class ArcadeObject : GameObject
             }
             else {
                 visuals.SetFrame((visuals.currentFrame + 1 + frameStart) % frameCount + frameStart);
+                
             }
+            Console.WriteLine(visuals.currentFrame);
+            animationTimer = millisPerFrame;
         }
     }
 

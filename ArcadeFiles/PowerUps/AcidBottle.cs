@@ -23,13 +23,11 @@ class AcidBottle:PowerUp
     //override 
     protected override void onPickUp()
     {
+        AudioManager.Instance.PlaySound("Audio/Pickingup_powerup.wav");
         this.LateRemove();
     }
     protected override void onPowerUpUse()
     {
-       
-        var position = TransformPoint(x, y);
-
 
         Bottle bottle = new Bottle("Art/acid.png",2,1);
         bottle.SetScaleXY(0.5f);
@@ -40,7 +38,11 @@ class AcidBottle:PowerUp
         GameManager.Instance.ActiveLevel.AddChildAt(bottle, GameManager.Instance.ActiveLevel.GetChildren().Count - 10);
 
 
+        
         owner.PowerUpUsed(this);
+
+        AudioManager.Instance.PlaySound("Audio/Using_powerup.mp3");
+
         //this.LateDestroy();
     }
 }

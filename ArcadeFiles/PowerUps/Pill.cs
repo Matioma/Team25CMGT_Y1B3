@@ -26,11 +26,18 @@ class Pill:PowerUp
         
     }
 
+    protected override void onPickUp()
+    {
+        base.onPickUp();
+        //AudioManager.Instance.PlaySound("Pickingup_powerup.wav");
+    }
 
     protected override void onPowerUpUse()
     {
         owner.PowerUpUsed(this);
 
+
+        AudioManager.Instance.PlaySound("Audio/Using_powerup.mp3");
         this.LateDestroy();
     }
     public override void ApplyEffect(Unit target)

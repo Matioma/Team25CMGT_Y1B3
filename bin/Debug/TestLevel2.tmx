@@ -44,18 +44,18 @@
    <properties>
     <property name="JumpForce" type="int" value="15"/>
     <property name="MaxSpeed" type="int" value="5"/>
-    <property name="SpriteSheet" type="file" value="Art/Animation_test_p1.png"/>
+    <property name="SpriteSheet" type="file" value="Art/Animation_p1.png"/>
     <property name="SpriteSheetColumns" type="int" value="5"/>
-    <property name="SpriteSheetRows" type="int" value="4"/>
+    <property name="SpriteSheetRows" type="int" value="5"/>
    </properties>
   </object>
   <object id="2" type="Player" x="251" y="349" width="64" height="64">
    <properties>
     <property name="JumpForce" type="int" value="15"/>
     <property name="MaxSpeed" type="int" value="5"/>
-    <property name="SpriteSheet" type="file" value="Art/Animation_test_p2.png"/>
+    <property name="SpriteSheet" type="file" value="Art/Animation_p2.png"/>
     <property name="SpriteSheetColumns" type="int" value="5"/>
-    <property name="SpriteSheetRows" type="int" value="4"/>
+    <property name="SpriteSheetRows" type="int" value="5"/>
    </properties>
   </object>
   <object id="10" type="Pill" x="1292.42" y="845.455" width="51.5152" height="54.5455">

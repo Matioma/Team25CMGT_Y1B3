@@ -36,13 +36,12 @@ class GameManager:GameObject
 
     }
 
-    void Update() {
-
-    }
+    
     public GameManager() {
         Settings.Initialize();
         audioManager = new AudioManager();
         //audioManager.AddBackgroundSound("Using_powerup.mp3");
+       
 
 
         activeLevel = new Level("MainMenu.tmx");
@@ -50,6 +49,11 @@ class GameManager:GameObject
         AddChild(activeLevel);
 
         _instance = this;
+    }
+
+    void Update()
+    {
+
     }
     public void OpenLevel(string path) {
         Controller.ControllersNumber = 0;

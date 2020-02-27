@@ -21,7 +21,7 @@ class InAir:State
             unit.visuals.Mirror(true, false);
         }
 
-        unit.Animate(300 / unit.ActualMaxSpeed, 16, 1, false);
+        unit.Animate(300 / unit.ActualMaxSpeed, 6, 1, false);
         if (unit.OnGround)
         {
             owner.CurrentState = UnitState.IDLE;

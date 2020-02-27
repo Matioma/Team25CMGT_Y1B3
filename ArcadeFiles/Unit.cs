@@ -124,6 +124,7 @@ public abstract class Unit : ArcadeObject,IControllable
         if (OnGround)
         {
             speedY = JumpForce;
+            AudioManager.Instance.PlaySound("Audio/Jumping.wav");
         }
         
     }
