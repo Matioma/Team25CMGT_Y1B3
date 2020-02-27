@@ -14,6 +14,13 @@ using GXPEngine.ArcadeFiles.PowerUps;
 public class Player : Unit
 {
     int frame = 0;
+
+
+    public float spawnX = 0;
+    public float Score{
+        get { return (x - spawnX); }
+
+    }
     
 
     ArcadeCamera _cameraRef = null;

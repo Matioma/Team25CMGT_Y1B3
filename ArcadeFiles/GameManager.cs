@@ -61,7 +61,20 @@ class GameManager:GameObject
         activeLevel = new Level(path);
 
         AddChild(activeLevel);
-        
+
+    }
+
+    public void OpenLevel(string path, int score1, int score2)
+    {
+        Controller.ControllersNumber = 0;
+        activeLevel.LateDestroy();
+        activeLevel = new Level(path);
+
+        AddChild(activeLevel);
+
+
+
+        Console.WriteLine(score1 + ": "+ score2);
     }
 
 }

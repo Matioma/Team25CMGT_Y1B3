@@ -16,9 +16,6 @@ public class Level:GameObject
     Map levelData;
     MainMenu mainMenu;
 
-
-
-
     public List<ArcadeObject> playersList = new List<ArcadeObject>();
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
 
@@ -37,6 +34,11 @@ public class Level:GameObject
         SpawnObjects(levelData);
 
     }
+
+
+
+
+
 
 
     /// <summary>
@@ -272,6 +274,9 @@ public class Level:GameObject
 
         Player player = new Player(spriteSheet, cols, rows);
         player.SetXY(obj.X, obj.Y);
+        player.spawnX = obj.X;
+
+
         player.DefaultMaxSpeed = maxSpeed;
         player.JumpForce = jumpForce;
 
