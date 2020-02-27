@@ -150,7 +150,7 @@ public abstract class Unit : ArcadeObject,IControllable
     private GameObject[] HorizontalTilesToConsider()
     {
 
-        _tiles = new List<Tile>();
+        /*_tiles = new List<Tile>();
         foreach (var gameObject in parent.GetChildren())
         {
             if (gameObject is Tile)
@@ -158,7 +158,7 @@ public abstract class Unit : ArcadeObject,IControllable
                 _tiles.Add(gameObject as Tile);
             }
 
-        }
+        }*/
 
         List<HitBox> hitBoxes = new List<HitBox>();
         foreach (var obj in _tiles)
