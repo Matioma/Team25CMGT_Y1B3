@@ -325,8 +325,8 @@ public class Level:GameObject
         pill.PowerUpDuration = speedDuration;
 
 
-        //pill.SetScaleXY(scale);
-        pill.SetSpriteExtent((int)obj.Width, (int)obj.Height);
+        pill.SetScaleXY(scale);
+        //pill.SetSpriteExtent((int)obj.Width, (int)obj.Height);
         pill.SetPivotPoint(PivotPointPosition.BOTTOM);
         
         AddChild(pill);
