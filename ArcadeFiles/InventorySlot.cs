@@ -51,20 +51,23 @@ public class InventorySlot:GameObject
         var arcadeCamera = new ArcadeCamera(px, py, pwidth, pheight);
         arcadeCamera.SetXY(pwidth/2,pheight/2);
         this.AddChild(arcadeCamera);
+
+
+        //visuals = new AnimationSprite("art/colors.png",1,1);
+        //AddChild(visuals);
     }
 
     public void SetVisuals(PowerUp powerUp) {
 
 
-        /*if (visuals != null)
+        if (visuals != null)
         {
-            visuals.LateDestroy();
+            visuals.LateRemove();
         }
-
         if (powerUp != null) { 
             if (powerUp is AcidBottle)
             {
-                visuals = new AnimationSprite(defaultSprite, 1, 1, -1, false);
+                visuals = new AnimationSprite("art/popup_acid.png", 1, 1, -1, false);
             }
             Console.WriteLine(powerUp.GetType());
 
@@ -74,7 +77,7 @@ public class InventorySlot:GameObject
                 visuals.height = pHeight;
                 AddChild(visuals);
             }
-        }*/
+        }
 
         
        
