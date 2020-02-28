@@ -303,6 +303,14 @@ public class Level:GameObject
         player.JumpForce = jumpForce;
 
 
+        ReadySetGo readySetGo = ReadySetGo.Instance;
+        readySetGo.x = obj.X;
+        readySetGo.y = obj.Y+200;
+        readySetGo.SetScaleXY(0.4f, 0.4f);
+
+        AddChild(readySetGo);
+
+
         player.SetSpriteExtent((int)obj.Width, (int)obj.Height);
         player.SetPivotPoint(PivotPointPosition.BOTTOM);
         AddChild(player);

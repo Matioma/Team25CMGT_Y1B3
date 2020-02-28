@@ -20,7 +20,7 @@ public class StateMachine:GameObject
         states.Add(UnitState.RUN, new Run(this));
         states.Add(UnitState.STUNNED, new Stuned(this));
 
-        CurrentState = UnitState.IDLE;
+        CurrentState = UnitState.STUNNED;
     }
 
 
