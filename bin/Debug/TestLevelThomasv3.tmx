@@ -130,7 +130,7 @@
   </object>
   <object id="29" type="UIBackgroundStatic" x="3033.8" y="34.1061" width="3853" height="814">
    <properties>
-    <property name="SpriteSheet" type="file" value="../../../../../Downloads/Background.jpg"/>
+    <property name="SpriteSheet" type="file" value="Art/Background.jpg"/>
     <property name="SpriteSheetColumns" type="int" value="1"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
     <property name="scale" type="float" value="0.85"/>
