@@ -65,7 +65,7 @@ class ReadySetGo:GameObject
             }
             else {
                 SwitchVisuals();
-                timer = 300;
+                timer = 1000;
             }
             
         }

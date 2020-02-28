@@ -33,25 +33,9 @@
     <property name="SpriteSheetRows" type="int" value="1"/>
    </properties>
   </object>
-  <object id="5" type="UIButton" x="100" y="212" width="400" height="198">
+  <object id="5" type="UIButton" x="110.562" y="357.231" width="545.231" height="306.263">
    <properties>
     <property name="BackgroundImage" type="file" value="Art/start_button.png"/>
-    <property name="SpriteSheetColumns" type="int" value="2"/>
-    <property name="SpriteSheetRows" type="int" value="1"/>
-    <property name="TargetLevel" type="file" value="TestLevel2.tmx"/>
-   </properties>
-  </object>
-  <object id="8" type="UIButton" x="100" y="328" width="400" height="198">
-   <properties>
-    <property name="BackgroundImage" type="file" value="Art/options_button.png"/>
-    <property name="SpriteSheetColumns" type="int" value="2"/>
-    <property name="SpriteSheetRows" type="int" value="1"/>
-    <property name="TargetLevel" type="file" value="TestLevel2.tmx"/>
-   </properties>
-  </object>
-  <object id="9" type="UIButton" x="100" y="453.225" width="400" height="198">
-   <properties>
-    <property name="BackgroundImage" type="file" value="Art/quit_button.png"/>
     <property name="SpriteSheetColumns" type="int" value="2"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
     <property name="TargetLevel" type="file" value="TestLevel2.tmx"/>
