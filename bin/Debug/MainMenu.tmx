@@ -38,7 +38,7 @@
     <property name="BackgroundImage" type="file" value="Art/start_button.png"/>
     <property name="SpriteSheetColumns" type="int" value="2"/>
     <property name="SpriteSheetRows" type="int" value="1"/>
-    <property name="TargetLevel" type="file" value="TestLevel2.tmx"/>
+    <property name="TargetLevel" type="file" value="TestLevelThomasv3.tmx"/>
    </properties>
   </object>
   <object id="12" type="UIBackgroundStatic" x="12" y="20" width="1352" height="736">
