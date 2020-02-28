@@ -3,7 +3,7 @@
 
 
 //Debugging Section
-DebugMode=on		//Displays colliders for bug detection (on/off)
+DebugMode=off		//Displays colliders for bug detection (on/off)
 ColliderAlpha=0.6	// Sets how transparent should be the Alpha when debuging collisions [0.0;1.0]
 
 
